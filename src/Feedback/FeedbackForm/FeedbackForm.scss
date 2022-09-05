@@ -2,16 +2,14 @@
   background: linear-gradient(180deg, rgb(48 40 90) 50%, #f9f3e9 50%);
   flex-direction: column;
   align-items: center;
+  height: 100%;
   [class^="sub-feedbackForm"] {
-    width: 820px;
-    height: min(620px, 90%);
-    margin-left: 20px;
-    margin-right: 20px;
-    position: relative;
-    float: left;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
     background-color: #fff;
     box-shadow: 16px 16px 32px rgb(109 132 142 / 15%);
-    border-radius: 25px;
+    border-radius: 0.25rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,6 +40,7 @@
           display: flex;
           flex-direction: row;
           align-items: center;
+          text-align: left;
         }
         .red-border .custom-control-label::after {
           border: 2px solid red;
@@ -88,6 +87,7 @@
       .buttons {
         text-align: right;
         margin-top: 40px;
+        margin-bottom: 20px;
         button {
           margin-left: 10px;
         }
