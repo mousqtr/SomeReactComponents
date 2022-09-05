@@ -1,0 +1,97 @@
+#feedbackForm {
+  background: linear-gradient(180deg, rgb(48 40 90) 50%, #f9f3e9 50%);
+  flex-direction: column;
+  align-items: center;
+  [class^="sub-feedbackForm"] {
+    width: 820px;
+    height: min(620px, 90%);
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+    float: left;
+    background-color: #fff;
+    box-shadow: 16px 16px 32px rgb(109 132 142 / 15%);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .feedbackForm-header {
+    width: 100%;
+    height: 10%;
+    h4 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+  }
+  .feedbackForm-content {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    form {
+      width: 90%;
+      .form-group {
+        label,
+        .col-sm-9,
+        .col-sm-3 {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        .red-border .custom-control-label::after {
+          border: 2px solid red;
+          border-radius: 0.25rem;
+          cursor: pointer;
+        }
+        button {
+          background-color: white;
+          border-radius: 0 0.25rem 0.25rem 0;
+          padding: 6px;
+          color: black;
+          border: 1px solid grey;
+        }
+        textarea {
+          height: 200px;
+        }
+        .attachment {
+          position: relative;
+          width: 60px;
+          height: 60px;
+          margin-right: 10px;
+          img {
+            width: 100%;
+            height: 100%;
+            background-color: blue;
+          }
+          .cross {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 20px;
+            height: 20px;
+            color: red;
+            cursor: pointer;
+          }
+        }
+        
+      }
+
+      small {
+        color: red;
+      }
+
+      .buttons {
+        text-align: right;
+        margin-top: 40px;
+        button {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
