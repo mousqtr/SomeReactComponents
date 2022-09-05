@@ -143,23 +143,15 @@ export default function FeedbackFormView(props) {
             )}
 
             <div className="buttons">
-              <Button
-                type="button"
-                className="btn-purple float-left"
-                onClick={props.reset}
-              >
+              <button className="btn btn-purple float-left" onClick={props.reset}>
                 Vider les champs
-              </Button>
-              <Button type="button" className="btn-red" onClick={props.cancel}>
+              </button>
+              <button className="btn btn-red" onClick={props.cancel}>
                 Quitter
-              </Button>
-              <Button
-                type="button"
-                className="btn-green"
-                onClick={props.submit}
-              >
+              </button>
+              <button className="btn btn-green" onClick={props.submit}>
                 Valider
-              </Button>
+              </button>
             </div>
           </Form>
         </div>
