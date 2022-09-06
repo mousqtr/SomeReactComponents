@@ -7,10 +7,13 @@ export default function ProfileNav() {
               Réduire l'onglet {'<<'}
         </div>
         <ul>
-            <li>Informations</li>
-            <li>Amis</li>
-            <li>Notifications</li>
-            <li>Test</li>
+            <li className="header">Général</li>
+            <li className="body">Informations</li>
+            <li className="body">Amis</li>
+            <li className="body">Notifications</li>
+            <li className="header">Avatar</li>
+            <li className="body">Personnalisation</li>
+            <li className="body">Animation</li>
         </ul>
       {/* <Nav /> */}
     </div>
