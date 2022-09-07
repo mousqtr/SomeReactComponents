@@ -1,0 +1,31 @@
+#profileHeader {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid lightgrey;
+    .profileIcon {
+        width: 40px;
+        height: 40px;
+        border-bottom: 1px solid lightgrey;
+        &:hover {
+            background-color: #C8C8C8;
+            cursor: pointer;
+        }
+        svg {
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+        }
+    }
+    .profileTitle {
+        display: block;
+        width: calc(100% - 40px);
+        border-bottom: 1px solid lightgrey;
+        h4 {
+            font-size: 16px;
+            margin-left: 4px;
+            line-height: 40px;
+        }
+    }
+}

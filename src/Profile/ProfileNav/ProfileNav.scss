@@ -7,10 +7,10 @@
     background-color: #DCDCDC;
     overflow-x: hidden;
     overflow-y: auto;
-    -webkit-transition: width 0.5s ease-in-out;
-    -moz-transition: width 0.5s ease-in-out;
-    -o-transition: width 0.5s ease-in-out;
-    transition: width 0.5s ease-in-out;
+    -webkit-transition: width 0.3s ease-in-out;
+    -moz-transition: width 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
     position: absolute;
     z-index: 1000;
     top: 0;
@@ -49,10 +49,21 @@
         li.title {
             text-align: right;
             border-top: 1px solid lightgrey;
-            font-weight: bold;
             &:hover {
                 background-color: #C8C8C8;
                 cursor: pointer;
+            }
+            h4 {
+                display: block;
+                float: right;
+                margin: 0;
+                line-height: 40px;
+                font-size: 16px;
+            }
+            svg {
+                padding: 5px;
+                display: block;
+                float: right;
             }
         }
         li.header {
