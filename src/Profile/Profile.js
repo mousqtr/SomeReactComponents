@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import ProfileNav from "./ProfileNav/ProfileNav";
-import { GiHamburgerMenu } from "react-icons/gi";
+import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import "./Profile.scss";
 
 export default function Profile() {
   
-  const [openNav, setOpenNav] = useState(true);
-  
-  const handleOpen = () => setOpenNav(true);
+  const [openNav, setOpenNav] = useState(false);
   
   return (
-    <div id="profile" className="">
-        <div className="profileTitle center" onClick={handleOpen}>
-            <GiHamburgerMenu />
-        </div>
-      <ProfileNav openNav={openNav} setOpenNav={setOpenNav}/>
+    <div id="profile">
+        <ProfileHeader setOpenNav={setOpenNav}/>
+        <ProfileNav openNav={openNav} setOpenNav={setOpenNav}/>
     </div>
   );
 }

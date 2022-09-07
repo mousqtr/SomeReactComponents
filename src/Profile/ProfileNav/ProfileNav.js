@@ -11,20 +11,17 @@ import { BsFillDoorOpenFill } from "react-icons/bs";
 
 export default function ProfileNav(props) {
 
-    const handleClose = () => {
-        console.log('ok')
-        props.setOpenNav(false);
-    }
+    const handleClose = () => props.setOpenNav(false);
 
     return (
         <div id="profileNav" style={{width: props.openNav ? '300px' : '0px'}}>
             <ul>
-                <li className="title" onClick={handleClose}>Close<BiArrowToLeft /></li>
+                <li className="title" onClick={handleClose}><IoClose /><h4>Fermer</h4></li>
                 <li className="header">Général</li>
                 <li className="body"><MdSpaceDashboard />Dashboard</li>
                 <li className="body"><FaUserFriends />Amis</li>
-                <li className="header">Paramètres</li>
-                <li className="body"><MdSettings />Informations</li>
+                <li className="header">Informations</li>
+                <li className="body"><MdSettings />Paramètres</li>
                 <li className="body"><IoLanguage />Langue</li>
                 <li className="body"><MdNotifications />Notifications</li>
                 <li className="header">Avatar</li>
