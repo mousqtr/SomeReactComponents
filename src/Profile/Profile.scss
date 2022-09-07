@@ -4,5 +4,19 @@
     min-height: 100%;
     position: absolute;
     padding: 0;
-    background-color: blue;
+    background-color: white;
+    .profileTitle {
+        width: 40px;
+        height: 40px;
+        background-color: #DCDCDC;
+        &:hover {
+            background-color: #C8C8C8;
+            cursor: pointer;
+        }
+        svg {
+            width: 40px;
+            height: 40px;
+            padding: 7px;
+        }
+    }
 }

@@ -5,36 +5,33 @@ import { MdNotifications, MdSpaceDashboard, MdSettings } from "react-icons/md";
 import { RiUserStarFill } from "react-icons/ri";
 import { IoLanguage, IoClose } from "react-icons/io5";
 import { BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { BsFillDoorOpenFill } from "react-icons/bs";
 
 
 
-export default function ProfileNav() {
-    
-    const [open, setOpen] = useState(true);
-    
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-        
+export default function ProfileNav(props) {
+
+    const handleClose = () => {
+        console.log('ok')
+        props.setOpenNav(false);
+    }
+
     return (
-        <div id="profileNav" style={{width: open ? '300px' : '60px'}}>
+        <div id="profileNav" style={{width: props.openNav ? '300px' : '0px'}}>
             <ul>
-                <li className="title">
-                    { open ? <BiArrowToLeft onClick={handleClose}/> : <BiArrowToRight onClick={handleOpen}/>}
-                </li>
-                <li className="header">{open ? 'Général' : ''}</li>
-                <li className="body"><MdSpaceDashboard />{open ? 'Dashboard' : ''}</li>
-                <li className="body"><FaUserFriends />{open ? 'Amis' : ''}</li>
-                <li className="header">{open ? 'Paramètres' : ''}</li>
-                <li className="body"><MdSettings />{open ? 'Informations' : ''}</li>
-                <li className="body"><IoLanguage />{open ? 'Langue' : ''}</li>
-                <li className="body"><MdNotifications />{open ? 'Notifications' : ''}</li>
-                <li className="header">{open ? 'Avatar' : ''}</li>
-                <li className="body"><FaUserTie />{open ? 'Personnalisation' : ''}</li>
-                <li className="body"><RiUserStarFill />{open ? 'Animation' : ''}</li>
-                <li className="header">{open ? 'Statut' : ''}</li>
-                <li className="body"><BsFillDoorOpenFill />{open ? 'Se déconnecter' : ''}</li>
+                <li className="title" onClick={handleClose}>Close<BiArrowToLeft /></li>
+                <li className="header">Général</li>
+                <li className="body"><MdSpaceDashboard />Dashboard</li>
+                <li className="body"><FaUserFriends />Amis</li>
+                <li className="header">Paramètres</li>
+                <li className="body"><MdSettings />Informations</li>
+                <li className="body"><IoLanguage />Langue</li>
+                <li className="body"><MdNotifications />Notifications</li>
+                <li className="header">Avatar</li>
+                <li className="body"><FaUserTie />Personnalisation</li>
+                <li className="body"><RiUserStarFill />Animation</li>
+                <li className="header">Statut</li>
+                <li className="body"><BsFillDoorOpenFill />Se déconnecter</li>
             </ul>
         </div>
     );
