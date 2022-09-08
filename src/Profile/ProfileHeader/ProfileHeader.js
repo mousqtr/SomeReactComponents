@@ -16,9 +16,9 @@ export default function ProfileHeader(props) {
                 </div> : <></>
             }
             
-            {/* <div className="profileTitle">
-                <h4>Edition du profil</h4>
-            </div> */}
+            <div className="profileTitle">
+                <h4>Accueil > Profil utilisateur</h4>
+            </div>
         </div>
     );
 }

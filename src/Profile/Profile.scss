@@ -5,4 +5,20 @@
     position: absolute;
     padding: 0;
     background: linear-gradient(180deg, rgb(48 40 90) 50%, #f9f3e9 50%);
+    .section-center {
+        height: 100%;
+        margin: auto;
+        @media (max-width: 1200px) {
+            width: 100%;
+        }
+        @media (min-width: 1200px) and (max-width: 1400px){
+            width: 90%;
+        }
+        @media (min-width: 1400px) and (max-width: 1600px){
+            width: 80%;
+        }
+        @media (min-width: 1600px) {
+            width: 1200px;
+        }
+    }
 }
