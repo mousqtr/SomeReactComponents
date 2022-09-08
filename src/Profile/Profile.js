@@ -35,14 +35,16 @@ export default function Profile() {
   }, [type])
   
   return (
-    <div id="profile">   
-        <ProfileHeader setOpenNav={setOpenNav} type={type}/>
-        {
-          (type === 'screen') ?
-            <ProfileMenu setMode={setMode}/> :
-            <ProfileNav openNav={openNav} setOpenNav={setOpenNav} setMode={setMode}/>
-        }
-        <ProfileBody mode={mode} />
+    <div id="profile">
+        <div className="section-center">   
+          <ProfileHeader setOpenNav={setOpenNav} type={type}/>
+          {
+            (type === 'screen') ?
+                <ProfileMenu setMode={setMode}/> :
+                <ProfileNav openNav={openNav} setOpenNav={setOpenNav} setMode={setMode}/>
+          }
+          <ProfileBody mode={mode} />
+        </div>
     </div>
   );
 }

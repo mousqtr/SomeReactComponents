@@ -1,5 +1,7 @@
 #profileHeader {
-    width: 100%;
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
     height: 40px;
     display: flex;
     flex-direction: row;
@@ -20,13 +22,12 @@
         }
     }
     .profileTitle {
-        display: block;
         width: calc(100% - 40px);
-        border-bottom: 1px solid lightgrey;
         h4 {
             font-size: 16px;
             margin-left: 4px;
             line-height: 40px;
+            color: white;
         }
     }
 }
