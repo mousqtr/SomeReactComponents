@@ -8,27 +8,43 @@ import { BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
 import { BsFillDoorOpenFill } from "react-icons/bs";
 
 
-
+const menu = [
+    { id: 'general', class: 'header', text: 'Général', icon: <></>},
+    { id: 'dashboard', class: 'body', text: 'Dashboard', icon: <MdSpaceDashboard />},
+    { id: 'friends',class: 'body', text: 'Friends', icon: <FaUserFriends />},
+    { id: 'informations', class: 'header', text: 'Informations', icon: <></>},
+    { id: 'settings', class: 'body', text: 'Paramètres', icon: <MdSettings />},
+    { id: 'languages',class: 'body', text: 'Langues', icon: <IoLanguage />},
+    { id: 'notifications',class: 'body', text: 'Notifications', icon: <MdNotifications />},
+    { id: 'avatar', class: 'header', text: 'Avatar', icon: <></>},
+    { id: 'custom', class: 'body', text: 'Personnalisation', icon: <FaUserTie />},
+    { id: 'animation',class: 'body', text: 'Animation', icon: <RiUserStarFill />},
+    { id: 'status', class: 'header', text: 'Statut', icon: <></>},
+    { id: 'disconnect', class: 'body', text: 'Se déconnecter', icon: <BsFillDoorOpenFill />}
+]
+    
 export default function ProfileNav(props) {
 
     const handleClose = () => props.setOpenNav(false);
+    const handleChangeMode = (id) => {
+        props.setMode(id);
+        handleClose();
+    }
 
     return (
         <div id="profileNav" style={{width: props.openNav ? '300px' : '0px'}}>
             <ul>
                 <li className="title" onClick={handleClose}><IoClose /><h4>Fermer</h4></li>
-                <li className="header">Général</li>
-                <li className="body"><MdSpaceDashboard />Dashboard</li>
-                <li className="body"><FaUserFriends />Amis</li>
-                <li className="header">Informations</li>
-                <li className="body"><MdSettings />Paramètres</li>
-                <li className="body"><IoLanguage />Langue</li>
-                <li className="body"><MdNotifications />Notifications</li>
-                <li className="header">Avatar</li>
-                <li className="body"><FaUserTie />Personnalisation</li>
-                <li className="body"><RiUserStarFill />Animation</li>
-                <li className="header">Statut</li>
-                <li className="body"><BsFillDoorOpenFill />Se déconnecter</li>
+                {
+                    menu.map(elt => 
+                        <li 
+                            key={elt.id} 
+                            className={elt.class}
+                            onClick={() => handleChangeMode(elt.id)}>
+                        {elt.icon}{elt.text}
+                    </li>
+                    )
+                }
             </ul>
         </div>
     );
