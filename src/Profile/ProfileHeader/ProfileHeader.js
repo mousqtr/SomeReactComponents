@@ -9,9 +9,13 @@ export default function ProfileHeader(props) {
 
     return (
         <div id="profileHeader">
-            <div className="profileIcon center" onClick={handleOpen}>
-                <GiHamburgerMenu />
-            </div>
+            {
+                (props.type === 'mobile') ? 
+                <div className="profileIcon center" onClick={handleOpen}>
+                    <GiHamburgerMenu />
+                </div> : <></>
+            }
+            
             {/* <div className="profileTitle">
                 <h4>Edition du profil</h4>
             </div> */}

@@ -1,10 +1,29 @@
 #profileBody {
-    width: 90%;
+    width: 500px;
     min-height: 80%;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 10px;
+    margin-right: calc(50% - 410px);
     margin-top: 10px;
+    padding: 10px;
     background-color: #fff;
     box-shadow: 16px 16px 32px rgb(109 132 142 / 15%);
     border-radius: 0.25rem;
+    display: block;
+    float: left;
+    h4 {
+        text-align: center;
+        border-bottom: 1px solid lightgrey;
+        height: 20px;
+        line-height: 20px;
+        font-size: 10px;
+        color: grey;
+    }
+}
+
+@media (max-width: 900px) {
+   #profileBody {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+   }
 }
