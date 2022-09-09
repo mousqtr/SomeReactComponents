@@ -2,6 +2,7 @@
     width: calc(100% - 40px);
     margin-left: 20px;
     margin-right: 20px;
+    margin-top: 10px;
     height: 40px;
     display: flex;
     flex-direction: row;
@@ -11,7 +12,7 @@
         height: 40px;
         border-bottom: 1px solid lightgrey;
         &:hover {
-            background-color: #C8C8C8;
+            background-color: #9e8aff63;
             cursor: pointer;
         }
         svg {
