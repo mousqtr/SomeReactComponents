@@ -4,7 +4,9 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
-    background-color: #DCDCDC;
+    background-color: #fff;
+    border-right: 1px solid lightgray;
+    box-shadow: 16px 16px 32px rgb(109 132 142 / 15%);
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-transition: width 0.3s ease-in-out;
@@ -50,7 +52,7 @@
             text-align: right;
             border-top: 1px solid lightgrey;
             &:hover {
-                background-color: #C8C8C8;
+                background-color: #9e8aff63;
                 cursor: pointer;
             }
             h4 {
@@ -81,7 +83,7 @@
             margin-right: 10px;
             border-radius: 0.25rem;
             &:hover {
-                background-color: #C8C8C8;
+                background-color: #9e8aff63;
                 cursor: pointer;
             }
         }
