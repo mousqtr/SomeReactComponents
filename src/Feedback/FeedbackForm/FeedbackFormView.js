@@ -17,9 +17,9 @@ import "./FeedbackForm.scss";
 
 export default function FeedbackFormView(props) {
   return (
-    <div id="feedbackForm" className="section-screen">
+    <div id="feedbackForm">
       <div className="sub-feedbackForm">
-        <div className="feedbackForm-header center">
+        <div className="feedbackForm-header">
           <h4>Bug à remonter</h4>
         </div>
 
@@ -38,7 +38,7 @@ export default function FeedbackFormView(props) {
                   }
                 >
                   {["low", "normal", "high"].map((sev, index) => (
-                    <option value={sev}>{sev}</option>
+                    <option key={index} value={sev}>{sev}</option>
                   ))}
                 </FormControl>
               </Col>

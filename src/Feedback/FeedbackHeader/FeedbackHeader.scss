@@ -1,0 +1,17 @@
+#feedbackHeader {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid lightgrey;
+    h4 {
+        font-size: 16px;
+        margin-left: 4px;
+        line-height: 40px;
+        color: white;
+    }
+}
