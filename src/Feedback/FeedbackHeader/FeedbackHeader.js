@@ -6,7 +6,7 @@ export default function FeedbackHeader(props) {
 
     return (
         <div id="feedbackHeader">
-            <h4>Accueil > Comment nous aider ? > Anomalies</h4>
+            <h4>Accueil > Contribuer > Anomalies</h4>
         </div>
     );
 }

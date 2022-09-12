@@ -19,34 +19,15 @@ export default function FeedbackFormView(props) {
   return (
     <div id="feedbackForm">
       <div className="sub-feedbackForm">
-        <div className="feedbackForm-header">
-          <h4>Bug à remonter</h4>
+        <div className="feedbackForm-header center">
+          <h1>Anomalies détéctées</h1>
         </div>
 
         <div className="feedbackForm-content">
           <Form>
             <FormGroup as={Row} className="mb-2">
-              <Form.Label column sm="3">
-                Sévérité
-              </Form.Label>
-              <Col sm="9">
-                <FormControl
-                  as="select"
-                  value={props.data.severity}
-                  onChange={(e) =>
-                    props.setData({ ...props.data, severity: e.target.value })
-                  }
-                >
-                  {["low", "normal", "high"].map((sev, index) => (
-                    <option key={index} value={sev}>{sev}</option>
-                  ))}
-                </FormControl>
-              </Col>
-            </FormGroup>
-
-            <FormGroup as={Row} className="mb-2">
               <FormLabel column sm="3">
-                Nom d'utilisateur *
+                *Nom d'utilisateur
               </FormLabel>
               <Col sm="9">
                 <FormControl
@@ -56,9 +37,6 @@ export default function FeedbackFormView(props) {
                   onChange={(e) =>
                     props.setData({ ...props.data, username: e.target.value })
                   }
-                  style={{
-                    border: props.conditions.username ? "" : "2px solid red"
-                  }}
                   disabled
                 />
               </Col>
@@ -66,7 +44,7 @@ export default function FeedbackFormView(props) {
 
             <FormGroup as={Row} className="mb-2">
               <FormLabel column sm="3">
-                Email *
+                *Email
               </FormLabel>
               <Col sm="9">
                 <FormControl
@@ -82,10 +60,29 @@ export default function FeedbackFormView(props) {
                 />
               </Col>
             </FormGroup>
+            
+            <FormGroup as={Row} className="mb-2">
+              <Form.Label column sm="3">
+                *Sévérité
+              </Form.Label>
+              <Col sm="9">
+                <FormControl
+                  as="select"
+                  value={props.data.severity}
+                  onChange={(e) =>
+                    props.setData({ ...props.data, severity: e.target.value })
+                  }
+                >
+                  {["Faible", "Normal", "Elevé"].map((sev, index) => (
+                    <option key={index} value={sev}>{sev}</option>
+                  ))}
+                </FormControl>
+              </Col>
+            </FormGroup>
 
             <FormGroup as={Row} className="mb-2">
               <FormLabel column sm="3">
-                Description
+                *Description
               </FormLabel>
               <Col sm="9">
                 <FormControl
