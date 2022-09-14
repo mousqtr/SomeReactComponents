@@ -1,21 +1,46 @@
-import { FaUserFriends, FaUserTie } from "react-icons/fa";
+import { FaUserFriends, FaExclamationCircle } from "react-icons/fa";
 import { MdNotifications, MdSpaceDashboard, MdSettings } from "react-icons/md";
 import { RiUserStarFill } from "react-icons/ri";
-import { IoLanguage, IoClose } from "react-icons/io5";
+import { IoGameController, IoClose } from "react-icons/io5";
 import { BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
-import { BsFillDoorOpenFill } from "react-icons/bs";
+import { BsPaypal } from "react-icons/bs";
+import { GiTalk } from "react-icons/gi";
+import { HiUserGroup } from "react-icons/hi";
 
 export const SECTIONS = {
     'Améliorer le fonctionnement' : [
-        { id: 'dashboard', class: 'body', text: 'Dashboard', icon: <MdSpaceDashboard />},
-        { id: 'friends',class: 'body', text: 'Friends', icon: <FaUserFriends />}
+        { 
+            id: 'bugs', 
+            class: 'body', 
+            text: 'Remonter des anomalies', 
+            icon: <FaExclamationCircle />
+        },
+        { 
+            id: 'feedback',
+            class: 'body', 
+            text: 'Donner votre avis', 
+            icon: <GiTalk />
+        }
     ],
     'Alimenter le contenu' : [
-        { id: 'feedActivities', class: 'body', text: 'Contribuer aux activitiés', icon: <MdSpaceDashboard />},
-        { id: 'friends',class: 'body', text: 'Friends', icon: <FaUserFriends />}
+        { 
+            id: 'feedActivities', 
+            class: 'body', 
+            text: 'Contribuer aux activitiés', 
+            icon: <IoGameController />},
     ],
     'Accélerer le développement' : [
-        { id: 'dashboard', class: 'body', text: 'Dashboard', icon: <MdSpaceDashboard />},
-        { id: 'friends',class: 'body', text: 'Friends', icon: <FaUserFriends />}
+        { 
+            id: 'donation', 
+            class: 'body', 
+            text: 'Faire un don', 
+            icon: <BsPaypal />
+        },
+        { 
+            id: 'participate',
+            class: 'body', 
+            text: 'Participer', 
+            icon: <HiUserGroup />
+        }
     ],
 };

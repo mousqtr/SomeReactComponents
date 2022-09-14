@@ -3,7 +3,6 @@
     width: 100%;
     height: 100%;
     min-height: 100%;
-    padding: 0;
     .helpUsMenu {
         flex-direction: column;
         align-items: center;
@@ -15,8 +14,6 @@
         background-color: #fff;
         box-shadow: 0 4px 8px rgb(109 132 142 / 15%);
         border-radius: 0.25rem;
-        display: flex;
-        flex-direction: column;
         .helpUsMenu-header {
             width: 100%;
             height: 40px;
