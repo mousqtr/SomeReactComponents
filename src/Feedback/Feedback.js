@@ -105,18 +105,15 @@ export default function Feedback() {
   };
 
   return (
-    <div id="feedback" className="section-screen">
-        <FeedbackView
-            data={data}
-            conditions={conditions}
-            conditionsValid={conditionsValid}
-            setData={setData}
-            submit={handleSubmit}
-            cancel={handleCancel}
-            reset={handleReset}
-            addAttachments={handleAddAttachments}
-            deleteAttachment={handleDeleteAttachment}/>
-    </div>
-
+    <FeedbackView
+        data={data}
+        conditions={conditions}
+        conditionsValid={conditionsValid}
+        setData={setData}
+        submit={handleSubmit}
+        cancel={handleCancel}
+        reset={handleReset}
+        addAttachments={handleAddAttachments}
+        deleteAttachment={handleDeleteAttachment}/>
   );
 }
