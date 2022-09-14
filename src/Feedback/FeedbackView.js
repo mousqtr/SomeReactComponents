@@ -18,11 +18,10 @@ import "./Feedback.scss";
 
 export default function FeedbackView(props) {
   return (
-    <div id="feedback">
+    <div id="feedback" className="section-screen">
         <Breadcrumb paths={ ['Accueil', 'Nous aider', 'Votre avis']} /> 
         <div className="feedbackForm">
-            <div className="sub-feedbackForm">
-                <div className="feedbackForm-header center">
+            <div className="feedbackForm-header center">
                 <h1>Donner nous votre avis</h1>
                 </div>
 
@@ -107,7 +106,6 @@ export default function FeedbackView(props) {
                     </button>
                     </div>
                 </Form>
-                </div>
             </div>
         </div>
     </div>
