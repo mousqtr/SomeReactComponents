@@ -23,7 +23,7 @@ export default function FeedbackView(props) {
             <Breadcrumb paths={ ['Accueil', 'Nous aider', 'Votre avis']} /> 
             <div className="feedbackForm">
                 <div className="feedbackForm-header center">
-                    <h1>Donner nous votre avis</h1>
+                    <h1>Donner votre avis</h1>
                     </div>
 
                     <div className="feedbackForm-content">
