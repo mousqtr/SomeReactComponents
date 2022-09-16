@@ -21,13 +21,13 @@ export default function BugsView(props) {
     <div id="bugs" className="section-screen">
         <div className="section-central">
             <Breadcrumb paths={ ['Accueil', 'Nous aider', 'Anomalies']} /> 
-            <div className="bugsForm">
-                <div className="bugsForm-header center">
+            <div className="special-section">
+                <div className="special-section-title center">
                     <h1>Remonter une anomalie</h1>
                 </div>
 
-                <div className="bugsForm-content">
-                    <Form>
+                <div className="special-section-content">
+                    <div className="special-section-form">
                         <FormGroup as={Row} className="mb-2">
                         <FormLabel column sm="3">
                             *Nom d'utilisateur
@@ -153,7 +153,7 @@ export default function BugsView(props) {
                             Valider
                         </button>
                         </div>
-                    </Form>
+                    </div>
                 </div>
             </div>       
         </div>

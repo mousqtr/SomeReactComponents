@@ -1,18 +1,13 @@
 import React from "react";
 import Breadcrumb from "./../Breadcrumb/Breadcrumb";
 import {
-  Button,
   FormGroup,
   Form,
   Col,
   Row,
   FormLabel,
   FormControl,
-  FormCheck,
-  InputGroup
 } from "react-bootstrap";
-import { AiFillEye } from "react-icons/ai";
-import { FaTrashAlt } from "react-icons/fa";
 
 import "./Feedback.scss";
 
@@ -21,13 +16,13 @@ export default function FeedbackView(props) {
     <div id="feedback" className="section-screen">
         <div className="section-central">
             <Breadcrumb paths={ ['Accueil', 'Nous aider', 'Votre avis']} /> 
-            <div className="feedbackForm">
-                <div className="feedbackForm-header center">
+            <div className="special-section">
+                <div className="special-section-title center">
                     <h1>Donner votre avis</h1>
-                    </div>
+                </div>
 
-                    <div className="feedbackForm-content">
-                    <Form>
+                <div className="special-section-content">
+                    <div className="special-section-form">
                         <FormGroup as={Row} className="mb-2">
                         <FormLabel column sm="3">
                             *Nom d'utilisateur
@@ -106,7 +101,7 @@ export default function FeedbackView(props) {
                             Valider
                         </button>
                         </div>
-                    </Form>
+                    </div>
                 </div>
             </div>
         </div>
