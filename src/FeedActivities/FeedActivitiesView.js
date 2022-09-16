@@ -1,5 +1,6 @@
 import React from "react";
 import Breadcrumb from "./../Breadcrumb/Breadcrumb";
+import FeedQuiz from "./FeedQuiz/FeedQuiz";
 import {
   Button,
   FormGroup,
@@ -11,8 +12,6 @@ import {
   FormCheck,
   InputGroup
 } from "react-bootstrap";
-import { AiFillEye } from "react-icons/ai";
-import { FaTrashAlt } from "react-icons/fa";
 
 import "./FeedActivities.scss";
 
@@ -82,6 +81,8 @@ export default function FeedActivitiesView(props) {
                             </FormControl>
                         </Col>
                         </FormGroup>
+                        
+                        <FeedQuiz />
 
                         {!props.conditionsValid ? (
                         <small className="form-text">
