@@ -10,11 +10,13 @@ export default function FeedQuiz() {
     const [propositions, setPropositions] = useState(Array(4).fill(''));
     const [answer, setAnswer] = useState(1);
     
+    const handleSetDifficulty = (pDifficulty) => setDifficulty(pDifficulty);
+    const handleSetTheme = (pTheme) => setTheme(pTheme);
     const handleSetQuestion = (pQuestion) => setQuestion(pQuestion);
     const handleSetProposition = (pIndex, pValue) => {
-        let propos = [...propositions];
-        propos[pIndex] = pValue;
-        setPropositions(propos);
+        let propositions_ = [...propositions];
+        propositions_[pIndex] = pValue;
+        setPropositions(propositions_);
     }
     const handleSetAnswer = (pAnswer) => setAnswer(pAnswer);
     
@@ -26,8 +28,8 @@ export default function FeedQuiz() {
             propositions={propositions}
             answer={answer}
             
-            setDifficulty={setDifficulty}
-            setTheme={setTheme}
+            setDifficulty={handleSetDifficulty}
+            setTheme={handleSetTheme}
             setQuestion={handleSetQuestion}
             setProposition={handleSetProposition}
             setAnswer={handleSetAnswer}

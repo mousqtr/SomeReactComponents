@@ -1,26 +1,22 @@
 import React, { useState } from "react";
 import FeedActivitiesView from "./FeedActivitiesView";
-// import axios from "axios";
 import { useHistory } from "react-router-dom";
-// import { useDispatch } from "react-redux";
 
-export default function FeedActivities() {
-  const history = useHistory();
-  // const dispatch = useDispatch();
-
-  const initialData = {
-    severity: "normal",
+const initialData = {
     username: "",
     mail: "",
-    description: "",
-    attachments: []
-  };
+    activity: "Quiz",
+    activityData: {}
+};
 
-  const initialConditions = {
+const initialConditions = {
     mail: true,
-    description: true
-  };
-
+    activity: true
+};
+  
+  
+export default function FeedActivities() {
+  const history = useHistory();
   const [data, setData] = useState(initialData);
   const [conditions, setConditions] = useState(initialConditions);
   const [conditionsValid, setConditionsValid] = useState(true);
@@ -44,29 +40,7 @@ export default function FeedActivities() {
       return;
     }
 
-    // axios
-    // .post(usersClient+'/account/signup', {
-    //     username        : data.username,
-    //     password        : data.password,
-    //     mail            : data.mail,
-    //     phone           : data.phone,
-    //     city            : data.city,
-    //     country         : data.country,
-    //     gender          : data.gender,
-    //     firstName       : data.firstName,
-    //     lastName        : data.lastName,
-    //     birthDate       : data.birthDate,
-    //     biography       : data.biography
-    // })
-    // .then((res) =>{
-    //     console.log(res);
-    //     handleReset();
-    //     handleCancel();
-    //     dispatch(appActions.setMessage({
-    //         type: 'success',
-    //         data: 'Compte crée ! Connectez-vous dès maintenant'
-    //     }));
-    // })
+    // HTTP Request
   };
 
   const handleCancel = () => {
@@ -84,10 +58,7 @@ export default function FeedActivities() {
       let url = URL.createObjectURL(e.target.files[0]);
       let atchs = [...data.attachments];
       atchs.push(url);
-      setData({
-        ...data,
-        attachments: atchs
-      });
+      setData({...data, attachments: atchs});
       console.log(atchs);
     }
   };
@@ -95,12 +66,9 @@ export default function FeedActivities() {
   const handleDeleteAttachment = (index) => {
     let atchs = [...data.attachments];
     if (index > -1) {
-      atchs.splice(index, 1); // 2nd parameter means remove one item only
+      atchs.splice(index, 1);
     }
-    setData({
-      ...data,
-      attachments: atchs
-    });
+    setData({...data, attachments: atchs});
     console.log(atchs);
   };
 
