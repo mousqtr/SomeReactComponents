@@ -20,13 +20,13 @@ export default function FeedActivitiesView(props) {
     <div id="feedActivities" className="section-screen">
         <div className="section-central">
             <Breadcrumb paths={ ['Accueil', 'Nous aider', 'Activitiés']} /> 
-            <div className="feedActivitiesForm">
-                <div className="feedActivitiesForm-header center">
+            <div className="special-section">
+                <div className="special-section-title center">
                     <h1>Contribuer aux activitiés</h1>
                 </div>
 
-                <div className="feedActivitiesForm-content">
-                    <Form>
+                <div className="special-section-content">
+                    <div className="special-section-form">
                         <FormGroup as={Row} className="mb-2">
                         <FormLabel column sm="3">
                             *Nom d'utilisateur
@@ -103,7 +103,7 @@ export default function FeedActivitiesView(props) {
                             Valider
                         </button>
                         </div>
-                    </Form>
+                    </div>
                 </div>
             </div>       
         </div>
