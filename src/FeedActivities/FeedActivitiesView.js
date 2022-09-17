@@ -36,8 +36,8 @@ export default function FeedActivitiesView(props) {
                             <FormControl
                                 type="username"
                                 placeholder="Nom d'utilisateur"
-                                value={props.data.username}
-                                onChange={(e) => props.setData({ ...props.data, username: e.target.value })}
+                                value={props.fieldsValue.username}
+                                onChange={(e) => props.setFieldsValue({ ...props.fieldsValue, username: e.target.value })}
                                 disabled
                             />
                         </Col>
@@ -51,9 +51,9 @@ export default function FeedActivitiesView(props) {
                             <FormControl
                                 type="email"
                                 placeholder="Email"
-                                value={props.data.mail}
-                                onChange={(e) => props.setData({ ...props.data, mail: e.target.value })}
-                                style={{ border: props.conditions.mail ? "" : "2px solid red" }}/>
+                                value={props.fieldsValue.mail}
+                                onChange={(e) => props.setFieldsValue({ ...props.fieldsValue, mail: e.target.value })}
+                                style={{ border: props.fieldsError.mail ? "2px solid red" : "" }}/>
                         </Col>
                         </FormGroup>
                         
@@ -64,8 +64,9 @@ export default function FeedActivitiesView(props) {
                             <Col sm="9">
                                 <FormControl
                                     as="select"
-                                    value={props.data.activity}
-                                    onChange={(e) => props.setData({ ...props.data, activity: e.target.value })}>
+                                    value={props.fieldsValue.activity}
+                                    onChange={(e) => props.setFieldsValue({ ...props.fieldsValue, activity: e.target.value })}
+                                    style={{ border: props.fieldsError.activity ? "2px solid red" : "" }}>
                                         {["Quiz", "Mime"].map((activ, index) => (
                                             <option key={index} value={activ}>{activ}</option>
                                         ))}
@@ -73,10 +74,16 @@ export default function FeedActivitiesView(props) {
                             </Col>
                         </FormGroup>
                         
-                        { (props.data.activity === 'Quiz') ? <FeedQuiz /> : <></>}
-                        { (props.data.activity === 'Mime') ? <FeedMime /> : <></>}
-
-                        {!props.conditionsValid ? (
+                        { (props.fieldsValue.activity === 'Quiz') ? 
+                            <FeedQuiz 
+                                isValid={props.isDataValid} 
+                                setActivityValue={(v) => props.setFieldsValue({ ...props.fieldsValue, activityContent: v })}/> : <></> }
+                        { (props.fieldsValue.activity === 'Mime') ? 
+                            <FeedMime 
+                                isValid={props.isDataValid} 
+                                setActivityValue={(v) => props.setFieldsValue({ ...props.fieldsValue, activityContent: v })}/> : <></> }
+                        
+                        {!props.isDataValid ? (
                         <small className="form-text">
                             * Veuillez compléter les champs obligatoires
                         </small>
