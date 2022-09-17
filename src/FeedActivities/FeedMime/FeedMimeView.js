@@ -27,13 +27,14 @@ export default function FeedMimeView(props) {
                         {/* Theme */}
                         <FormGroup as={Row} className="mb-2">
                             <Form.Label column sm="3">
-                                Theme
+                                *Theme
                             </Form.Label>
                             <Col sm="9">
                                 <FormControl
                                 as="select"
-                                value={props.theme}
-                                onChange={(e) => props.setTheme(e.target.value)}>
+                                value={props.fieldsValue.theme}
+                                onChange={(e) => props.setFieldsValue({ ...props.fieldsValue, theme: e.target.value })}
+                                style={{ border: props.fieldsError.theme ? "2px solid red" : "" }}>
                                     {CONSTANTS_MIME.themes.map((them, index) => <option key={index} value={them}>{them}</option>)}
                                 </FormControl>
                             </Col>
@@ -42,16 +43,15 @@ export default function FeedMimeView(props) {
                         {/* Word */}
                         <FormGroup as={Row} className="mb-2">
                             <FormLabel column sm="3">
-                                Mot
+                                *Mot
                             </FormLabel>
                             <Col sm="9">
                                 <FormControl
                                     type="text"
                                     placeholder={"Mot à deviner"}
-                                    value={props.word}
-                                    onChange={(e) => props.setWord(e.target.value)}
-                                    style={{ border: true ? "" : "2px solid red" }}
-                                />
+                                    value={props.fieldsValue.word}
+                                    onChange={(e) => props.setFieldsValue({ ...props.fieldsValue, word: e.target.value })}
+                                    style={{ border: props.fieldsError.word ? "2px solid red" : "" }}/>
                             </Col>
                         </FormGroup>   
                     </div>
