@@ -49,7 +49,6 @@ export default function FeedMime(props) {
     }
     
     useEffect(() => {
-        console.log(props.isValid)
         showErrors();
     }, [props.isValid])   
     

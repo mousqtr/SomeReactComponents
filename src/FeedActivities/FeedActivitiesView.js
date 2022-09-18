@@ -35,9 +35,10 @@ export default function FeedActivitiesView(props) {
                         <Col sm="9">
                             <FormControl
                                 type="username"
+                                name="username"
                                 placeholder="Nom d'utilisateur"
                                 value={props.fieldsValue.username}
-                                onChange={(e) => props.setFieldsValue({ ...props.fieldsValue, username: e.target.value })}
+                                onChange={props.formInputChange}
                                 disabled
                             />
                         </Col>
@@ -50,9 +51,10 @@ export default function FeedActivitiesView(props) {
                         <Col sm="9">
                             <FormControl
                                 type="email"
+                                name="mail"
                                 placeholder="Email"
                                 value={props.fieldsValue.mail}
-                                onChange={(e) => props.setFieldsValue({ ...props.fieldsValue, mail: e.target.value })}
+                                onChange={props.formInputChange}
                                 style={{ border: props.fieldsError.mail ? "2px solid red" : "" }}/>
                         </Col>
                         </FormGroup>
@@ -63,9 +65,10 @@ export default function FeedActivitiesView(props) {
                             </Form.Label>
                             <Col sm="9">
                                 <FormControl
+                                    name="activity"
                                     as="select"
                                     value={props.fieldsValue.activity}
-                                    onChange={(e) => props.setFieldsValue({ ...props.fieldsValue, activity: e.target.value })}
+                                    onChange={props.formInputChange}
                                     style={{ border: props.fieldsError.activity ? "2px solid red" : "" }}>
                                         {["Quiz", "Mime"].map((activ, index) => (
                                             <option key={index} value={activ}>{activ}</option>
@@ -74,7 +77,7 @@ export default function FeedActivitiesView(props) {
                             </Col>
                         </FormGroup>
                         
-                        { (props.fieldsValue.activity === 'Quiz') ? 
+                        {/* { (props.fieldsValue.activity === 'Quiz') ? 
                             <FeedQuiz 
                                 isValid={props.isDataValid} 
                                 setActivityValue={(v) => props.setFieldsValue({ ...props.fieldsValue, activityContent: v })}/> : <></> }
@@ -89,7 +92,7 @@ export default function FeedActivitiesView(props) {
                         </small>
                         ) : (
                         <></>
-                        )}
+                        )} */}
 
                         <div className="buttons">
                             <button className="btn btn-purple float-left" onClick={props.reset}>
