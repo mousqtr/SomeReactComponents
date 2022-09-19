@@ -9,7 +9,7 @@ import {
   FormCheck,
   InputGroup
 } from "react-bootstrap";
-import { CONSTANTS_QUIZ } from './../constantsActivities';
+// import { CONSTANTS_QUIZ } from './../constantsActivities';
 
 import "./FeedQuiz.scss";
 

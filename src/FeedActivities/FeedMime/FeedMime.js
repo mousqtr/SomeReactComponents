@@ -1,69 +1,70 @@
-import { useState, useEffect } from "react";
-import FeedMimeView from "./FeedMimeView";
-import { CONSTANTS_MIME } from './../constantsActivities';
+import { useEffect } from "react";
+import {
+  Button,
+  FormGroup,
+  Form,
+  Col,
+  Row,
+  FormLabel,
+  FormControl,
+  FormCheck,
+  InputGroup
+} from "react-bootstrap";
+import { constants } from './../constants';
 
-
-const FIELDS = {
-    theme: {
-        type: "string",
-        value: CONSTANTS_MIME.themes[0],
-        mandatory: true
-    },
-    word: {
-        type: "string",
-        value: "",
-        mandatory: true
-    },
-};
-
-const FIELDS_VALUE = Object.keys(FIELDS).reduce((acc, curr) => {
-  acc[curr] = FIELDS[curr].value;
-  return acc;
-}, {});
-
-const FIELDS_ERROR = Object.keys(FIELDS).reduce((acc, curr) => {
-  acc[curr] = false;
-  return acc;
-}, {});
+import "./FeedMime.scss";
 
 export default function FeedMime(props) {
     
-    const [fieldsValue, setFieldsValue] = useState(FIELDS_VALUE);
-    const [fieldsError, setFieldsError] = useState(FIELDS_ERROR);
-       
-    const checkActivityContent = (newFields) => {
-        let isValid = true;
-        Object.keys(FIELDS).forEach((f) => {
-            isValid = (FIELDS[f].mandatory && FIELDS[f].type === "string" && newFields[f] === "") ? false : true;
-        });
-        props.setActivityValue(isValid ? newFields : {});
-    }
-    
-    const showErrors = () => {
-        let fieldsError = { ...fieldsError };
-        Object.keys(FIELDS).forEach((f) => {
-            let isError = (FIELDS[f].mandatory && FIELDS[f].type === "string" && fieldsValue[f] === "") ? true : false;
-            fieldsError[f] = props.isValid ? false : isError;
-        });
-        setFieldsError(fieldsError);
-    }
-    
     useEffect(() => {
-        showErrors();
-    }, [props.isValid])   
+        console.log(props.formData)
+    }, [props.formData]);
     
-    const updateFieldsValue = (newFields) => {
-        checkActivityContent(newFields);
-        setFieldsValue(newFields);
-    }
-
     return (
-        <FeedMimeView
-            fieldsValue={fieldsValue}
-            fieldsError={fieldsError}
-            
-            setFieldsValue={updateFieldsValue}
-            checkActivityContent={checkActivityContent}
-        />
+        <div id='feedMime'>
+            <div className="special-section">
+                <div className="special-section-title center">
+                    <h1>Mime</h1>
+                </div>
+                
+                <div className="special-section-content">
+                    <div className="special-section-form"> 
+                        
+                        {/* Theme */}
+                        <FormGroup as={Row} className="mb-2">
+                            <Form.Label column sm="3">
+                                *Theme
+                            </Form.Label>
+                            <Col sm="9">
+                                <FormControl
+                                name="theme"
+                                as="select"
+                                value={props.formData.theme}
+                                onChange={props.formInputChange}
+                                style={{ border: props.formErrors.theme ? "2px solid red" : "" }}>
+                                    {constants.mime.themes.map((them, index) => <option key={index} value={them}>{them}</option>)}
+                                </FormControl>
+                            </Col>
+                        </FormGroup>
+                        
+                        {/* Word */}
+                        <FormGroup as={Row} className="mb-2">
+                            <FormLabel column sm="3">
+                                *Mot
+                            </FormLabel>
+                            <Col sm="9">
+                                <FormControl
+                                    name="word"
+                                    type="text"
+                                    placeholder={"Mot à deviner"}
+                                    value={props.formData.word}
+                                    onChange={props.formInputChange}
+                                    style={{border: props.formErrors.word ? "2px solid red" : ""}}/>
+                            </Col>
+                        </FormGroup>   
+                    </div>
+                </div>
+            </div>             
+        </div>
     )
 }
