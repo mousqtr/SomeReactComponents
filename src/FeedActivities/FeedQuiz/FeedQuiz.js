@@ -1,6 +1,6 @@
 import { useState } from "react";
 import FeedQuizView from "./FeedQuizView";
-import { CONSTANTS_QUIZ } from './../constantsActivities';
+// import { CONSTANTS_QUIZ } from './../constantsActivities';
 
 export default function FeedQuiz() {
     

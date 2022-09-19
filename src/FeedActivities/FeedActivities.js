@@ -1,50 +1,35 @@
 import React, { useEffect, useState } from "react";
 import FeedActivitiesView from "./FeedActivitiesView";
+import FeedMime from "./FeedMime/FeedMime";
 import { useHistory } from "react-router-dom";
-import { Form } from "./../common/services/form";
 import { useForm } from "./../common/hooks/useForm";
+import { forms } from './forms';
 
-const form = {
-    username: {
-        type: "string",
-        initialValue: "",
-        mandatory: false
-    },
-    mail: {
-        type: "string",
-        initialValue: "",
-        mandatory: true
-    },
-    activity: {
-        type: "string",
-        initialValue: "Mime",
-        mandatory: true
-    },
-    activityContent: {
-        type: "object",
-        initialValue: {},
-        mandatory: true
-    }
-};
   
 export default function FeedActivities() {
     const history = useHistory();
-    const { formData, formErrors, isFormValid, formInputChange, checkForm } = useForm(form);
-    
+    const [isFormValid, setIsFormValid] = useState(true);
+    // const [formData, formErrors, formInputChange, checkForm] = useForm(forms.activity);
+    // const [formDataMime, formErrorsMime, formInputChangeMime, checkFormMime] = useForm(forms.mime);
+    const formActivity = useForm(forms.activity);
+    const formMime = useForm(forms.mime);
+
     const handleSubmit = () => {
-        let result = checkForm();
-        console.log(result);
+        let check = formActivity.checkForm();
+        let checkMime = formMime.checkForm();
+        setIsFormValid(check && checkMime);
     };
     
-    // const handleSubmit = () => {
-    //     console.log('ok')
-    //     setDataValid(form.getIsValid());
-    //     setFieldsError(form.getErrors());
-    //     if (!form.getIsValid()) {
-    //         return;
-    //     }
-    //     // Http request
-    // };
+    const getActivityForm = () => {
+        const activities = {
+            'Mime' : 
+                <FeedMime 
+                    formData={formMime.formData} 
+                    formErrors={formMime.formErrors} 
+                    formInputChange={formMime.formInputChange}/>   
+        }
+        return activities[formActivity.formData.activity];
+    }
 
     const handleCancel = () => {
         history.push({ pathname: "/" });
@@ -58,12 +43,13 @@ export default function FeedActivities() {
 
     return (
         <FeedActivitiesView
-            fieldsValue={formData}
-            fieldsError={formErrors}
-            isDataValid={isFormValid}
+            fieldsValue={formActivity.formData}
+            fieldsError={formActivity.formErrors}
+            formInputChange={formActivity.formInputChange}
             
-            formInputChange={formInputChange}
+            getActivityForm={getActivityForm}
             
+            isFormValid={isFormValid}
             submit={handleSubmit}
             cancel={handleCancel}
             reset={handleReset}/>

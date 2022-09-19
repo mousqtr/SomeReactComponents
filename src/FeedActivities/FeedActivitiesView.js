@@ -76,23 +76,16 @@ export default function FeedActivitiesView(props) {
                                 </FormControl>
                             </Col>
                         </FormGroup>
+                       
+                       { props.getActivityForm() }
                         
-                        {/* { (props.fieldsValue.activity === 'Quiz') ? 
-                            <FeedQuiz 
-                                isValid={props.isDataValid} 
-                                setActivityValue={(v) => props.setFieldsValue({ ...props.fieldsValue, activityContent: v })}/> : <></> }
-                        { (props.fieldsValue.activity === 'Mime') ? 
-                            <FeedMime 
-                                isValid={props.isDataValid} 
-                                setActivityValue={(v) => props.setFieldsValue({ ...props.fieldsValue, activityContent: v })}/> : <></> }
-                        
-                        {!props.isDataValid ? (
+                        {!props.isFormValid ? (
                         <small className="form-text">
                             * Veuillez compléter les champs obligatoires
                         </small>
                         ) : (
                         <></>
-                        )} */}
+                        )}
 
                         <div className="buttons">
                             <button className="btn btn-purple float-left" onClick={props.reset}>

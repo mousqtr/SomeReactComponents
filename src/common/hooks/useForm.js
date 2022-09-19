@@ -11,8 +11,6 @@ export function useForm (initialForm = {}) {
         acc[curr] = false;
         return acc;
     }, {}));
-    
-    const [isFormValid, setIsFormValid] = useState(true);
      
     const formInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,9 +32,8 @@ export function useForm (initialForm = {}) {
             }
         });
         setFormErrors(_formErrors);
-        setIsFormValid(_isValid);
         return _isValid;
     }
     
-    return { formData, formErrors, isFormValid, formInputChange, checkForm };
+    return {formData, formErrors, formInputChange, checkForm};
 }
