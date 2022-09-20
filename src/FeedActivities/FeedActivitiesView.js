@@ -28,77 +28,76 @@ export default function FeedActivitiesView(props) {
 
                 <div className="special-section-content">
                     <div className="special-section-form">
-                        <FormGroup as={Row} className="mb-2">
-                        <FormLabel column sm="3">
-                            *Nom d'utilisateur
-                        </FormLabel>
-                        <Col sm="9">
-                            <FormControl
-                                type="username"
-                                name="username"
-                                placeholder="Nom d'utilisateur"
-                                value={props.fieldsValue.username}
-                                onChange={props.formInputChange}
-                                disabled
-                            />
-                        </Col>
-                        </FormGroup>
+                        <Form noValidate validated={props.validated} onSubmit={props.submit}>
+                            <FormGroup as={Row} className="mb-2">
+                                <FormLabel column sm="3">
+                                    *Nom d'utilisateur
+                                </FormLabel>
+                                <Col sm="9">
+                                    <FormControl
+                                        type="username"
+                                        name="username"
+                                        placeholder="Nom d'utilisateur"
+                                        value={props.formData.username}
+                                        onChange={props.change}
+                                        disabled
+                                    />
+                                </Col>
+                            </FormGroup>
+                            
+                            <Form.Group as={Row} className="mb-2">
+                                <Form.Label column sm="3">
+                                    *Email
+                                </Form.Label>
+                                <Col sm="9">
+                                    <InputGroup hasValidation>
+                                        <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                                        <Form.Control
+                                            type="text"
+                                            name="mail"
+                                            placeholder="Mail"
+                                            aria-describedby="inputGroupPrepend"
+                                            value={props.formData.mail}
+                                            onChange={props.change}
+                                            required
+                                        />
+                                        <Form.Control.Feedback type="invalid">
+                                            Please choose a mail.
+                                        </Form.Control.Feedback>
+                                    </InputGroup>
+                                </Col>
+                            </Form.Group>
+                            
+                            <FormGroup as={Row} className="mb-2">
+                                <Form.Label column sm="3">
+                                    *Activité
+                                </Form.Label>
+                                <Col sm="9">
+                                    <FormControl
+                                        name="activity"
+                                        as="select"
+                                        value={props.formData.activity}
+                                        onChange={props.change}
+                                        required>
+                                            {["Quiz", "Mime"].map((activ, index) => (
+                                                <option key={index} value={activ}>{activ}</option>
+                                            ))}
+                                    </FormControl>
+                                </Col>
+                            </FormGroup>
 
-                        <FormGroup as={Row} className="mb-2">
-                        <FormLabel column sm="3">
-                            *Email
-                        </FormLabel>
-                        <Col sm="9">
-                            {props.components['mail']}
-                            {/* <FormControl
-                                type="email"
-                                name="mail"
-                                placeholder="Email"
-                                value={props.fieldsValue.mail}
-                                onChange={props.formInputChange}
-                                style={{ border: props.fieldsError.mail ? "2px solid red" : "" }}/> */}
-                        </Col>
-                        </FormGroup>
-                        
-                        <FormGroup as={Row} className="mb-2">
-                            <Form.Label column sm="3">
-                                *Activité
-                            </Form.Label>
-                            <Col sm="9">
-                                <FormControl
-                                    name="activity"
-                                    as="select"
-                                    value={props.fieldsValue.activity}
-                                    onChange={props.formInputChange}
-                                    style={{ border: props.fieldsError.activity ? "2px solid red" : "" }}>
-                                        {["Quiz", "Mime"].map((activ, index) => (
-                                            <option key={index} value={activ}>{activ}</option>
-                                        ))}
-                                </FormControl>
-                            </Col>
-                        </FormGroup>
-                       
-                       { props.getActivityForm() }
-                        
-                        {!props.isFormValid ? (
-                        <small className="form-text">
-                            * Veuillez compléter les champs obligatoires
-                        </small>
-                        ) : (
-                        <></>
-                        )}
-
-                        <div className="buttons">
-                            <button className="btn btn-purple float-left" onClick={props.reset}>
-                                Vider les champs
-                            </button>
-                            <button className="btn btn-red mr-1" onClick={props.cancel}>
-                                Quitter
-                            </button>
-                            <button className="btn btn-green" onClick={props.submit}>
-                                Valider
-                            </button>
-                        </div>
+                            <div className="buttons">
+                                <button className="btn btn-purple float-left" onClick={props.reset}>
+                                    Vider les champs
+                                </button>
+                                <button className="btn btn-red mr-1" onClick={props.cancel}>
+                                    Quitter
+                                </button>
+                                <button className="btn btn-green" type="submit">
+                                    Valider
+                                </button>
+                            </div>
+                        </Form>
                     </div>
                 </div>
             </div>       
