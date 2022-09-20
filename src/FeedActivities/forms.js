@@ -2,31 +2,33 @@ import { constants } from './constants';
 
 const formActivity = {
     username: {
-        type: "string",
-        initialValue: "",
+        type: "input",
+        default: "",
         mandatory: false
     },
     mail: {
-        type: "string",
-        initialValue: "",
+        type: "input",
+        default: "",
         mandatory: true
     },
     activity: {
-        type: "string",
-        initialValue: "Mime",
-        mandatory: true
+        type: "select",
+        default: "Mime",
+        mandatory: true,
+        options: ["Quiz", "Mime"]
     }
 };
 
 const formMime = {
     theme: {
-        type: "string",
-        initialValue: constants.mime.themes[0],
-        mandatory: true
+        type: "select",
+        default: constants.mime.themes[0],
+        mandatory: true,
+        options: constants.mime.themes
     },
     word: {
-        type: "string",
-        initialValue: "",
+        type: "input",
+        default: "",
         mandatory: true
     },
 };
