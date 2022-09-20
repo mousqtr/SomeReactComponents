@@ -1,4 +1,4 @@
-export const CONSTANTS_QUIZ = {
+const CONSTANTS_QUIZ = {
     themes: [
         'Football', 
         'Geography', 
@@ -13,11 +13,16 @@ export const CONSTANTS_QUIZ = {
     maxNumberPropositions: 4
 }
 
-export const CONSTANTS_MIME = {
+const CONSTANTS_MIME = {
     themes: [
         'Action', 
         'Personnage', 
         'Métier'
     ],
     maxNumberWords: 10
+}
+
+export const constants = {
+    mime: CONSTANTS_MIME,
+    quiz: CONSTANTS_QUIZ
 }

@@ -48,6 +48,7 @@ export default function FeedActivities() {
             formInputChange={formActivity.formInputChange}
             
             getActivityForm={getActivityForm}
+            components={formActivity.components}
             
             isFormValid={isFormValid}
             submit={handleSubmit}

@@ -1,4 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import {
+  Button,
+  FormGroup,
+  Form,
+  Col,
+  Row,
+  FormLabel,
+  FormControl,
+  FormCheck,
+  InputGroup
+} from "react-bootstrap";
 
 export function useForm (initialForm = {}) {
     
@@ -35,5 +46,17 @@ export function useForm (initialForm = {}) {
         return _isValid;
     }
     
-    return {formData, formErrors, formInputChange, checkForm};
+    const components = useMemo(() => {
+        return {
+            'mail': <FormControl
+                    type="email"
+                    name='mail'
+                    placeholder='mail'
+                    value={formData['mail']}
+                    onChange={formInputChange}
+                    style={{ border: formErrors['mail'] ? "2px solid red" : "" }}/>
+        }
+    }, [formData, formErrors])
+    
+    return {formData, formErrors, formInputChange, checkForm, components};
 }
