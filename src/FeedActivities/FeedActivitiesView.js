@@ -49,13 +49,14 @@ export default function FeedActivitiesView(props) {
                             *Email
                         </FormLabel>
                         <Col sm="9">
-                            <FormControl
+                            {props.components['mail']}
+                            {/* <FormControl
                                 type="email"
                                 name="mail"
                                 placeholder="Email"
                                 value={props.fieldsValue.mail}
                                 onChange={props.formInputChange}
-                                style={{ border: props.fieldsError.mail ? "2px solid red" : "" }}/>
+                                style={{ border: props.fieldsError.mail ? "2px solid red" : "" }}/> */}
                         </Col>
                         </FormGroup>
                         
