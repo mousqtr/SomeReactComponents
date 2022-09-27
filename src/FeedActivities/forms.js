@@ -6,7 +6,7 @@ const formActivity = {
         default: "",
         mandatory: false
     },
-    mail: {
+    email: {
         type: "input",
         default: "",
         mandatory: true
