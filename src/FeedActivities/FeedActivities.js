@@ -16,7 +16,7 @@ export default function FeedActivities() {
     const [formData, setFormData] = useState({
         name: '',
         mail: '',
-        activity: 'Mime'
+        activity: ''
     });
     const [validated, setValidated] = useState(false);
     
@@ -39,16 +39,25 @@ export default function FeedActivities() {
         // setIsFormValid(check && checkMime);
     };
     
-    // const getActivityForm = () => {
-    //     const activities = {
-    //         'Mime' : 
-    //             <FeedMime 
-    //                 formData={formMime.formData} 
-    //                 formErrors={formMime.formErrors} 
-    //                 formInputChange={formMime.formInputChange}/>   
-    //     }
-    //     return activities[formActivity.formData.activity];
-    // }
+    useEffect(() => {
+        let activityData = {};
+        switch(formData.activity) {
+            case 'Mime':
+                activityData = {theme: 'Football', word: ''};
+                break;
+            default:
+                break;     
+        }
+        setFormData({ ...formData, activityData});
+    }, [formData.activity])
+    
+    const getActivityForm = useMemo(() => {
+        const activities = {
+            '' : <></>,
+            'Mime' : <FeedMime formData={formData} change={handleChange}/>   
+        }
+        return activities[formData.activity]; 
+    }, [formData.activity]);
 
     const handleCancel = () => {
         history.push({ pathname: "/" });
@@ -70,6 +79,7 @@ export default function FeedActivities() {
             change={handleChange}
             submit={handleSubmit}
             cancel={handleCancel}
-            reset={handleReset}/>
+            reset={handleReset}
+            getActivityForm={getActivityForm}/>
     );
 }

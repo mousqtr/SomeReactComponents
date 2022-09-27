@@ -31,37 +31,49 @@ export default function FeedMime(props) {
                     <div className="special-section-form"> 
                         
                         {/* Theme */}
-                        <FormGroup as={Row} className="mb-2">
+                        <Form.Group as={Row} className="mb-2">
                             <Form.Label column sm="3">
                                 *Theme
                             </Form.Label>
                             <Col sm="9">
-                                <FormControl
-                                name="theme"
-                                as="select"
-                                value={props.formData.theme}
-                                onChange={props.formInputChange}
-                                style={{ border: props.formErrors.theme ? "2px solid red" : "" }}>
-                                    {constants.mime.themes.map((them, index) => <option key={index} value={them}>{them}</option>)}
-                                </FormControl>
+                                <InputGroup hasValidation>
+                                    <Form.Control
+                                        type="text"
+                                        name="activity"
+                                        as="select"
+                                        aria-describedby="inputGroupPrepend"
+                                        value={props.formData.theme}
+                                        onChange={props.formInputChange}
+                                        required>
+                                            {constants.mime.themes.map((theme, index) => (
+                                            <option key={index} value={theme}>{theme}</option>
+                                        ))}
+                                    </Form.Control> 
+                                </InputGroup>
                             </Col>
-                        </FormGroup>
+                        </Form.Group>
                         
                         {/* Word */}
-                        <FormGroup as={Row} className="mb-2">
-                            <FormLabel column sm="3">
+                        <Form.Group as={Row} className="mb-2">
+                            <Form.Label column sm="3">
                                 *Mot
-                            </FormLabel>
+                            </Form.Label>
                             <Col sm="9">
-                                <FormControl
-                                    name="word"
-                                    type="text"
-                                    placeholder={"Mot à deviner"}
-                                    value={props.formData.word}
-                                    onChange={props.formInputChange}
-                                    style={{border: props.formErrors.word ? "2px solid red" : ""}}/>
+                                <InputGroup hasValidation>
+                                    <Form.Control
+                                        type="text"
+                                        name="word"
+                                        placeholder="Mot"
+                                        aria-describedby="inputGroupPrepend"
+                                        value={props.formData.word}
+                                        onChange={props.change}
+                                        required/>
+                                    <Form.Control.Feedback type="invalid">
+                                        Merci de renseigner un mot
+                                    </Form.Control.Feedback>
+                                </InputGroup>
                             </Col>
-                        </FormGroup>   
+                        </Form.Group>
                     </div>
                 </div>
             </div>             

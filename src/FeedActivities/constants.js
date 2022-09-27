@@ -1,3 +1,11 @@
+const CONSTANTS_ACTIVITIES = {
+    list: [
+        '',
+        'Quiz', 
+        'Mime'
+    ]
+}
+
 const CONSTANTS_QUIZ = {
     themes: [
         'Football', 
@@ -23,6 +31,7 @@ const CONSTANTS_MIME = {
 }
 
 export const constants = {
-    mime: CONSTANTS_MIME,
-    quiz: CONSTANTS_QUIZ
+    activities: CONSTANTS_ACTIVITIES,
+    quiz: CONSTANTS_QUIZ,
+    mime: CONSTANTS_MIME
 }

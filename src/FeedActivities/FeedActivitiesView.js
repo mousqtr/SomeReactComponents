@@ -2,6 +2,7 @@ import React from "react";
 import Breadcrumb from "./../Breadcrumb/Breadcrumb";
 import FeedQuiz from "./FeedQuiz/FeedQuiz";
 import FeedMime from "./FeedMime/FeedMime";
+import { constants } from "./constants";
 import {
   Button,
   FormGroup,
@@ -29,25 +30,31 @@ export default function FeedActivitiesView(props) {
                 <div className="special-section-content">
                     <div className="special-section-form">
                         <Form noValidate validated={props.validated} onSubmit={props.submit}>
-                            <FormGroup as={Row} className="mb-2">
-                                <FormLabel column sm="3">
-                                    *Nom d'utilisateur
-                                </FormLabel>
-                                <Col sm="9">
-                                    <FormControl
-                                        type="username"
-                                        name="username"
-                                        placeholder="Nom d'utilisateur"
-                                        value={props.formData.username}
-                                        onChange={props.change}
-                                        disabled
-                                    />
-                                </Col>
-                            </FormGroup>
                             
+                            {/* Username */}
                             <Form.Group as={Row} className="mb-2">
                                 <Form.Label column sm="3">
-                                    *Email
+                                    *Nom d'utilisateur
+                                </Form.Label>
+                                <Col sm="9">
+                                    <InputGroup hasValidation>
+                                        <Form.Control
+                                            type="text"
+                                            name="username"
+                                            placeholder="Nom d'utilisateur"
+                                            aria-describedby="inputGroupPrepend"
+                                            value={props.formData.username}
+                                            onChange={props.change}
+                                            disabled
+                                        />
+                                    </InputGroup>
+                                </Col>
+                            </Form.Group>
+                            
+                            {/* Mail */}
+                            <Form.Group as={Row} className="mb-2">
+                                <Form.Label column sm="3">
+                                    *E-mail
                                 </Form.Label>
                                 <Col sm="9">
                                     <InputGroup hasValidation>
@@ -55,36 +62,46 @@ export default function FeedActivitiesView(props) {
                                         <Form.Control
                                             type="text"
                                             name="mail"
-                                            placeholder="Mail"
+                                            placeholder="E-mail"
                                             aria-describedby="inputGroupPrepend"
                                             value={props.formData.mail}
                                             onChange={props.change}
                                             required
                                         />
                                         <Form.Control.Feedback type="invalid">
-                                            Please choose a mail.
+                                            Merci de renseigner un Email
                                         </Form.Control.Feedback>
                                     </InputGroup>
                                 </Col>
                             </Form.Group>
                             
-                            <FormGroup as={Row} className="mb-2">
+                            {/* Activity choice */}
+                            <Form.Group as={Row} className="mb-2">
                                 <Form.Label column sm="3">
                                     *Activité
                                 </Form.Label>
                                 <Col sm="9">
-                                    <FormControl
-                                        name="activity"
-                                        as="select"
-                                        value={props.formData.activity}
-                                        onChange={props.change}
-                                        required>
-                                            {["Quiz", "Mime"].map((activ, index) => (
+                                    <InputGroup hasValidation>
+                                        <Form.Control
+                                            type="text"
+                                            name="activity"
+                                            as="select"
+                                            aria-describedby="inputGroupPrepend"
+                                            value={props.formData.activity}
+                                            onChange={props.change}
+                                            required>
+                                               {constants.activities.list.map((activ, index) => (
                                                 <option key={index} value={activ}>{activ}</option>
                                             ))}
-                                    </FormControl>
+                                        </Form.Control> 
+                                        <Form.Control.Feedback type="invalid">
+                                            Merci de choisir une activité
+                                        </Form.Control.Feedback>
+                                    </InputGroup>
                                 </Col>
-                            </FormGroup>
+                            </Form.Group>
+                            
+                            { props.getActivityForm() }
 
                             <div className="buttons">
                                 <button className="btn btn-purple float-left" onClick={props.reset}>
