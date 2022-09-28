@@ -1,6 +1,6 @@
 import React from "react";
 import Breadcrumb from "./../Breadcrumb/Breadcrumb";
-import FeedQuiz from "./FeedQuiz/FeedQuiz";
+// import FeedQuiz from "./FeedQuiz/FeedQuiz";
 import FeedMime from "./FeedMime/FeedMime";
 import { constants } from "./constants";
 import {
@@ -90,7 +90,7 @@ export default function FeedActivitiesView(props) {
                                             value={props.formData.activity}
                                             onChange={props.change}
                                             required>
-                                               {constants.activities.list.map((activ, index) => (
+                                               {constants.activities.activity.options.map((activ, index) => (
                                                 <option key={index} value={activ}>{activ}</option>
                                             ))}
                                         </Form.Control> 
@@ -101,7 +101,7 @@ export default function FeedActivitiesView(props) {
                                 </Col>
                             </Form.Group>
                             
-                            { props.getActivityForm() }
+                            { props.currentActivity === 'Mime' ? <FeedMime formData={props.formData} change={props.change}/> : <></>}
 
                             <div className="buttons">
                                 <button className="btn btn-purple float-left" onClick={props.reset}>
