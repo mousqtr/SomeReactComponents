@@ -36,9 +36,16 @@ const CONSTANTS_QUIZ = {
     question: {
         default: '', 
     },
+    nbPropositions: {
+        default: 2,
+        options: [
+            2, 
+            3, 
+            4
+        ]
+    },
     proposition: {
-        default: '',
-        maxNumber: 4 
+        default: Array(4).fill('')
     },
     answer: {
         default: '', 
