@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
-import FeedActivitiesView from "./FeedActivitiesView";
-import FeedMime from "./FeedMime/FeedMime";
 import { useHistory } from "react-router-dom";
-// import { useForm } from "./../common/hooks/useForm";
-import { forms } from './forms';
+import { constants } from './constants';
+import FeedActivitiesView from './FeedActivitiesView';
+import "./FeedActivities.scss";
 
+ 
+const initialActivityData = Object.keys(constants.activities).reduce((acc, curr) => {
+    acc[curr] = constants.activities[curr].default;
+    return acc;
+}, {});
   
 export default function FeedActivities() {
     const history = useHistory();
-    // const [isFormValid, setIsFormValid] = useState(true);
-    // const [formData, formErrors, formInputChange, checkForm] = useForm(forms.activity);
-    // const [formDataMime, formErrorsMime, formInputChangeMime, checkFormMime] = useForm(forms.mime);
-    // const formActivity = useForm(forms.activity);
-    // const formMime = useForm(forms.mime);
-    const [formData, setFormData] = useState({
-        name: '',
-        mail: '',
-        activity: ''
-    });
+    const [formData, setFormData] = useState(initialActivityData);
     const [validated, setValidated] = useState(false);
+    const [currentActivity, setCurrentActivity] = useState('');
     
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-
+    
     const handleSubmit = (e) => {
         console.log('submit');
         const form = e.currentTarget;
@@ -32,31 +28,21 @@ export default function FeedActivities() {
             e.preventDefault();
             e.stopPropagation();
         }
-
         setValidated(true);
-        // let check = formActivity.checkForm();
-        // let checkMime = formMime.checkForm();
-        // setIsFormValid(check && checkMime);
     };
     
     useEffect(() => {
+        let activityName = formData.activity.toLowerCase();
         let activityData = {};
-        switch(formData.activity) {
-            case 'Mime':
-                activityData = {theme: 'Football', word: ''};
-                break;
-            default:
-                break;     
+        if (formData.activity !== '') {
+            activityData = Object.keys(constants[activityName]).reduce((acc, curr) => {
+                acc[curr] = constants[activityName][curr].default;
+                return acc;
+            }, {});
         }
-        setFormData({ ...formData, activityData});
-    }, [formData.activity])
-    
-    const getActivityForm = useMemo(() => {
-        const activities = {
-            '' : <></>,
-            'Mime' : <FeedMime formData={formData} change={handleChange}/>   
-        }
-        return activities[formData.activity]; 
+        setFormData({ ...formData, ...activityData});
+        setValidated(false);
+        setCurrentActivity(formData.activity);
     }, [formData.activity]);
 
     const handleCancel = () => {
@@ -64,22 +50,19 @@ export default function FeedActivities() {
     };
 
     const handleReset = () => {
-        setFormData({
-            name: '',
-            mail: '',
-            activity: 'Mime'
-        });
+        setFormData(initialActivityData);
         setValidated(false);
     };
 
     return (
-        <FeedActivitiesView
+       <FeedActivitiesView
             formData={formData}
             validated={validated}
+            currentActivity={currentActivity}
+        
             change={handleChange}
             submit={handleSubmit}
             cancel={handleCancel}
-            reset={handleReset}
-            getActivityForm={getActivityForm}/>
+            reset={handleReset}/>
     );
 }

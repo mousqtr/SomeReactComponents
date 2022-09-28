@@ -16,10 +16,6 @@ import "./FeedMime.scss";
 
 export default function FeedMime(props) {
     
-    useEffect(() => {
-        console.log(props.formData)
-    }, [props.formData]);
-    
     return (
         <div id='feedMime'>
             <div className="special-section">
@@ -43,9 +39,9 @@ export default function FeedMime(props) {
                                         as="select"
                                         aria-describedby="inputGroupPrepend"
                                         value={props.formData.theme}
-                                        onChange={props.formInputChange}
+                                        onChange={props.change}
                                         required>
-                                            {constants.mime.themes.map((theme, index) => (
+                                            {constants.mime.theme.options.map((theme, index) => (
                                             <option key={index} value={theme}>{theme}</option>
                                         ))}
                                     </Form.Control> 
