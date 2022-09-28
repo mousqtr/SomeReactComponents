@@ -66,8 +66,7 @@ export default function FeedActivitiesView(props) {
                                             aria-describedby="inputGroupPrepend"
                                             value={props.formData.mail}
                                             onChange={props.change}
-                                            required
-                                        />
+                                            required/>
                                         <Form.Control.Feedback type="invalid">
                                             Merci de renseigner un Email
                                         </Form.Control.Feedback>

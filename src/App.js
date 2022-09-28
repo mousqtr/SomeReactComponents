@@ -11,8 +11,8 @@ export default function App() {
     <div className="app">
         {/* <Profile /> */}
         {/* <Feedback /> */}
-        {/* <Bugs /> */}
-        <FeedActivities />
+        <Bugs />
+        {/* <FeedActivities /> */}
         {/* <HelpUs /> */}
     </div>
   );

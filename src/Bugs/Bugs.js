@@ -1,120 +1,69 @@
 import React, { useState } from "react";
-import BugsView from "./BugsView";
-// import axios from "axios";
 import { useHistory } from "react-router-dom";
-// import { useDispatch } from "react-redux";
+import BugsView from "./BugsView";
 
-export default function Bugs() {
-  const history = useHistory();
-  // const dispatch = useDispatch();
 
-  const initialData = {
+const initialFormData = {
     severity: "normal",
     username: "",
     mail: "",
     description: "",
     attachments: []
-  };
+};
 
-  const initialConditions = {
-    mail: true,
-    description: true
-  };
+export default function Bugs() {
+    const history = useHistory();
+    const [formData, setFormData] = useState(initialFormData);
+    const [validated, setValidated] = useState(false);
 
-  const [data, setData] = useState(initialData);
-  const [conditions, setConditions] = useState(initialConditions);
-  const [conditionsValid, setConditionsValid] = useState(true);
+    const handleSubmit = (e) => {
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        setValidated(true);
+    };
 
-  const handleSubmit = () => {
-    let cond = { ...conditions };
-    let condValid = true;
-    Object.keys(initialConditions).forEach((field) => {
-      if (data[field] === "") {
-        console.log(field);
-        cond[field] = false;
-        condValid = false;
-      } else {
-        cond[field] = true;
-      }
-    });
-    setConditions(cond);
-    setConditionsValid(condValid);
+    const handleCancel = () => {
+        history.push({ pathname: "/" });
+    };
 
-    if (!condValid) {
-      return;
+    const handleReset = () => {
+        setFormData(initialFormData);
+        setValidated(false);
+    };
+    
+    const handleChange = (e) => { 
+        setFormData({ ...formData, [e.target.name]:  e.target.value });
     }
 
-    // axios
-    // .post(usersClient+'/account/signup', {
-    //     username        : data.username,
-    //     password        : data.password,
-    //     mail            : data.mail,
-    //     phone           : data.phone,
-    //     city            : data.city,
-    //     country         : data.country,
-    //     gender          : data.gender,
-    //     firstName       : data.firstName,
-    //     lastName        : data.lastName,
-    //     birthDate       : data.birthDate,
-    //     biography       : data.biography
-    // })
-    // .then((res) =>{
-    //     console.log(res);
-    //     handleReset();
-    //     handleCancel();
-    //     dispatch(appActions.setMessage({
-    //         type: 'success',
-    //         data: 'Compte crée ! Connectez-vous dès maintenant'
-    //     }));
-    // })
-  };
+    const handleAddAttachments = (e) => {
+        if (e.target.files[0]) {
+            let url = URL.createObjectURL(e.target.files[0]);
+            let atchs = [...formData.attachments];
+            atchs.push(url);
+            setFormData({...formData, attachments: atchs });
+        }
+    };
 
-  const handleCancel = () => {
-    history.push({ pathname: "/" });
-  };
+    const handleDeleteAttachment = (index) => {
+        let atchs = [...formData.attachments];
+        if (index > -1) {
+            atchs.splice(index, 1);
+        }
+        setFormData({...formData, attachments: atchs });
+    };
 
-  const handleReset = () => {
-    setData(initialData);
-    setConditions(initialConditions);
-    setConditionsValid(true);
-  };
-
-  const handleAddAttachments = (e) => {
-    if (e.target.files[0]) {
-      let url = URL.createObjectURL(e.target.files[0]);
-      let atchs = [...data.attachments];
-      atchs.push(url);
-      setData({
-        ...data,
-        attachments: atchs
-      });
-      console.log(atchs);
-    }
-  };
-
-  const handleDeleteAttachment = (index) => {
-    let atchs = [...data.attachments];
-    if (index > -1) {
-      atchs.splice(index, 1); // 2nd parameter means remove one item only
-    }
-    setData({
-      ...data,
-      attachments: atchs
-    });
-    console.log(atchs);
-  };
-
-  return (
-    <BugsView
-      data={data}
-      conditions={conditions}
-      conditionsValid={conditionsValid}
-      setData={setData}
-      submit={handleSubmit}
-      cancel={handleCancel}
-      reset={handleReset}
-      addAttachments={handleAddAttachments}
-      deleteAttachment={handleDeleteAttachment}
-    />
+    return (
+        <BugsView
+            formData={formData}
+            validated={validated}
+            change={handleChange}
+            submit={handleSubmit}
+            cancel={handleCancel}
+            reset={handleReset}
+            addAttachments={handleAddAttachments}
+            deleteAttachment={handleDeleteAttachment}/>
   );
 }

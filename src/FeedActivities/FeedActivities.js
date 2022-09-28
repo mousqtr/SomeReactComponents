@@ -46,6 +46,15 @@ export default function FeedActivities() {
         setValidated(true);
     };
     
+    const handleCancel = () => {
+        history.push({ pathname: "/" });
+    };
+
+    const handleReset = () => {
+        setFormData(initialActivityData);
+        setValidated(false);
+    };
+    
     useEffect(() => {
         let activityName = formData.activity.toLowerCase();
         let activityData = {};
@@ -59,15 +68,6 @@ export default function FeedActivities() {
         setValidated(false);
         setCurrentActivity(formData.activity);
     }, [formData.activity]);
-
-    const handleCancel = () => {
-        history.push({ pathname: "/" });
-    };
-
-    const handleReset = () => {
-        setFormData(initialActivityData);
-        setValidated(false);
-    };
 
     return (
        <FeedActivitiesView
