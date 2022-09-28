@@ -10,8 +10,8 @@ export default function HelpUsView() {
              <div className="section-central">
                 <Breadcrumb paths={ ['Accueil', 'Nous aider']} />
                 {
-                    Object.keys(SECTIONS).map(subSection => 
-                        <div className="helpUsMenu"> 
+                    Object.keys(SECTIONS).map((subSection, index) => 
+                        <div key={index} className="helpUsMenu"> 
                             <div className="helpUsMenu-header center">
                                 <h1>{subSection}</h1>
                             </div>
