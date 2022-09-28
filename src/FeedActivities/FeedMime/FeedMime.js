@@ -45,6 +45,9 @@ export default function FeedMime(props) {
                                             <option key={index} value={theme}>{theme}</option>
                                         ))}
                                     </Form.Control> 
+                                    <Form.Control.Feedback type="invalid">
+                                        Merci de renseigner un theme
+                                    </Form.Control.Feedback>
                                 </InputGroup>
                             </Col>
                         </Form.Group>

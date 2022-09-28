@@ -17,7 +17,22 @@ export default function FeedActivities() {
     const [currentActivity, setCurrentActivity] = useState('');
     
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        let name, value, index;
+        
+        // Dans le cas d'une valeur
+        if (e.target.name.split('_').length === 1) {
+            name = e.target.name;
+            value = e.target.value;
+        }
+        
+        // Dans le cas d'une liste
+        if (e.target.name.split('_').length > 1) {
+            [name, index] = e.target.name.split('_');
+            value = [...formData[name]];
+            value[index] = e.target.value;
+        }
+        
+        setFormData({ ...formData, [name]: value });
     }
     
     const handleSubmit = (e) => {
