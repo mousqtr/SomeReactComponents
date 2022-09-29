@@ -10,6 +10,8 @@
   "main": "src/index.js",
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
+    "ag-grid-community": "^27.1.0",
+    "ag-grid-react": "^27.1.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "immer": "^9.0.7",
