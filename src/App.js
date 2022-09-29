@@ -5,6 +5,7 @@ import HelpUs from "./HelpUs/HelpUs";
 import Bugs from "./Bugs/Bugs";
 import FeedActivities from "./FeedActivities/FeedActivities";
 import Settings from "./Settings/Settings";
+// import AdminMime from "./AdminMime/AdminMime";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
@@ -13,9 +14,10 @@ export default function App() {
       {/* <Profile /> */}
       {/* <Feedback /> */}
       {/* <Bugs /> */}
-      {/* <FeedActivities /> */}
+      <FeedActivities />
       {/* <HelpUs /> */}
-      <Settings />
+      {/* <Settings /> */}
+      {/* <AdminMime /> */}
     </div>
   );
 }
