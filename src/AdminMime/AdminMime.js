@@ -19,11 +19,13 @@ const dateFormatter = (date) => {
 const exampleData = [
   {
     date: "28-09-2022T10:33:10",
+    user: "mousqtr",
     theme: "Action",
     word: "Chanter",
   },
   {
     date: "28-09-2022T10:33:10",
+    user: "mousqtr",
     theme: "Action",
     word: "Danser",
   },
@@ -31,6 +33,14 @@ const exampleData = [
 
 export default function AdminMime() {
   const [columnDefs, setColumnDefs] = useState([
+    {
+      headerName: "Id",
+      headerCheckboxSelection: true,
+      checkboxSelection: true,
+      showDisabledCheckboxes: true,
+      minWidth: 50,
+      maxWidth: 50,
+    },
     {
       headerName: "Date",
       field: "date",
@@ -57,6 +67,13 @@ export default function AdminMime() {
           return 0;
         },
       },
+    },
+    {
+      headerName: "Utilisateur",
+      field: "user",
+      filter: "agTextColumnFilter",
+      // minWidth: 120,
+      // maxWidth: 150,
     },
     {
       headerName: "Theme",
@@ -92,8 +109,8 @@ export default function AdminMime() {
   }, []);
 
   const onSelectionChanged = () => {
-    let rowNode = gridRef.current.api.getSelectedNodes()[0];
-    console.log(parseInt(rowNode.id), rowNode.data);
+    let rowNodes = gridRef.current.api.getSelectedNodes();
+    if (rowNodes[0]) console.log(parseInt(rowNodes[0].id), rowNodes[0].data);
   };
 
   const onGridSizeChanged = useCallback((params) => {
@@ -116,17 +133,17 @@ export default function AdminMime() {
           <div className="special-section-content">
             <div
               className="ag-theme-balham ipmaton-grid"
-              style={{ height: 400, width: 600 }}
+              style={{ height: 400, width: "90%" }}
             >
               <AgGridReact
                 ref={gridRef}
                 columnDefs={columnDefs}
                 defaultColDef={defaultColDef}
                 rowData={exampleData}
-                rowSelection="single"
+                rowSelection="multiple"
                 onFirstDataRendered={onFirstDataRendered}
                 // onGridSizeChanged={onGridSizeChanged}
-                // onSelectionChanged={onSelectionChanged}
+                onSelectionChanged={onSelectionChanged}
                 // enableColResize={true}
                 suppressCellFocus={true}
                 // pagination={true}
