@@ -6,6 +6,7 @@ import Bugs from "./Bugs/Bugs";
 import FeedActivities from "./FeedActivities/FeedActivities";
 import Settings from "./Settings/Settings";
 import AdminMime from "./AdminMime/AdminMime";
+import ModalUser from "./ModalUser/ModalUser";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
@@ -17,7 +18,8 @@ export default function App() {
       {/* <FeedActivities /> */}
       {/* <HelpUs /> */}
       {/* <Settings /> */}
-      <AdminMime />
+      {/* <AdminMime /> */}
+      <ModalUser />
     </div>
   );
 }
