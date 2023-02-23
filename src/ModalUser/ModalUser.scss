@@ -1,6 +1,6 @@
 #modalUser {
   width: 300px;
-  height: 400px;
+  height: 380px;
   position: relative;
   border-radius: 1.25rem;
   overflow: hidden;
@@ -37,27 +37,93 @@
   z-index: 3;
 }
 
-#modalUser .body {
+.wave {
+  position: absolute;
+  top: 45px;
+}
+
+.body {
   width: 100%;
   height: calc(100% - 100px);
   background-color: white;
 }
 
-.wave {
+.badges {
   position: absolute;
-  top: 34px;
+  width: 85px;
+  height: 30px;
+  left: 10px;
+  /* background-color: lightgrey; */
+}
+
+.success {
+  position: absolute;
+  width: 85px;
+  height: 30px;
+  right: 10px;
+  /* background-color: lightgrey; */
+}
+
+.icon {
+  height: 30px;
+  width: 30px;
+  margin-left: 2px;
+  margin-right: 2px;
+  background-color: orange;
+  border-radius: 50%;
 }
 
 .content {
-  margin-top: 30px;
+  margin-top: 35px;
   width: 100%;
-  height: calc(100% - 30px);
+  height: calc(100% - 35px);
 }
 
 .username {
   text-align: center;
   font-size: 20px;
   /* position: absolute; */
+}
+
+.actions {
+  width: calc(100% - 20px);
+  height: 30px;
+  margin-left: 10px;
+  /* background-color: lightgrey; */
+}
+
+.action {
+  height: 30px;
+  width: 30px;
+  margin-left: 2px;
+  margin-right: 2px;
+  background-color: green;
+  border-radius: 25%;
+  color: white;
+}
+
+.volume {
+  width: calc(100% - 20px);
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: lightgrey;
+}
+
+.date {
+  width: calc(100% - 20px);
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: lightgrey;
+}
+
+.description {
+  width: calc(100% - 20px);
+  height: 70px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: lightgrey;
 }
 
 /* .wave {

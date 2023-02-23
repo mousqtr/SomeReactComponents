@@ -1,4 +1,7 @@
-import "./ModalUser.css";
+import "./ModalUser.scss";
+import { FaMedal } from "react-icons/fa";
+import { GiPoliceBadge } from "react-icons/gi";
+import VolumeSlider from "./VolumeSlider";
 
 export default function ModalUser() {
   return (
@@ -18,8 +21,40 @@ export default function ModalUser() {
       </div>
       <div className="sub-image"></div>
       <div className="body">
+        <div className="badges center-row">
+          <div className="icon center">
+            <GiPoliceBadge />
+          </div>
+          <div className="icon center">
+            <GiPoliceBadge />
+          </div>
+        </div>
+        <div className="success center-row">
+          <div className="icon center">
+            <FaMedal />
+          </div>
+          <div className="icon center">
+            <FaMedal />
+          </div>
+        </div>
         <div className="content">
           <div className="username">MousQTR</div>
+          <div className="actions center-row">
+            <div className="action center">
+              <FaMedal />
+            </div>
+            <div className="action center">
+              <FaMedal />
+            </div>
+            <div className="action center">
+              <FaMedal />
+            </div>
+          </div>
+          <div className="volume center">
+            <VolumeSlider />
+          </div>
+          <div className="date"></div>
+          <div className="description"></div>
         </div>
       </div>
     </div>
