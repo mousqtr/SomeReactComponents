@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BsFillVolumeMuteFill, BsFillVolumeUpFill } from "react-icons/bs";
 import "./VolumeSlider.scss";
 
 export default function VolumeSlider(props) {
@@ -9,7 +10,8 @@ export default function VolumeSlider(props) {
   }
 
   return (
-    <div id="volumeSlider">
+    <div id="volumeSlider" className="center-row">
+      <BsFillVolumeMuteFill />
       <input
         type="range"
         min="0"
@@ -17,7 +19,7 @@ export default function VolumeSlider(props) {
         value={volume}
         onChange={handleVolumeChange}
       />
-      <p id="rangeValue">{volume}</p>
+      <BsFillVolumeUpFill />
     </div>
   );
 }

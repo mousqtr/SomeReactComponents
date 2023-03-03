@@ -5,6 +5,18 @@
   height: 100%;
   border-radius: 20px;
   display: flex;
+
+  svg {
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+    cursor: pointer;
+  }
+
+  input[type="range"] {
+    cursor: pointer;
+    width: 60%;
+  }
 }
 
 // #volumeSlider input[type="range"] {

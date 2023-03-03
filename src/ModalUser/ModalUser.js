@@ -4,6 +4,17 @@ import { GiPoliceBadge } from "react-icons/gi";
 import VolumeSlider from "./VolumeSlider";
 
 export default function ModalUser() {
+  const bio =
+    "It defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible";
+
+  const formatBio = (pBio) => {
+    const maxLength = 110;
+    if (pBio.length > maxLength) {
+      pBio = pBio.slice(0, maxLength);
+    }
+    return pBio + "...";
+  };
+
   return (
     <div id="modalUser">
       <div className="header">
@@ -53,8 +64,17 @@ export default function ModalUser() {
           <div className="volume center">
             <VolumeSlider />
           </div>
-          <div className="date"></div>
-          <div className="description"></div>
+          <div className="date">
+            <strong>DATE D'INSCRIPTION</strong>
+            03/08/2023
+          </div>
+          <div className="description">
+            <strong>DESCRIPTION</strong>
+            <div className="bio">
+              {formatBio(bio)}
+              <div className="next">Voir plus</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
