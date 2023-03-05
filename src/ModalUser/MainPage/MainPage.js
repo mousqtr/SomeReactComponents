@@ -3,9 +3,10 @@ import Image from "./Image/Image";
 import Badges from "./Badges/Badges";
 import Success from "./Success/Success";
 import Content from "./Content/Content";
+import Edit from "./Edit/Edit";
 import "./MainPage.scss";
 
-export default function MainPage({ bio, setPage }) {
+export default function MainPage({ username, bio, setPage }) {
   return (
     <div className="mainPage">
       <div className="block-header">
@@ -14,9 +15,10 @@ export default function MainPage({ bio, setPage }) {
       <div className="block-body">
         <Badges />
         <Success />
-        <Content bio={bio} setPage={setPage} />
+        <Content username={username} bio={bio} setPage={setPage} />
       </div>
       <Image />
+      <Edit />
     </div>
   );
 }

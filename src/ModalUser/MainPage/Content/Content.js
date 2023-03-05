@@ -3,7 +3,7 @@ import Actions from "./Actions/Actions";
 
 import "./Content.scss";
 
-export default function Content({ bio, setPage }) {
+export default function Content({ username, bio, setPage }) {
   const formatBio = (pBio) => {
     const maxLength = 108;
     if (pBio.length > maxLength) {
@@ -18,7 +18,7 @@ export default function Content({ bio, setPage }) {
 
   return (
     <div className="content">
-      <div className="content-username">MousQTR</div>
+      <div className="content-username">{username}</div>
       <div className="content-actions">
         <Actions />
       </div>
