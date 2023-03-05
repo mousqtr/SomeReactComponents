@@ -1,0 +1,17 @@
+#modalUser {
+  .actions {
+    width: 100%;
+    height: 100%;
+    /* background-color: lightgrey; */
+
+    .action {
+      height: 30px;
+      width: 30px;
+      margin-left: 2px;
+      margin-right: 2px;
+      background-color: green;
+      border-radius: 25%;
+      color: white;
+    }
+  }
+}

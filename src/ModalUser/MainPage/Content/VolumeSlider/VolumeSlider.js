@@ -5,13 +5,21 @@ import "./VolumeSlider.scss";
 export default function VolumeSlider(props) {
   const [volume, setVolume] = useState(50);
 
-  function handleVolumeChange(event) {
+  const handleVolumeChange = (event) => {
     setVolume(event.target.value);
-  }
+  };
+
+  const handleMinVolume = () => {
+    setVolume(0);
+  };
+
+  const handleMaxVolume = () => {
+    setVolume(100);
+  };
 
   return (
-    <div id="volumeSlider" className="center-row">
-      <BsFillVolumeMuteFill />
+    <div className="volumeSlider center-row">
+      <BsFillVolumeMuteFill onClick={handleMinVolume} />
       <input
         type="range"
         min="0"
@@ -19,7 +27,7 @@ export default function VolumeSlider(props) {
         value={volume}
         onChange={handleVolumeChange}
       />
-      <BsFillVolumeUpFill />
+      <BsFillVolumeUpFill onClick={handleMaxVolume} />
     </div>
   );
 }
