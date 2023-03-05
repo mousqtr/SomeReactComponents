@@ -1,0 +1,17 @@
+#modalUser {
+  .image {
+    width: 100px;
+    height: 100px;
+    background: rgb(255, 255, 255);
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 1) 22%,
+      rgba(212, 212, 212, 1) 88%
+    );
+    position: absolute;
+    top: 30px;
+    left: calc(50% - 100px / 2);
+    border-radius: 50%;
+    z-index: 3;
+  }
+}
