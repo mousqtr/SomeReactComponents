@@ -11,8 +11,26 @@
       width: 30px;
       margin-left: 2px;
       margin-right: 2px;
-      background-color: orange;
       border-radius: 50%;
+
+      .empty {
+        width: 96%;
+        height: 96%;
+        border-radius: 50%;
+        border-style: dashed;
+
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .fill {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: orange;
+      }
     }
   }
 }
