@@ -1,32 +1,21 @@
-import { useMemo } from "react";
+import { useState } from "react";
 import { FaMedal } from "react-icons/fa";
 import { BiPlus } from "react-icons/bi";
-import "./Success.scss";
-
-const SUCCESS = [
-  { name: "aa", logo: <FaMedal /> },
-  { name: "bbs", logo: <FaMedal /> },
-];
+import Pins from "../Pins/Pins";
 
 export default function Success({ mode }) {
-  const success = useMemo(() => {
-    if (mode === "edit") {
-      return SUCCESS;
-    }
-    return SUCCESS.filter((s) => s.name !== "");
-  }, [mode]);
+  const [success, setSuccess] = useState([
+    { name: "aa", logo: <FaMedal /> },
+    { name: "bb", logo: <FaMedal /> },
+    { name: "", logo: <BiPlus /> },
+  ]);
 
   return (
-    <div className="success center-row">
-      {success.map((s, index) => (
-        <div key={index} className="icon center">
-          <div
-            className={["center", s.name !== "" ? "fill" : "empty"].join(" ")}
-          >
-            {s.logo}
-          </div>
-        </div>
-      ))}
-    </div>
+    <Pins
+      mode={mode}
+      position="right"
+      elements={success}
+      setElements={setSuccess}
+    />
   );
 }

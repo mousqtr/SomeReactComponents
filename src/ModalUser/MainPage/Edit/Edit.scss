@@ -9,11 +9,11 @@
       background-color: #42428b;
       padding: 6px;
       top: 5px;
+      opacity: 0.8;
 
       &:hover {
         cursor: pointer;
-        border-color: yellow;
-        color: yellow;
+        opacity: 1;
       }
     }
 

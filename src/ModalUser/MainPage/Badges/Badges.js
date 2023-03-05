@@ -1,34 +1,21 @@
+import { useState } from "react";
 import { GiPoliceBadge } from "react-icons/gi";
-import { useMemo } from "react";
 import { BiPlus } from "react-icons/bi";
-import "./Badges.scss";
-
-const BADGES = [
-  { name: "", logo: <BiPlus /> },
-  { name: "test", logo: <GiPoliceBadge /> },
-];
+import Pins from "../Pins/Pins";
 
 export default function Badges({ mode }) {
-  const badges = useMemo(() => {
-    if (mode === "edit") {
-      return BADGES;
-    }
-    return BADGES.filter((badge) => badge.name !== "");
-  }, [mode]);
+  const [badges, setBadges] = useState([
+    { name: "a", logo: <GiPoliceBadge /> },
+    { name: "a", logo: <GiPoliceBadge /> },
+    { name: "tt", logo: <GiPoliceBadge /> },
+  ]);
 
   return (
-    <div className="badges center-row">
-      {badges.map((badge, index) => (
-        <div key={index} className="icon center">
-          <div
-            className={["center", badge.name !== "" ? "fill" : "empty"].join(
-              " "
-            )}
-          >
-            {badge.logo}
-          </div>
-        </div>
-      ))}
-    </div>
+    <Pins
+      mode={mode}
+      position="left"
+      elements={badges}
+      setElements={setBadges}
+    />
   );
 }
