@@ -1,23 +1,44 @@
 #modalUser {
   .image {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     background: rgb(255, 255, 255);
     background: radial-gradient(
       circle,
       rgba(255, 255, 255, 1) 22%,
       rgba(212, 212, 212, 1) 88%
     );
-    position: absolute;
-    top: 30px;
-    left: calc(50% - 100px / 2);
     border-radius: 50%;
+    border-style: solid;
+    border-color: white;
     z-index: 3;
     overflow: hidden;
+    position: relative;
 
     img {
       width: 100%;
       height: 100%;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .image-edit {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.5);
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+        color: white;
+      }
     }
   }
 }
