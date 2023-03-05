@@ -5,7 +5,7 @@ import Success from "./Success/Success";
 import Content from "./Content/Content";
 import "./MainPage.scss";
 
-export default function MainPage({ bio }) {
+export default function MainPage({ bio, setPage }) {
   return (
     <div className="mainPage">
       <div className="block-header">
@@ -14,7 +14,7 @@ export default function MainPage({ bio }) {
       <div className="block-body">
         <Badges />
         <Success />
-        <Content bio={bio} />
+        <Content bio={bio} setPage={setPage} />
       </div>
       <Image />
     </div>

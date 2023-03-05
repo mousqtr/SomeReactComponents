@@ -3,13 +3,17 @@ import Actions from "./Actions/Actions";
 
 import "./Content.scss";
 
-export default function Content({ bio }) {
+export default function Content({ bio, setPage }) {
   const formatBio = (pBio) => {
-    const maxLength = 110;
+    const maxLength = 108;
     if (pBio.length > maxLength) {
       pBio = pBio.slice(0, maxLength);
     }
     return pBio + "...";
+  };
+
+  const handleShowMore = () => {
+    setPage("description");
   };
 
   return (
@@ -29,7 +33,9 @@ export default function Content({ bio }) {
         <strong>DESCRIPTION</strong>
         <div className="bio">
           {formatBio(bio)}
-          <div className="next">Voir plus</div>
+          <div className="next" onClick={handleShowMore}>
+            Voir plus >>
+          </div>
         </div>
       </div>
     </div>
