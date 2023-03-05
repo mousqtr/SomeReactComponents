@@ -1,0 +1,39 @@
+#modalUser {
+  .edit {
+    .button {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border-style: dashed;
+      position: absolute;
+      background-color: #42428b;
+      padding: 6px;
+      top: 5px;
+
+      &:hover {
+        cursor: pointer;
+        border-color: yellow;
+        color: yellow;
+      }
+    }
+
+    .button-edit {
+      left: 5px;
+      border-color: white;
+      color: white;
+    }
+
+    .button-cancel {
+      left: 5px;
+      padding: 8px;
+      border-color: red;
+      color: red;
+    }
+
+    .button-save {
+      left: 40px;
+      border-color: green;
+      color: green;
+    }
+  }
+}
