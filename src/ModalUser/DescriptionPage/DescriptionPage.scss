@@ -4,11 +4,9 @@
     height: 100%;
     padding: 10px;
     background-color: white;
+    font-size: 13px;
 
     .previous {
-      font-weight: bold;
-      color: blue;
-      font-size: 10px;
       background-color: inherit;
       padding: 3px;
       margin-bottom: 10px;
@@ -19,20 +17,26 @@
       }
     }
 
-    strong {
-      width: 100%;
-      text-align: left;
-      display: block;
-      font-size: 12px;
-      margin-bottom: 3px;
-    }
+    .content-section {
+      background-color: #f6edff;
+      padding: 5px;
+      border-radius: 0.25rem;
 
-    .bio {
-      font-size: 13px;
-      padding: 2px;
-      height: 306px;
-      overflow-y: hidden;
-      position: relative;
+      strong {
+        width: 100%;
+        text-align: left;
+        display: block;
+        font-size: 12px;
+        margin-bottom: 3px;
+      }
+
+      .bio {
+        font-size: 13px;
+        padding: 2px;
+        height: 306px;
+        overflow-y: hidden;
+        position: relative;
+      }
     }
   }
 }

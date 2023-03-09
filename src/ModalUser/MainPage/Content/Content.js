@@ -3,15 +3,7 @@ import Actions from "./Actions/Actions";
 
 import "./Content.scss";
 
-export default function Content({ username, bio, setPage }) {
-  const formatBio = (pBio) => {
-    const maxLength = 108;
-    if (pBio.length > maxLength) {
-      pBio = pBio.slice(0, maxLength);
-    }
-    return pBio + "...";
-  };
-
+export default function Content({ username, setPage }) {
   const handleShowMore = () => {
     setPage("description");
   };
@@ -25,17 +17,19 @@ export default function Content({ username, bio, setPage }) {
       <div className="content-volume center">
         <VolumeSlider />
       </div>
-      <div className="content-date">
-        <strong>DATE D'INSCRIPTION</strong>
-        03-08-2023
+      <div className="content-section content-date">
+        <strong>DATE D'INSCRIPTION</strong>03-08-2023
       </div>
-      <div className="content-description">
+      <div className="content-section content-friends">
+        <strong>AMIS</strong>150
+      </div>
+      <div className="content-section content-badges">
+        <strong>BADGES</strong>178
+      </div>
+      <div className="content-section content-description">
         <strong>DESCRIPTION</strong>
-        <div className="bio">
-          {formatBio(bio)}
-          <div className="next" onClick={handleShowMore}>
-            Voir plus >>
-          </div>
+        <div className="next" onClick={handleShowMore}>
+          (Ouvrir ici)
         </div>
       </div>
     </div>
