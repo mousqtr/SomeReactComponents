@@ -8,10 +8,12 @@ export default function DescriptionPage({ bio, setPage }) {
   return (
     <div className="descriptionPage">
       <div className="previous" onClick={handlePrevious}>
-        {"<<"} Précédent
+        {"<"} Précédent
       </div>
-      <strong>DESCRIPTION</strong>
-      <div className="bio">{bio}</div>
+      <div className="content-section">
+        <strong>DESCRIPTION</strong>
+        <div className="bio">{bio}</div>
+      </div>
     </div>
   );
 }

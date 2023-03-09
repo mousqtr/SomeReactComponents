@@ -18,7 +18,7 @@ export default function MainPage({ username, bio, setPage }) {
       <div className="block-body">
         <Badges mode={mode} />
         <Success mode={mode} />
-        <Content username={username} bio={bio} setPage={setPage} />
+        <Content username={username} setPage={setPage} />
       </div>
       <div className="block-image">
         <Image mode={mode} />
