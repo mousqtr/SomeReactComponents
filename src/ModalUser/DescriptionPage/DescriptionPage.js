@@ -1,3 +1,4 @@
+import { FaArrowLeft } from "react-icons/fa";
 import "./DescriptionPage.scss";
 
 export default function DescriptionPage({ bio, setPage }) {
@@ -7,8 +8,8 @@ export default function DescriptionPage({ bio, setPage }) {
 
   return (
     <div className="descriptionPage">
-      <div className="previous" onClick={handlePrevious}>
-        {"<"} Précédent
+      <div className="previous center-row" onClick={handlePrevious}>
+        <FaArrowLeft /> Précédent
       </div>
       <div className="content-section">
         <strong>DESCRIPTION</strong>

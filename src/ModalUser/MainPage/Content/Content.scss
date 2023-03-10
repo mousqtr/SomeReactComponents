@@ -7,7 +7,6 @@
     .content-username {
       text-align: center;
       font-size: 20px;
-      /* position: absolute; */
     }
 
     .content-actions {
@@ -51,6 +50,10 @@
 
     .content-description {
       .next {
+        svg {
+          margin-left: 4px;
+        }
+
         &:hover {
           cursor: pointer;
           color: red;
