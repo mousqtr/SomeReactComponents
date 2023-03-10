@@ -10,6 +10,11 @@
       background-color: inherit;
       padding: 3px;
       margin-bottom: 10px;
+      width: 100px;
+
+      svg {
+        margin-right: 4px;
+      }
 
       &:hover {
         cursor: pointer;

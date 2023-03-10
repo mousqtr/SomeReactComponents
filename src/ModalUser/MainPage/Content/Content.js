@@ -1,5 +1,6 @@
 import VolumeSlider from "./VolumeSlider/VolumeSlider";
 import Actions from "./Actions/Actions";
+import { FaArrowRight } from "react-icons/fa";
 
 import "./Content.scss";
 
@@ -28,8 +29,8 @@ export default function Content({ username, setPage }) {
       </div>
       <div className="content-section content-description">
         <strong>DESCRIPTION</strong>
-        <div className="next" onClick={handleShowMore}>
-          (Ouvrir ici)
+        <div className="next center-row" onClick={handleShowMore}>
+          (Ouvrir ici <FaArrowRight />)
         </div>
       </div>
     </div>
