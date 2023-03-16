@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
+import ColorBg from "./ColorBg/ColorBg";
 import { BiPaint } from "react-icons/bi";
 import "./Header.scss";
 
 export default function Header({ mode }) {
-  const [bgColor, setBgColor] = useState();
+  const [colors, setColors] = useState([
+    {
+      color: "#5757a9",
+      stop: "47",
+    },
+    {
+      color: "#9a57a9",
+      stop: "100",
+    },
+  ]);
 
-  const handleChangeBgColor = (e) => {
-    setBgColor(e.target.value);
+  const colorsToString = (pColors) => {
+    let s = "linear-gradient(90deg, ";
+    pColors.forEach((elt, index) => {
+      const res = elt.color + " " + elt.stop + "%";
+      s += index < colors.length - 1 ? res + ", " : res;
+    });
+    s += ")";
+    return s;
   };
 
   return (
-    <div className="header">
+    <div className="header" style={{ background: colorsToString(colors) }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 320"
@@ -24,14 +40,12 @@ export default function Header({ mode }) {
       </svg>
       <div className="edit-header center">
         <BiPaint type="color" />
-        <input
-          type="color"
-          id="head"
-          name="head"
-          value={bgColor}
-          onChange={handleChangeBgColor}
-        />
       </div>
+      <ColorBg
+        colors={colors}
+        setColors={setColors}
+        colorsToString={colorsToString}
+      />
     </div>
   );
 }
