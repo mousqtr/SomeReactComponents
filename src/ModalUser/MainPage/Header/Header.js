@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import ColorBg from "./ColorBg/ColorBg";
 import { BiPaint } from "react-icons/bi";
 import "./Header.scss";
@@ -17,14 +17,19 @@ export default function Header({ mode }) {
 
   const colorsToString = (pColors) => {
     console.log(pColors);
-    let s = "linear-gradient(90deg, ";
-    pColors.forEach((elt, index) => {
-      const res = elt.color + " " + elt.stop + "%";
-      s += index < pColors.length - 1 && pColors.length > 1 ? res + ", " : res;
-    });
-    s += ")";
-    console.log(s);
-    return s;
+    if (pColors.length > 1) {
+      let s = "linear-gradient(90deg, ";
+      pColors.forEach((elt, index) => {
+        const res = elt.color + " " + elt.stop + "%";
+        s +=
+          index < pColors.length - 1 && pColors.length > 1 ? res + ", " : res;
+      });
+      s += ")";
+      console.log(s);
+      return s;
+    } else {
+      return pColors[0].color;
+    }
   };
 
   return (
