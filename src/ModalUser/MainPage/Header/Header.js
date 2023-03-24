@@ -16,12 +16,14 @@ export default function Header({ mode }) {
   ]);
 
   const colorsToString = (pColors) => {
+    console.log(pColors);
     let s = "linear-gradient(90deg, ";
     pColors.forEach((elt, index) => {
       const res = elt.color + " " + elt.stop + "%";
-      s += index < colors.length - 1 ? res + ", " : res;
+      s += index < pColors.length - 1 && pColors.length > 1 ? res + ", " : res;
     });
     s += ")";
+    console.log(s);
     return s;
   };
 
