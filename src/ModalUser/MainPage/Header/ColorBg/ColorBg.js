@@ -24,6 +24,9 @@ export default function ({ colors, setColors, colorsToString }) {
   const handleRemove = (index) => {
     let localColors_ = [...localColors];
     localColors_.splice(index, 1);
+    if (localColors_.length === 1) {
+      localColors_[0].stop = 100;
+    }
     setLocalColors(localColors_);
   };
 
@@ -31,21 +34,23 @@ export default function ({ colors, setColors, colorsToString }) {
     const localColors_ = [
       ...localColors,
       {
-        color: "#5757a9",
+        color: "#000000",
         stop: "100",
       },
     ];
     setLocalColors(localColors_);
   };
 
-  useEffect(() => {
-    console.log(localColors);
-    setDisplayedColors(colorsToString(localColors));
-  }, [localColors]);
+  const handleSave = () => {
+    setColors(localColors);
+  };
 
   return (
     <div id="colorBg">
-      <div className="preview" style={{ background: displayedColors }}></div>
+      <div
+        className="preview"
+        style={{ background: colorsToString(localColors) }}
+      ></div>
 
       {localColors.map((elt, index) => (
         <div key={index} className="sub-block bothColor center-row">
@@ -58,6 +63,7 @@ export default function ({ colors, setColors, colorsToString }) {
           <input
             type="number"
             className="stop"
+            disabled={localColors.length === 1 && index === 0}
             min="0"
             max="100"
             value={elt.stop}
@@ -82,7 +88,9 @@ export default function ({ colors, setColors, colorsToString }) {
       )}
 
       <div className="bottom-block text-right">
-        <button className="btn-success">Valider</button>
+        <button className="btn-success" onClick={() => handleSave()}>
+          Valider
+        </button>
       </div>
     </div>
   );
