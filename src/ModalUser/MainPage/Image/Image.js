@@ -8,7 +8,7 @@ export default function Image({ mode }) {
 
   return (
     <div className="image">
-      <img src="https://solunew.com/img/users/profile.png" />
+      <img src="https://images.pexels.com/photos/533974/pexels-photo-533974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
       {mode === "edit" ? (
         <div className="image-edit" onClick={handleUpload}>
           <BsPencilFill />
