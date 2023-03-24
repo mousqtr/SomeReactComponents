@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { BiTrash } from "react-icons/bi";
-import { BsPlusCircleDotted } from "react-icons/bs";
+import { BsPlusCircleDotted, BsCheckLg } from "react-icons/bs";
+import { ImCross } from "react-icons/im";
 import "./ColorBg.scss";
 
-export default function ({ colors, setColors, colorsToString }) {
+export default function ({ colors, setColors, colorsToString, close }) {
   const [localColors, setLocalColors] = useState(colors);
   const [displayedColors, setDisplayedColors] = useState(
     colorsToString(localColors)
@@ -45,6 +46,10 @@ export default function ({ colors, setColors, colorsToString }) {
     setColors(localColors);
   };
 
+  const handleClose = () => {
+    close();
+  };
+
   return (
     <div id="colorBg">
       <div
@@ -80,17 +85,21 @@ export default function ({ colors, setColors, colorsToString }) {
       ))}
 
       {localColors.length === 1 ? (
-        <div className="sub-block bothColor center">
-          <BsPlusCircleDotted onClick={() => handleAdd()} className="add" />
+        <div className="sub-block bothColor center-row add" onClick={handleAdd}>
+          <BsPlusCircleDotted />
+          <span>Ajouter couleur</span>
         </div>
       ) : (
         <></>
       )}
 
-      <div className="bottom-block text-right">
-        <button className="btn-success" onClick={() => handleSave()}>
-          Valider
-        </button>
+      <div className="bottom-block center-row">
+        <div className="button button-cancel center" onClick={handleClose}>
+          <ImCross />
+        </div>
+        <div className="button button-save center" onClick={handleSave}>
+          <BsCheckLg />
+        </div>
       </div>
     </div>
   );
