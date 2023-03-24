@@ -27,6 +27,7 @@
     .color {
       width: 25px;
       height: 25px;
+      cursor: pointer;
     }
 
     .stop {
@@ -35,8 +36,26 @@
     }
 
     .remove {
-      width: 25px;
+      width: 15px;
       height: 25px;
+      svg {
+        cursor: pointer;
+        &:hover {
+          color: red;
+        }
+      }
+
+      .disabled {
+        color: grey;
+        pointer-events: none;
+      }
+    }
+
+    .add {
+      cursor: pointer;
+      &:hover {
+        color: green;
+      }
     }
   }
 
