@@ -4,11 +4,7 @@ import { BiPlus } from "react-icons/bi";
 import Pins from "../Pins/Pins";
 
 export default function Badges({ mode }) {
-  const [badges, setBadges] = useState([
-    { name: "a", logo: <GiPoliceBadge /> },
-    { name: "a", logo: <GiPoliceBadge /> },
-    { name: "tt", logo: <GiPoliceBadge /> },
-  ]);
+  const [badges, setBadges] = useState(["badge0", "badge0", "badge0"]);
 
   return (
     <Pins

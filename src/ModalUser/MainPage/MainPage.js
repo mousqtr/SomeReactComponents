@@ -7,13 +7,18 @@ import Content from "./Content/Content";
 import Edit from "./Edit/Edit";
 import "./MainPage.scss";
 
-export default function MainPage({ username, bio, setPage }) {
+export default function MainPage({
+  username,
+  setPage,
+  urlImage,
+  headerBgColors,
+}) {
   const [mode, setMode] = useState("show");
 
   return (
     <div className="mainPage">
       <div className="block-header">
-        <Header mode={mode} />
+        <Header mode={mode} bgColors={headerBgColors} />
       </div>
       <div className="block-body">
         <Badges mode={mode} />
@@ -21,7 +26,7 @@ export default function MainPage({ username, bio, setPage }) {
         <Content username={username} setPage={setPage} />
       </div>
       <div className="block-image">
-        <Image mode={mode} />
+        <Image mode={mode} url={urlImage} />
       </div>
       <Edit mode={mode} setMode={setMode} />
     </div>
