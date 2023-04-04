@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { AiFillMinusCircle } from "react-icons/ai";
-import { BiPlus } from "react-icons/bi";
+import { getIcon } from "../../icons";
 import "./Pins.scss";
 
 export default function Pins({ mode, elements, position, setElements }) {
@@ -8,12 +8,12 @@ export default function Pins({ mode, elements, position, setElements }) {
     if (mode === "edit") {
       return elements;
     }
-    return elements.filter((s) => s.name !== "");
+    return elements.filter((name) => name !== "");
   }, [mode, elements]);
 
   const handleDeleteElement = (id) => {
     const elements_ = [...elements];
-    elements_[id] = { name: "", logo: <BiPlus /> };
+    elements_[id] = "none";
     setElements(elements_);
   };
 
@@ -25,11 +25,11 @@ export default function Pins({ mode, elements, position, setElements }) {
         right: position === "right" ? "10px" : "inherit",
       }}
     >
-      {pins.map((s, index) => (
-        <div key={index} className="icon center">
-          {s.name !== "" ? (
-            <>
-              <div className="center fill">{s.logo}</div>
+      {pins.map((name, index) => (
+        <>
+          {name !== "none" ? (
+            <div key={index} className="icon center">
+              <div className="center fill">{getIcon(name)}</div>
               {mode === "edit" ? (
                 <AiFillMinusCircle
                   className="minus"
@@ -38,11 +38,19 @@ export default function Pins({ mode, elements, position, setElements }) {
               ) : (
                 <></>
               )}
-            </>
+            </div>
           ) : (
-            <div className="center empty">{s.logo}</div>
+            <>
+              {mode === "edit" ? (
+                <div key={index} className="icon center">
+                  <div className="center empty">{getIcon(name)}</div>
+                </div>
+              ) : (
+                <></>
+              )}
+            </>
           )}
-        </div>
+        </>
       ))}
     </div>
   );

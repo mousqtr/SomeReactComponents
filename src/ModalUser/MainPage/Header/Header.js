@@ -1,19 +1,10 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState } from "react";
 import ColorBg from "./ColorBg/ColorBg";
 import { BiPaint } from "react-icons/bi";
 import "./Header.scss";
 
-export default function Header({ mode }) {
-  const [colors, setColors] = useState([
-    {
-      color: "#5757a9",
-      stop: "47",
-    },
-    {
-      color: "#9a57a9",
-      stop: "100",
-    },
-  ]);
+export default function Header({ mode, bgColors }) {
+  const [colors, setColors] = useState(bgColors);
   const [isColorBg, setColorBg] = useState(false);
 
   const colorsToString = (pColors) => {

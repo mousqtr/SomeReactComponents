@@ -16,7 +16,7 @@
       top: 10px;
       right: 10px;
       border-radius: 25%;
-      backdrop-filter: brightness(0.8);
+      background-color: white;
       opacity: 0.8;
       cursor: pointer;
 
@@ -25,7 +25,7 @@
       }
 
       svg {
-        color: white;
+        color: black;
       }
 
       input {
