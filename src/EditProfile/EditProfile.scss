@@ -1,8 +1,42 @@
 #editProfile {
   background: linear-gradient(180deg, rgb(48 40 90) 50%, #f9f3e9 50%);
   
-  textarea {
-    height: 200px;
+  .image-profile {
+    width: 100px;
+    aspect-ratio: 1;
+    background-color: red;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .buttons-image {
+    .label-file {
+      cursor: pointer;
+    }
+    
+    .label-file:hover {
+        color: #25a5c4;
+    }
+
+    .input-file {
+        display: none;
+    }
+    
+    .btn {
+      width: 150px;
+      text-align: center;
+      justify-content: center;
+      border-radius: 0.25rem;
+      font-size: 12px;
+    }
+  }
+  
+  .background-preview {
+    width: 200px;
+    height: 60px;
+    background-color: blue;
+    border-radius: 0.5rem;
+    margin-top: 5px;
   }
   
   .icon {
@@ -24,5 +58,9 @@
         opacity: 1;
       }
     }
+  }
+  
+    textarea {
+    height: 100px;
   }
 }
