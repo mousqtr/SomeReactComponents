@@ -34,6 +34,17 @@ export default function EditProfileView(props) {
                 validated={props.validated}
                 onSubmit={props.submit}
               >
+                
+                {/* Preview */}
+                <FormGroup as={Row} className="mb-2">
+                  <FormLabel column sm="3">
+                    Preview
+                  </FormLabel>
+                  <Col sm="9">
+                    <button className="btn btn-purple btn-preview">Ouvrir le profil</button>
+                  </Col>
+                </FormGroup>
+                
                 {/* Profile image */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
