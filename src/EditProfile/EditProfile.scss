@@ -1,6 +1,18 @@
 #editProfile {
   background: linear-gradient(180deg, rgb(48 40 90) 50%, #f9f3e9 50%);
   
+  .btn {
+      text-align: center;
+      justify-content: center;
+      border-radius: 0.25rem;
+      font-size: 12px;
+  }
+  
+  .btn-preview {
+    width: 150px;
+        height: 30px;
+  }
+  
   .image-profile {
     width: 100px;
     aspect-ratio: 1;
@@ -24,10 +36,7 @@
     
     .btn {
       width: 150px;
-      text-align: center;
-      justify-content: center;
-      border-radius: 0.25rem;
-      font-size: 12px;
+         height: 30px;
     }
   }
   
