@@ -2,17 +2,26 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import EditProfileView from "./EditProfileView";
 
-const initialFormData = {
-  country: "France",
-  gender: "",
-  mail: "",
-  description: "",
-  attachments: [],
-};
-
 export default function EditProfile() {
   const history = useHistory();
-  const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState({
+    country: "France",
+    gender: "Male",
+    imageProfile:
+      "https://images.pexels.com/photos/533974/pexels-photo-533974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    description:
+      "It defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible",
+    backgroundColors: [
+      {
+        color: "#5757a9",
+        stop: "47",
+      },
+      {
+        color: "#9a57a9",
+        stop: "100",
+      },
+    ],
+  });
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (e) => {
@@ -28,30 +37,36 @@ export default function EditProfile() {
     history.push({ pathname: "/" });
   };
 
-  const handleReset = () => {
-    setFormData(initialFormData);
-    setValidated(false);
-  };
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleAddAttachments = (e) => {
+  const handleChangeImage = (e) => {
     if (e.target.files[0]) {
-      let url = URL.createObjectURL(e.target.files[0]);
-      let atchs = [...formData.attachments];
-      atchs.push(url);
-      setFormData({ ...formData, attachments: atchs });
+      const url = URL.createObjectURL(e.target.files[0]);
+      setFormData({ ...formData, imageProfile: url });
     }
   };
 
-  const handleDeleteAttachment = (index) => {
-    let atchs = [...formData.attachments];
-    if (index > -1) {
-      atchs.splice(index, 1);
+  const handleDeleteImage = () => {
+    setFormData({ ...formData, imageProfile: "" });
+  };
+
+  const colorsToString = (pColors) => {
+    console.log(pColors);
+    if (pColors.length > 1) {
+      let s = "linear-gradient(90deg, ";
+      pColors.forEach((elt, index) => {
+        const res = elt.color + " " + elt.stop + "%";
+        s +=
+          index < pColors.length - 1 && pColors.length > 1 ? res + ", " : res;
+      });
+      s += ")";
+      console.log(s);
+      return s;
+    } else {
+      return pColors[0].color;
     }
-    setFormData({ ...formData, attachments: atchs });
   };
 
   return (
@@ -61,9 +76,9 @@ export default function EditProfile() {
       change={handleChange}
       submit={handleSubmit}
       cancel={handleCancel}
-      reset={handleReset}
-      addAttachments={handleAddAttachments}
-      deleteAttachment={handleDeleteAttachment}
+      changeImage={handleChangeImage}
+      deleteImage={handleDeleteImage}
+      colorsToString={colorsToString}
     />
   );
 }

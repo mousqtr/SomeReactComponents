@@ -1,45 +1,60 @@
 #editProfile {
   background: linear-gradient(180deg, rgb(48 40 90) 50%, #f9f3e9 50%);
-  
+
   .btn {
-      text-align: center;
-      justify-content: center;
-      border-radius: 0.25rem;
-      font-size: 12px;
+    border-radius: 0.25rem;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 3px;
+    }
   }
-  
+
   .btn-preview {
     width: 150px;
-        height: 30px;
+    height: 30px;
+    background-color: orange;
   }
-  
+
   .image-profile {
     width: 100px;
     aspect-ratio: 1;
     background-color: red;
     border-radius: 50%;
     margin-right: 20px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
-  
+
   .buttons-image {
     .label-file {
       cursor: pointer;
     }
-    
+
     .label-file:hover {
-        color: #25a5c4;
+      color: #25a5c4;
     }
 
     .input-file {
-        display: none;
+      display: none;
     }
-    
+
     .btn {
-      width: 150px;
-         height: 30px;
+      width: 170px;
+      height: 30px;
     }
   }
-  
+
   .background-preview {
     width: 200px;
     height: 60px;
@@ -47,7 +62,7 @@
     border-radius: 0.5rem;
     margin-top: 5px;
   }
-  
+
   .icon {
     height: 24px;
     width: 24px;
@@ -68,8 +83,8 @@
       }
     }
   }
-  
-    textarea {
+
+  textarea {
     height: 100px;
   }
 }
