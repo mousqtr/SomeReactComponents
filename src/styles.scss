@@ -94,10 +94,10 @@ a {
   color: white !important;
 }
 .btn-red {
-  background-color: rgba(211, 14, 14, 0.8) !important;
+  background-color: rgba(211, 14, 14, 1) !important;
   color: white !important;
   &:hover {
-    background-color: rgba(211, 14, 14, 1) !important;
+    background-color: rgba(211, 14, 14, 0.8) !important;
     color: white;
   }
 }

@@ -11,9 +11,9 @@ import {
   FormCheck,
   InputGroup,
 } from "react-bootstrap";
-import { AiFillEye } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
-import { BiPlus } from "react-icons/bi";
+import { BiPlus, BiImport, BiUserCircle } from "react-icons/bi";
+import { MdDeleteOutline } from "react-icons/md";
 
 import "./EditProfile.scss";
 
@@ -34,37 +34,53 @@ export default function EditProfileView(props) {
                 validated={props.validated}
                 onSubmit={props.submit}
               >
-                
                 {/* Preview */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
                     Preview
                   </FormLabel>
                   <Col sm="9">
-                    <button className="btn btn-purple btn-preview">Ouvrir le profil</button>
+                    <button className="btn btn-purple btn-preview">
+                      <BiUserCircle />
+                      Ouvrir le profil
+                    </button>
                   </Col>
                 </FormGroup>
-                
+
                 {/* Profile image */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
                     Image de profil
                   </FormLabel>
                   <Col sm="9">
-                    <div className="image-profile"></div>
-                    {/* <FormControl
-                      type="file"
-                      single
-                      onChange={props.addAttachments}
-                    /> */}
+                    <div className="image-profile">
+                      <img src={props.formData.imageProfile} />
+                    </div>
                     <div className="buttons-image">
-                      <FormLabel for="file" className="label-file btn btn-purple">Importer une image</FormLabel>
-                      <FormControl id="file" className="input-file" type="file" />
-                      <button className="btn btn-red">Supprimer</button>
+                      <FormLabel
+                        for="file"
+                        className="label-file btn btn-purple"
+                      >
+                        <BiImport />
+                        Importer une image
+                      </FormLabel>
+                      <FormControl
+                        id="file"
+                        className="input-file"
+                        type="file"
+                        onChange={props.changeImage}
+                      />
+                      <button
+                        className="btn btn-red"
+                        onClick={props.deleteImage}
+                      >
+                        <MdDeleteOutline />
+                        Supprimer
+                      </button>
                     </div>
                   </Col>
                 </FormGroup>
-                
+
                 {/* Background */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
@@ -74,7 +90,7 @@ export default function EditProfileView(props) {
                     <div className="background-preview"></div>
                   </Col>
                 </FormGroup>
-                
+
                 {/* Country */}
                 <FormGroup as={Row} className="mb-2">
                   <Form.Label column sm="3">
@@ -88,11 +104,13 @@ export default function EditProfileView(props) {
                         value={props.formData.country}
                         onChange={props.change}
                       >
-                        {["France", "Allemange", "Belgique"].map((country, index) => (
-                          <option key={index} value={country}>
-                            {country}
-                          </option>
-                        ))}
+                        {["France", "Allemange", "Belgique"].map(
+                          (country, index) => (
+                            <option key={index} value={country}>
+                              {country}
+                            </option>
+                          )
+                        )}
                       </FormControl>
                     </InputGroup>
                   </Col>
@@ -119,48 +137,60 @@ export default function EditProfileView(props) {
                       </FormControl>
                     </InputGroup>
                   </Col>
-                </FormGroup> 
-                
+                </FormGroup>
+
                 {/* Badges */}
                 <FormGroup as={Row} className="mb-2">
                   <Form.Label column sm="3">
                     Badges
                   </Form.Label>
                   <Col sm="9">
-                      <div className="icon center">
-                        <div className="center empty"><BiPlus /></div>
+                    <div className="icon center">
+                      <div className="center empty">
+                        <BiPlus />
                       </div>
-                      <div className="icon center">
-                        <div className="center empty"><BiPlus /></div>
+                    </div>
+                    <div className="icon center">
+                      <div className="center empty">
+                        <BiPlus />
                       </div>
-                      <div className="icon center">
-                        <div className="center empty"><BiPlus /></div>
+                    </div>
+                    <div className="icon center">
+                      <div className="center empty">
+                        <BiPlus />
                       </div>
+                    </div>
                   </Col>
-                </FormGroup> 
-                
-              {/* Succès */}
+                </FormGroup>
+
+                {/* Succès */}
                 <FormGroup as={Row} className="mb-2">
                   <Form.Label column sm="3">
                     Succès
                   </Form.Label>
                   <Col sm="9">
-                      <div className="icon center">
-                        <div className="center empty"><BiPlus /></div>
+                    <div className="icon center">
+                      <div className="center empty">
+                        <BiPlus />
                       </div>
-                      <div className="icon center">
-                        <div className="center empty"><BiPlus /></div>
+                    </div>
+                    <div className="icon center">
+                      <div className="center empty">
+                        <BiPlus />
                       </div>
-                      <div className="icon center">
-                        <div className="center empty"><BiPlus /></div>
+                    </div>
+                    <div className="icon center">
+                      <div className="center empty">
+                        <BiPlus />
                       </div>
+                    </div>
                   </Col>
-                </FormGroup> 
+                </FormGroup>
 
                 {/* Description */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
-                    *Description
+                    Description
                   </FormLabel>
                   <Col sm="9">
                     <InputGroup hasValidation>
@@ -180,28 +210,7 @@ export default function EditProfileView(props) {
                   </Col>
                 </FormGroup>
 
-                <FormGroup as={Row} className="mb-2">
-                  <Col sm="3"></Col>
-                  <Col sm="9">
-                    {props.formData.attachments.map((attachment, index) => (
-                      <div key={index} className="attachment">
-                        <img src={attachment} alt="attachment" />
-                        <FaTrashAlt
-                          className="cross"
-                          onClick={() => props.deleteAttachment(index)}
-                        />
-                      </div>
-                    ))}
-                  </Col>
-                </FormGroup>
-
                 <div className="buttons">
-                  <button
-                    className="btn btn-purple float-left"
-                    onClick={props.reset}
-                  >
-                    Vider les champs
-                  </button>
                   <button className="btn btn-red mr-1" onClick={props.cancel}>
                     Quitter
                   </button>
