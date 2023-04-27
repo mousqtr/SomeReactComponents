@@ -34,17 +34,23 @@ export default function EditProfileView(props) {
                 validated={props.validated}
                 onSubmit={props.submit}
               >
-                {/* Attachments */}
+                {/* Profile image */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
                     Image de profil
                   </FormLabel>
                   <Col sm="9">
-                    <FormControl
+                    <div className="image-profile"></div>
+                    {/* <FormControl
                       type="file"
                       single
                       onChange={props.addAttachments}
-                    />
+                    /> */}
+                    <div className="buttons-image">
+                      <FormLabel for="file" className="label-file btn btn-purple">Importer une image</FormLabel>
+                      <FormControl id="file" className="input-file" type="file" />
+                      <button className="btn btn-red">Supprimer</button>
+                    </div>
                   </Col>
                 </FormGroup>
                 
@@ -54,11 +60,7 @@ export default function EditProfileView(props) {
                     Background
                   </FormLabel>
                   <Col sm="9">
-                    <FormControl
-                      type="file"
-                      single
-                      onChange={props.addAttachments}
-                    />
+                    <div className="background-preview"></div>
                   </Col>
                 </FormGroup>
                 
