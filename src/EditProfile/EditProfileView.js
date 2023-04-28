@@ -9,9 +9,11 @@ import {
   FormControl,
   InputGroup,
 } from "react-bootstrap";
-import { BiPlus, BiImport, BiUserCircle } from "react-icons/bi";
+import { BiImport, BiUserCircle } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import ColorBg from "./ColorBg/ColorBg";
+import { BADGES_ICONS } from "./../data/badges.js";
+import { SUCCESS_ICONS } from "./../data/success.js";
 
 import "./EditProfile.scss";
 
@@ -32,19 +34,6 @@ export default function EditProfileView(props) {
                 validated={props.validated}
                 onSubmit={props.submit}
               >
-                {/* Preview */}
-                <FormGroup as={Row} className="mb-2">
-                  <FormLabel column sm="3">
-                    Preview
-                  </FormLabel>
-                  <Col sm="9">
-                    <button className="btn btn-purple btn-preview">
-                      <BiUserCircle />
-                      Ouvrir le profil
-                    </button>
-                  </Col>
-                </FormGroup>
-
                 {/* Profile image */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
@@ -56,7 +45,7 @@ export default function EditProfileView(props) {
                     </div>
                     <div className="buttons-image">
                       <FormLabel
-                        for="file"
+                        htmlFor="file"
                         className="label-file btn btn-purple"
                       >
                         <BiImport />
@@ -127,53 +116,43 @@ export default function EditProfileView(props) {
                   </Col>
                 </FormGroup>
 
-                {/* Badges */}
-                <FormGroup as={Row} className="mb-2">
-                  <Form.Label column sm="3">
-                    Badges
-                  </Form.Label>
-                  <Col sm="9">
-                    <div className="icon center">
-                      <div className="center empty">
-                        <BiPlus />
-                      </div>
-                    </div>
-                    <div className="icon center">
-                      <div className="center empty">
-                        <BiPlus />
-                      </div>
-                    </div>
-                    <div className="icon center">
-                      <div className="center empty">
-                        <BiPlus />
-                      </div>
-                    </div>
-                  </Col>
-                </FormGroup>
-
-                {/* Succès */}
-                <FormGroup as={Row} className="mb-2">
-                  <Form.Label column sm="3">
-                    Succès
-                  </Form.Label>
-                  <Col sm="9">
-                    <div className="icon center">
-                      <div className="center empty">
-                        <BiPlus />
-                      </div>
-                    </div>
-                    <div className="icon center">
-                      <div className="center empty">
-                        <BiPlus />
-                      </div>
-                    </div>
-                    <div className="icon center">
-                      <div className="center empty">
-                        <BiPlus />
-                      </div>
-                    </div>
-                  </Col>
-                </FormGroup>
+                {[
+                  {
+                    label: "Succès",
+                    name: "success",
+                    icons: SUCCESS_ICONS,
+                  },
+                  {
+                    label: "Badges",
+                    name: "badges",
+                    icons: BADGES_ICONS,
+                  },
+                ].map((type, indexType) => (
+                  <FormGroup key={indexType} as={Row} className="mb-2">
+                    <Form.Label column sm="3">
+                      {type.label} favoris <br />
+                      (3 max)
+                    </Form.Label>
+                    <Col sm="9">
+                      {props.formData[type.name].length > 0
+                        ? props.formData[type.name].map((elt, indexElt) => (
+                            <div
+                              key={indexElt}
+                              className={[
+                                "icon center",
+                                elt.isFavorite ? "favorite" : "",
+                              ].join(" ")}
+                              onClick={() =>
+                                props.changeFavorite(type.name, indexElt)
+                              }
+                            >
+                              {type.icons[elt.name]}
+                            </div>
+                          ))
+                        : "Aucun success pour l'instant"}
+                    </Col>
+                  </FormGroup>
+                ))}
 
                 {/* Description */}
                 <FormGroup as={Row} className="mb-2">
@@ -209,6 +188,19 @@ export default function EditProfileView(props) {
                       setColors={props.changeBgColors}
                       colorsToString={props.colorsToString}
                     />
+                  </Col>
+                </FormGroup>
+
+                {/* Preview */}
+                <FormGroup as={Row} className="mb-2">
+                  <FormLabel column sm="3">
+                    Preview
+                  </FormLabel>
+                  <Col sm="9">
+                    <button className="btn btn-purple btn-preview">
+                      <BiUserCircle />
+                      Afficher le profil
+                    </button>
                   </Col>
                 </FormGroup>
 

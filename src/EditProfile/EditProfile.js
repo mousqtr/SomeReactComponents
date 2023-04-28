@@ -21,6 +21,58 @@ export default function EditProfile() {
         stop: "100",
       },
     ],
+    badges: [
+      {
+        name: "badge0",
+        isFavorite: true,
+      },
+      {
+        name: "badge1",
+        isFavorite: true,
+      },
+      {
+        name: "badge2",
+        isFavorite: true,
+      },
+      {
+        name: "badge3",
+        isFavorite: false,
+      },
+      {
+        name: "badge4",
+        isFavorite: false,
+      },
+    ],
+    success: [
+      {
+        name: "success0",
+        isFavorite: true,
+      },
+      {
+        name: "success1",
+        isFavorite: true,
+      },
+      {
+        name: "success2",
+        isFavorite: true,
+      },
+      {
+        name: "success3",
+        isFavorite: false,
+      },
+      {
+        name: "success4",
+        isFavorite: false,
+      },
+      {
+        name: "success5",
+        isFavorite: false,
+      },
+      {
+        name: "success6",
+        isFavorite: false,
+      },
+    ],
   });
   const [validated, setValidated] = useState(false);
 
@@ -41,10 +93,6 @@ export default function EditProfile() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleChangeBgColors = (pColors) => {
-    setFormData({ ...formData, bgColors: pColors });
-  };
-
   const handleChangeImage = (e) => {
     if (e.target.files[0]) {
       const url = URL.createObjectURL(e.target.files[0]);
@@ -56,8 +104,29 @@ export default function EditProfile() {
     setFormData({ ...formData, imageProfile: "" });
   };
 
+  const handleChangeFavorite = (name, index) => {
+    const elements = [...formData[name]];
+    if (elements[index].isFavorite) {
+      elements[index].isFavorite = false;
+    } else {
+      const nbFavorites = elements.reduce((acc, curr) => {
+        if (curr.isFavorite) {
+          acc += 1;
+        }
+        return acc;
+      }, 0);
+      if (nbFavorites < 3) {
+        elements[index].isFavorite = true;
+      }
+    }
+    setFormData({ ...formData, [name]: elements });
+  };
+
+  const handleChangeBgColors = (pColors) => {
+    setFormData({ ...formData, bgColors: pColors });
+  };
+
   const colorsToString = (pColors) => {
-    console.log(pColors);
     if (pColors.length > 1) {
       let s = "linear-gradient(90deg, ";
       pColors.forEach((elt, index) => {
@@ -66,7 +135,6 @@ export default function EditProfile() {
           index < pColors.length - 1 && pColors.length > 1 ? res + ", " : res;
       });
       s += ")";
-      console.log(s);
       return s;
     } else {
       return pColors[0].color;
@@ -82,6 +150,7 @@ export default function EditProfile() {
       cancel={handleCancel}
       changeImage={handleChangeImage}
       deleteImage={handleDeleteImage}
+      changeFavorite={handleChangeFavorite}
       colorsToString={colorsToString}
       changeBgColors={handleChangeBgColors}
     />
