@@ -1,19 +1,17 @@
 import React from "react";
 import Breadcrumb from "./../Breadcrumb/Breadcrumb";
 import {
-  Button,
   FormGroup,
   Form,
   Col,
   Row,
   FormLabel,
   FormControl,
-  FormCheck,
   InputGroup,
 } from "react-bootstrap";
-import { FaTrashAlt } from "react-icons/fa";
 import { BiPlus, BiImport, BiUserCircle } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
+import ColorBg from "./ColorBg/ColorBg";
 
 import "./EditProfile.scss";
 
@@ -87,7 +85,11 @@ export default function EditProfileView(props) {
                     Background
                   </FormLabel>
                   <Col sm="9">
-                    <div className="background-preview"></div>
+                    <ColorBg
+                      colors={props.formData.bgColors}
+                      setColors={props.changeBgColors}
+                      colorsToString={props.colorsToString}
+                    />
                   </Col>
                 </FormGroup>
 

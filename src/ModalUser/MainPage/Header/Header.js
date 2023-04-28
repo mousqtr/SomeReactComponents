@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ColorBg from "./ColorBg/ColorBg";
 import { BiPaint } from "react-icons/bi";
 import "./Header.scss";
 
@@ -45,17 +44,6 @@ export default function Header({ mode, bgColors }) {
         >
           <BiPaint type="color" />
         </div>
-      ) : (
-        <></>
-      )}
-
-      {isColorBg ? (
-        <ColorBg
-          colors={colors}
-          setColors={setColors}
-          colorsToString={colorsToString}
-          close={() => setColorBg(false)}
-        />
       ) : (
         <></>
       )}
