@@ -13,6 +13,7 @@ import { BiImport, BiUserCircle } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import ColorBg from "./ColorBg/ColorBg";
 import { SUCCESS_ICONS } from "./../data/data.js";
+import { BACKGROUNDS } from "./../data/backgrounds.js";
 
 import "./EditProfile.scss";
 
@@ -169,7 +170,6 @@ export default function EditProfileView(props) {
                     <ColorBg
                       background={props.formData.background}
                       changeBackground={props.changeBackground}
-                      colorsToString={props.colorsToString}
                     />
                   </Col>
                 </FormGroup>

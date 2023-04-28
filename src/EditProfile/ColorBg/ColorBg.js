@@ -1,30 +1,58 @@
+import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { BiTrash } from "react-icons/bi";
 import { BsPlusCircleDotted, BsCheckLg } from "react-icons/bs";
 import "./ColorBg.scss";
 
-export default function ({ background, changeBackground, colorsToString }) {
-  const type = background.type;
-  const colors = background.colors;
+const bgStringToObject = (pString) => {
+  const gradientType = pString.match(/^(linear|radial)-gradient/)[1];
 
-  const setType = (pType) => {
-    changeBackground({ ...background, type: pType });
-  };
+  // extraire le degré (pour les dégradés linéaires seulement)
+  const gradientDegreeMatch = pString.match(/\d+deg/);
+  const gradientDegree = gradientDegreeMatch
+    ? parseInt(gradientDegreeMatch[0])
+    : null;
 
-  const setColors = (pColors) => {
-    changeBackground({ ...background, colors: pColors });
+  // extraire les couleurs et les pourcentages
+  const colorStops = pString
+    .match(/[0-9a-fA-F]{6}\b\s+\d+%/g)
+    .map((colorStop) => {
+      const [color, stop] = colorStop.split(/\s+/);
+      return {
+        color,
+        stop: parseInt(stop),
+      };
+    });
+
+  return [gradientType, gradientDegree, colorStops];
+};
+
+const bgObjectToString = (pBackground) => {
+  console.log(pBackground);
+  const stopsString = pBackground.colors
+    .map(({ color, stop }) => `${color} ${stop}%`)
+    .join(", ");
+  const degreeString = pBackground.degree ? `${pBackground.degree}deg, ` : "";
+  return `background: ${pBackground.type}-gradient(${degreeString}${stopsString});`;
+};
+
+export default function ({ background, changeBackground }) {
+  const [bg, setBg] = useState(bgStringToObject(background));
+
+  const setPropety = (pProperty, pValue) => {
+    setBg({ ...bg, [pProperty]: pValue });
   };
 
   const handleChangeColor = (e, index) => {
     const colors_ = [...colors];
     colors_[index].color = e.target.value;
-    setColors(colors_);
+    setPropety("colors", colors_);
   };
 
   const handleChangeStop = (e, index) => {
     const colors_ = [...colors];
     colors_[index].stop = e.target.value;
-    setColors(colors_);
+    setPropety("colors", colors_);
   };
 
   const handleRemove = (index) => {
@@ -33,11 +61,11 @@ export default function ({ background, changeBackground, colorsToString }) {
     if (colors_.length === 1) {
       colors_[0].stop = 100;
     }
-    setColors(colors_);
+    setPropety("colors", colors_);
   };
 
   const handleAdd = () => {
-    setColors([
+    setPropety("colors", [
       ...colors,
       {
         color: "#000000",
@@ -47,7 +75,11 @@ export default function ({ background, changeBackground, colorsToString }) {
   };
 
   const handleChangeType = (e) => {
-    setType(e.target.value);
+    setPropety("type", e.target.value);
+  };
+
+  const handleChangeDegree = (e) => {
+    setPropety("degree", e.target.value);
   };
 
   const handleCancel = (e) => {
@@ -65,7 +97,7 @@ export default function ({ background, changeBackground, colorsToString }) {
         <p>Visualisation</p>
         <div
           className="preview-block"
-          style={{ background: colorsToString(colors) }}
+          style={{ background: bgObjectToString(bg) }}
         ></div>
       </div>
 
@@ -77,7 +109,7 @@ export default function ({ background, changeBackground, colorsToString }) {
             label="Linear"
             name="typeGradient"
             value="linear"
-            checked={type === "linear"}
+            checked={bg.type === "linear"}
             onChange={handleChangeType}
           />
           <Form.Check
@@ -85,7 +117,7 @@ export default function ({ background, changeBackground, colorsToString }) {
             label="Radial"
             name="typeGradient"
             value="radial"
-            checked={type === "radial"}
+            checked={bg.type === "radial"}
             onChange={handleChangeType}
           />
         </div>
@@ -94,7 +126,7 @@ export default function ({ background, changeBackground, colorsToString }) {
       <div className="choose-colors">
         <p>Choix des couleurs</p>
         <div className="chosen-part">
-          {colors.map((elt, index) => (
+          {bg.colors.map((elt, index) => (
             <div key={index} className="choose-color bothColor center-row">
               <input
                 type="color"
@@ -121,7 +153,7 @@ export default function ({ background, changeBackground, colorsToString }) {
             </div>
           ))}
 
-          {colors.length === 1 ? (
+          {bg.colors.length === 1 ? (
             <div
               className="choose-color bothColor center-row add"
               onClick={handleAdd}
