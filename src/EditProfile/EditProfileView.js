@@ -116,6 +116,29 @@ export default function EditProfileView(props) {
                   </Col>
                 </FormGroup>
 
+                {/* Description */}
+                <FormGroup as={Row} className="mb-2">
+                  <FormLabel column sm="3">
+                    Description
+                  </FormLabel>
+                  <Col sm="9">
+                    <InputGroup hasValidation>
+                      <FormControl
+                        as="textarea"
+                        name="description"
+                        aria-label="With textarea"
+                        placeholder="Description"
+                        value={props.formData.description}
+                        onChange={props.change}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        Merci de saisir une description
+                      </Form.Control.Feedback>
+                    </InputGroup>
+                  </Col>
+                </FormGroup>
+
                 {[
                   {
                     label: "Succès",
@@ -154,29 +177,6 @@ export default function EditProfileView(props) {
                   </FormGroup>
                 ))}
 
-                {/* Description */}
-                <FormGroup as={Row} className="mb-2">
-                  <FormLabel column sm="3">
-                    Description
-                  </FormLabel>
-                  <Col sm="9">
-                    <InputGroup hasValidation>
-                      <FormControl
-                        as="textarea"
-                        name="description"
-                        aria-label="With textarea"
-                        placeholder="Description"
-                        value={props.formData.description}
-                        onChange={props.change}
-                        required
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        Merci de saisir une description
-                      </Form.Control.Feedback>
-                    </InputGroup>
-                  </Col>
-                </FormGroup>
-
                 {/* Background */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
@@ -184,8 +184,8 @@ export default function EditProfileView(props) {
                   </FormLabel>
                   <Col sm="9">
                     <ColorBg
-                      colors={props.formData.bgColors}
-                      setColors={props.changeBgColors}
+                      background={props.formData.background}
+                      changeBackground={props.changeBackground}
                       colorsToString={props.colorsToString}
                     />
                   </Col>
