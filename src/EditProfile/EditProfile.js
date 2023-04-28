@@ -11,28 +11,6 @@ export default function EditProfile() {
       "https://images.pexels.com/photos/533974/pexels-photo-533974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description:
       "It defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible",
-    badges: [
-      {
-        name: "badge0",
-        isFavorite: true,
-      },
-      {
-        name: "badge1",
-        isFavorite: true,
-      },
-      {
-        name: "badge2",
-        isFavorite: true,
-      },
-      {
-        name: "badge3",
-        isFavorite: false,
-      },
-      {
-        name: "badge4",
-        isFavorite: false,
-      },
-    ],
     success: [
       {
         name: "success0",
@@ -55,11 +33,43 @@ export default function EditProfile() {
         isFavorite: false,
       },
       {
+        name: "success4",
+        isFavorite: false,
+      },
+      {
         name: "success5",
         isFavorite: false,
       },
       {
         name: "success6",
+        isFavorite: false,
+      },
+      {
+        name: "success7",
+        isFavorite: false,
+      },
+      {
+        name: "success8",
+        isFavorite: false,
+      },
+      {
+        name: "success9",
+        isFavorite: false,
+      },
+      {
+        name: "success10",
+        isFavorite: false,
+      },
+      {
+        name: "success11",
+        isFavorite: false,
+      },
+      {
+        name: "success12",
+        isFavorite: false,
+      },
+      {
+        name: "success13",
         isFavorite: false,
       },
     ],
@@ -107,8 +117,8 @@ export default function EditProfile() {
     setFormData({ ...formData, imageProfile: "" });
   };
 
-  const handleChangeFavorite = (name, index) => {
-    const elements = [...formData[name]];
+  const handleChangeSuccess = (index) => {
+    const elements = [...formData.success];
     if (elements[index].isFavorite) {
       elements[index].isFavorite = false;
     } else {
@@ -122,7 +132,7 @@ export default function EditProfile() {
         elements[index].isFavorite = true;
       }
     }
-    setFormData({ ...formData, [name]: elements });
+    setFormData({ ...formData, success: elements });
   };
 
   const handleChangeBackground = (pBackground) => {
@@ -153,7 +163,7 @@ export default function EditProfile() {
       cancel={handleCancel}
       changeImage={handleChangeImage}
       deleteImage={handleDeleteImage}
-      changeFavorite={handleChangeFavorite}
+      changeSuccess={handleChangeSuccess}
       colorsToString={colorsToString}
       changeBackground={handleChangeBackground}
       colorsToString={colorsToString}

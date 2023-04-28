@@ -12,8 +12,7 @@ import {
 import { BiImport, BiUserCircle } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import ColorBg from "./ColorBg/ColorBg";
-import { BADGES_ICONS } from "./../data/badges.js";
-import { SUCCESS_ICONS } from "./../data/success.js";
+import { SUCCESS_ICONS } from "./../data/data.js";
 
 import "./EditProfile.scss";
 
@@ -139,43 +138,27 @@ export default function EditProfileView(props) {
                   </Col>
                 </FormGroup>
 
-                {[
-                  {
-                    label: "Succès",
-                    name: "success",
-                    icons: SUCCESS_ICONS,
-                  },
-                  {
-                    label: "Badges",
-                    name: "badges",
-                    icons: BADGES_ICONS,
-                  },
-                ].map((type, indexType) => (
-                  <FormGroup key={indexType} as={Row} className="mb-2">
-                    <Form.Label column sm="3">
-                      {type.label} favoris <br />
-                      (3 max)
-                    </Form.Label>
-                    <Col sm="9">
-                      {props.formData[type.name].length > 0
-                        ? props.formData[type.name].map((elt, indexElt) => (
-                            <div
-                              key={indexElt}
-                              className={[
-                                "icon center",
-                                elt.isFavorite ? "favorite" : "",
-                              ].join(" ")}
-                              onClick={() =>
-                                props.changeFavorite(type.name, indexElt)
-                              }
-                            >
-                              {type.icons[elt.name]}
-                            </div>
-                          ))
-                        : "Aucun success pour l'instant"}
-                    </Col>
-                  </FormGroup>
-                ))}
+                <FormGroup as={Row} className="mb-2">
+                  <Form.Label column sm="3">
+                    Succès favoris <br /> (3 max)
+                  </Form.Label>
+                  <Col sm="9" className="success-list">
+                    {props.formData.success.length > 0
+                      ? props.formData.success.map((elt, indexElt) => (
+                          <div
+                            key={indexElt}
+                            className={[
+                              "icon center",
+                              elt.isFavorite ? "favorite" : "",
+                            ].join(" ")}
+                            onClick={() => props.changeSuccess(indexElt)}
+                          >
+                            {SUCCESS_ICONS[elt.name]}
+                          </div>
+                        ))
+                      : "Aucun success pour l'instant"}
+                  </Col>
+                </FormGroup>
 
                 {/* Background */}
                 <FormGroup as={Row} className="mb-2">
