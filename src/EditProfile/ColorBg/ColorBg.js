@@ -50,8 +50,17 @@ export default function ({ background, changeBackground, colorsToString }) {
     setType(e.target.value);
   };
 
+  const handleCancel = (e) => {
+    console.log("cancel");
+  };
+
+  const handleConfirm = (e) => {
+    console.log("confirm");
+  };
+
   return (
     <div id="colorBg">
+      <h5>Arrière-plan personnalisé</h5>
       <div className="preview">
         <p>Visualisation</p>
         <div
@@ -62,64 +71,77 @@ export default function ({ background, changeBackground, colorsToString }) {
 
       <div className="choose-type">
         <p>Type de gradient</p>
-        <Form.Check
-          type="radio"
-          label="Linear"
-          name="typeGradient"
-          value="linear"
-          checked={type === "linear"}
-          onChange={handleChangeType}
-        />
-        <Form.Check
-          type="radio"
-          label="Radial"
-          name="typeGradient"
-          value="radial"
-          checked={type === "radial"}
-          onChange={handleChangeType}
-        />
+        <div className="chosen-part">
+          <Form.Check
+            type="radio"
+            label="Linear"
+            name="typeGradient"
+            value="linear"
+            checked={type === "linear"}
+            onChange={handleChangeType}
+          />
+          <Form.Check
+            type="radio"
+            label="Radial"
+            name="typeGradient"
+            value="radial"
+            checked={type === "radial"}
+            onChange={handleChangeType}
+          />
+        </div>
       </div>
 
       <div className="choose-colors">
         <p>Choix des couleurs</p>
-        {colors.map((elt, index) => (
-          <div key={index} className="choose-color bothColor center-row">
-            <input
-              type="color"
-              className="color"
-              value={elt.color}
-              onChange={(e) => handleChangeColor(e, index)}
-            />
-            <input
-              type="number"
-              className="stop"
-              disabled={colors.length === 1 && index === 0}
-              min="0"
-              max="100"
-              value={elt.stop}
-              onChange={(e) => handleChangeStop(e, index)}
-            />
-
-            <div className="remove center">
-              <BiTrash
-                onClick={() => handleRemove(index)}
-                className={index === 0 ? "disabled" : ""}
+        <div className="chosen-part">
+          {colors.map((elt, index) => (
+            <div key={index} className="choose-color bothColor center-row">
+              <input
+                type="color"
+                className="color"
+                value={elt.color}
+                onChange={(e) => handleChangeColor(e, index)}
               />
-            </div>
-          </div>
-        ))}
+              <input
+                type="number"
+                className="stop"
+                disabled={colors.length === 1 && index === 0}
+                min="0"
+                max="100"
+                value={elt.stop}
+                onChange={(e) => handleChangeStop(e, index)}
+              />
 
-        {colors.length === 1 ? (
-          <div
-            className="choose-color bothColor center-row add"
-            onClick={handleAdd}
-          >
-            <BsPlusCircleDotted />
-            <span>Ajouter couleur</span>
-          </div>
-        ) : (
-          <></>
-        )}
+              <div className="remove center">
+                <BiTrash
+                  onClick={() => handleRemove(index)}
+                  className={index === 0 ? "disabled" : ""}
+                />
+              </div>
+            </div>
+          ))}
+
+          {colors.length === 1 ? (
+            <div
+              className="choose-color bothColor center-row add"
+              onClick={handleAdd}
+            >
+              <BsPlusCircleDotted />
+              <span>Ajouter couleur</span>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
+
+      <div className="bg-buttons">
+        <button className="btn btn-green" onClick={handleConfirm}>
+          Confirmer
+        </button>
+        <button className="btn btn-red mr-1" onClick={handleCancel}>
+          Annuler
+        </button>
       </div>
     </div>
   );
