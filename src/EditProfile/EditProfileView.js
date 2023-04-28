@@ -180,7 +180,7 @@ export default function EditProfileView(props) {
                 {/* Background */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
-                    Background
+                    Arrière-plan
                   </FormLabel>
                   <Col sm="9">
                     <ColorBg
@@ -194,7 +194,7 @@ export default function EditProfileView(props) {
                 {/* Preview */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
-                    Preview
+                    Aperçu
                   </FormLabel>
                   <Col sm="9">
                     <button className="btn btn-purple btn-preview">

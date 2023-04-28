@@ -2,6 +2,19 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+
+  h5 {
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: #d1d1d1;
+    height: 30px;
+    line-height: 30px;
+  }
 
   p {
     width: 200px;
@@ -12,15 +25,19 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 5px;
+    margin-left: 10px;
 
-    .form-check {
-      margin-right: 10px;
+    .chosen-part {
+      .form-check {
+        margin-right: 10px;
+      }
     }
   }
 
   .choose-colors {
     display: flex;
     flex-direction: row;
+    margin-left: 10px;
 
     .choose-color {
       height: 25px;
@@ -80,11 +97,25 @@
     flex-direction: row;
     align-items: center;
     margin-bottom: 5px;
+    margin-left: 10px;
 
     .preview-block {
       width: 200px;
       height: 40px;
       border-radius: 0.25rem;
+    }
+  }
+
+  .bg-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 10px;
+
+    button {
+      width: 60px;
+      height: 30px;
+      margin-right: 10px;
     }
   }
 }
