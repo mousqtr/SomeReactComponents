@@ -79,20 +79,6 @@ export default function EditProfileView(props) {
                   </Col>
                 </FormGroup>
 
-                {/* Background */}
-                <FormGroup as={Row} className="mb-2">
-                  <FormLabel column sm="3">
-                    Background
-                  </FormLabel>
-                  <Col sm="9">
-                    <ColorBg
-                      colors={props.formData.bgColors}
-                      setColors={props.changeBgColors}
-                      colorsToString={props.colorsToString}
-                    />
-                  </Col>
-                </FormGroup>
-
                 {/* Country */}
                 <FormGroup as={Row} className="mb-2">
                   <Form.Label column sm="3">
@@ -212,12 +198,26 @@ export default function EditProfileView(props) {
                   </Col>
                 </FormGroup>
 
+                {/* Background */}
+                <FormGroup as={Row} className="mb-2">
+                  <FormLabel column sm="3">
+                    Background
+                  </FormLabel>
+                  <Col sm="9">
+                    <ColorBg
+                      colors={props.formData.bgColors}
+                      setColors={props.changeBgColors}
+                      colorsToString={props.colorsToString}
+                    />
+                  </Col>
+                </FormGroup>
+
                 <div className="buttons">
                   <button className="btn btn-red mr-1" onClick={props.cancel}>
                     Quitter
                   </button>
                   <button className="btn btn-green" onClick={props.submit}>
-                    Valider
+                    Sauvegarder
                   </button>
                 </div>
               </Form>
