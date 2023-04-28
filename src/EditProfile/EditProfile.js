@@ -11,7 +11,7 @@ export default function EditProfile() {
       "https://images.pexels.com/photos/533974/pexels-photo-533974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     description:
       "It defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible",
-    backgroundColors: [
+    bgColors: [
       {
         color: "#5757a9",
         stop: "47",
@@ -39,6 +39,10 @@ export default function EditProfile() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleChangeBgColors = (pColors) => {
+    setFormData({ ...formData, bgColors: pColors });
   };
 
   const handleChangeImage = (e) => {
@@ -79,6 +83,7 @@ export default function EditProfile() {
       changeImage={handleChangeImage}
       deleteImage={handleDeleteImage}
       colorsToString={colorsToString}
+      changeBgColors={handleChangeBgColors}
     />
   );
 }

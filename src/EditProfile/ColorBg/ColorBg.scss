@@ -1,14 +1,6 @@
 #colorBg {
   width: 130px;
   height: 160px;
-  background-color: white;
-  position: absolute;
-  top: 35px;
-  right: 10px;
-  z-index: 10;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem;
-  padding: 5px;
 
   .preview {
     width: calc(100% - 10px);
