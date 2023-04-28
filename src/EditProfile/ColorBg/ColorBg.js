@@ -1,17 +1,27 @@
-import { useEffect, useMemo, useState } from "react";
+import { Form } from "react-bootstrap";
 import { BiTrash } from "react-icons/bi";
 import { BsPlusCircleDotted, BsCheckLg } from "react-icons/bs";
-import { ImCross } from "react-icons/im";
 import "./ColorBg.scss";
 
-export default function ({ colors, setColors, colorsToString, close }) {
-  const handleSetColor = (e, index) => {
+export default function ({ background, changeBackground, colorsToString }) {
+  const type = background.type;
+  const colors = background.colors;
+
+  const setType = (pType) => {
+    changeBackground({ ...background, type: pType });
+  };
+
+  const setColors = (pColors) => {
+    changeBackground({ ...background, colors: pColors });
+  };
+
+  const handleChangeColor = (e, index) => {
     const colors_ = [...colors];
     colors_[index].color = e.target.value;
     setColors(colors_);
   };
 
-  const handleSetStop = (e, index) => {
+  const handleChangeStop = (e, index) => {
     const colors_ = [...colors];
     colors_[index].stop = e.target.value;
     setColors(colors_);
@@ -36,25 +46,49 @@ export default function ({ colors, setColors, colorsToString, close }) {
     ]);
   };
 
-  const handleClose = () => {
-    close();
+  const handleChangeType = (e) => {
+    setType(e.target.value);
   };
 
   return (
     <div id="colorBg">
-      <div
-        className="preview"
-        style={{ background: colorsToString(colors) }}
-      ></div>
+      <div className="preview">
+        <p>Visualisation</p>
+        <div
+          className="preview-block"
+          style={{ background: colorsToString(colors) }}
+        ></div>
+      </div>
 
-      <div className="sub-blocks">
+      <div className="choose-type">
+        <p>Type de gradient</p>
+        <Form.Check
+          type="radio"
+          label="Linear"
+          name="typeGradient"
+          value="linear"
+          checked={type === "linear"}
+          onChange={handleChangeType}
+        />
+        <Form.Check
+          type="radio"
+          label="Radial"
+          name="typeGradient"
+          value="radial"
+          checked={type === "radial"}
+          onChange={handleChangeType}
+        />
+      </div>
+
+      <div className="choose-colors">
+        <p>Choix des couleurs</p>
         {colors.map((elt, index) => (
-          <div key={index} className="sub-block bothColor center-row">
+          <div key={index} className="choose-color bothColor center-row">
             <input
               type="color"
               className="color"
               value={elt.color}
-              onChange={(e) => handleSetColor(e, index)}
+              onChange={(e) => handleChangeColor(e, index)}
             />
             <input
               type="number"
@@ -63,7 +97,7 @@ export default function ({ colors, setColors, colorsToString, close }) {
               min="0"
               max="100"
               value={elt.stop}
-              onChange={(e) => handleSetStop(e, index)}
+              onChange={(e) => handleChangeStop(e, index)}
             />
 
             <div className="remove center">
@@ -77,7 +111,7 @@ export default function ({ colors, setColors, colorsToString, close }) {
 
         {colors.length === 1 ? (
           <div
-            className="sub-block bothColor center-row add"
+            className="choose-color bothColor center-row add"
             onClick={handleAdd}
           >
             <BsPlusCircleDotted />
