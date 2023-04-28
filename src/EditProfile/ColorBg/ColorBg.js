@@ -15,7 +15,7 @@ const bgStringToObject = (pString) => {
 
   // extraire les couleurs et les pourcentages
   const colorStops = pString
-    .match(/[0-9a-fA-F]{6}\b\s+\d+%/g)
+    .match(/#[0-9a-fA-F]{6}\b\s+\d+%/g)
     .map((colorStop) => {
       const [color, stop] = colorStop.split(/\s+/);
       return {
@@ -24,20 +24,25 @@ const bgStringToObject = (pString) => {
       };
     });
 
-  return [gradientType, gradientDegree, colorStops];
+  return {
+    type: gradientType,
+    degree: gradientDegree,
+    colors: colorStops,
+  };
 };
 
 const bgObjectToString = (pBackground) => {
-  console.log(pBackground);
   const stopsString = pBackground.colors
     .map(({ color, stop }) => `${color} ${stop}%`)
     .join(", ");
   const degreeString = pBackground.degree ? `${pBackground.degree}deg, ` : "";
-  return `background: ${pBackground.type}-gradient(${degreeString}${stopsString});`;
+  return `${pBackground.type}-gradient(${degreeString}${stopsString})`;
 };
 
 export default function ({ background, changeBackground }) {
   const [bg, setBg] = useState(bgStringToObject(background));
+  console.log(bg);
+  console.log(bgObjectToString(bg));
 
   const setPropety = (pProperty, pValue) => {
     setBg({ ...bg, [pProperty]: pValue });
@@ -137,7 +142,7 @@ export default function ({ background, changeBackground }) {
               <input
                 type="number"
                 className="stop"
-                disabled={colors.length === 1 && index === 0}
+                disabled={bg.colors.length === 1 && index === 0}
                 min="0"
                 max="100"
                 value={elt.stop}
