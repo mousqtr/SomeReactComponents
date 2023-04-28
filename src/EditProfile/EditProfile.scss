@@ -20,11 +20,6 @@
     align-items: start;
   }
 
-  .btn-preview {
-    width: 240px !important;
-    background-color: orange;
-  }
-
   .image-profile {
     width: 100px;
     aspect-ratio: 1;
@@ -58,6 +53,10 @@
     }
   }
 
+  textarea {
+    height: 100px;
+  }
+
   .success-list {
     display: block;
 
@@ -86,8 +85,9 @@
     }
   }
 
-  textarea {
-    height: 100px;
+  .btn-preview {
+    width: 240px !important;
+    background-color: orange;
   }
 
   .buttons {

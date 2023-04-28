@@ -33,10 +33,6 @@ export default function EditProfile() {
         isFavorite: false,
       },
       {
-        name: "success4",
-        isFavorite: false,
-      },
-      {
         name: "success5",
         isFavorite: false,
       },
@@ -73,19 +69,7 @@ export default function EditProfile() {
         isFavorite: false,
       },
     ],
-    background: {
-      type: "linear",
-      colors: [
-        {
-          color: "#5757a9",
-          stop: "47",
-        },
-        {
-          color: "#9a57a9",
-          stop: "100",
-        },
-      ],
-    },
+    background: "linear-gradient(90deg, #5757A9 47%, #9A57A9 100%);",
   });
   const [validated, setValidated] = useState(false);
 
@@ -139,21 +123,6 @@ export default function EditProfile() {
     setFormData({ ...formData, background: pBackground });
   };
 
-  const colorsToString = (pColors) => {
-    if (pColors.length > 1) {
-      let s = "linear-gradient(90deg, ";
-      pColors.forEach((elt, index) => {
-        const res = elt.color + " " + elt.stop + "%";
-        s +=
-          index < pColors.length - 1 && pColors.length > 1 ? res + ", " : res;
-      });
-      s += ")";
-      return s;
-    } else {
-      return pColors[0].color;
-    }
-  };
-
   return (
     <EditProfileView
       formData={formData}
@@ -164,9 +133,7 @@ export default function EditProfile() {
       changeImage={handleChangeImage}
       deleteImage={handleDeleteImage}
       changeSuccess={handleChangeSuccess}
-      colorsToString={colorsToString}
       changeBackground={handleChangeBackground}
-      colorsToString={colorsToString}
     />
   );
 }
