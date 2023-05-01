@@ -9,7 +9,7 @@ import {
   FormControl,
   InputGroup,
 } from "react-bootstrap";
-import { BiImport, BiUserCircle } from "react-icons/bi";
+import { BiImport, BiUserCircle, BiPaint } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import ColorBg from "./ColorBg/ColorBg";
 import { SUCCESS_ICONS } from "./../data/data.js";
@@ -166,10 +166,16 @@ export default function EditProfileView(props) {
                   <FormLabel column sm="3">
                     Arrière-plan
                   </FormLabel>
-                  <Col sm="9">
-                    {BACKGROUNDS.map((bg, index) => (
-                      <div key={index} className="backgrounds"></div>
-                    ))}
+                  <Col sm="9" className="bg-list">
+                    <div className="bg-examples">
+                      {BACKGROUNDS.map((bg, index) => (
+                        <div
+                          key={index}
+                          style={{ background: bg }}
+                          className="bg-example"
+                        ></div>
+                      ))}
+                    </div>
                     <ColorBg
                       background={props.formData.background}
                       changeBackground={props.changeBackground}
