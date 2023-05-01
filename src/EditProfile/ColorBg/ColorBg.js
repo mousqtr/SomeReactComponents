@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Form } from "react-bootstrap";
 import { BiTrash } from "react-icons/bi";
 import { BsPlusCircleDotted, BsCheckLg } from "react-icons/bs";
@@ -8,10 +8,14 @@ const bgStringToObject = (pString) => {
   const gradientType = pString.match(/^(linear|radial)-gradient/)[1];
 
   // extraire le degré (pour les dégradés linéaires seulement)
-  const gradientDegreeMatch = pString.match(/\d+deg/);
-  const gradientDegree = gradientDegreeMatch
-    ? parseInt(gradientDegreeMatch[0])
-    : null;
+  let gradientDegree;
+  if (gradientType === "linear") {
+    const gradientDegreeMatch = pString.match(/\d+deg/);
+    gradientDegree = gradientDegreeMatch ? gradientDegreeMatch[0] : null;
+  } else {
+    const shapeMatch = colorStop.match(/^(circle|ellipse|at\s+center)/);
+    gradientDegree = shapeMatch ? shapeMatch[1] : null;
+  }
 
   // extraire les couleurs et les pourcentages
   const colorStops = pString
@@ -35,33 +39,40 @@ const bgObjectToString = (pBackground) => {
   const stopsString = pBackground.colors
     .map(({ color, stop }) => `${color} ${stop}%`)
     .join(", ");
-  const degreeString = pBackground.degree ? `${pBackground.degree}deg, ` : "";
+  const degreeString = pBackground.degree ? `${pBackground.degree}, ` : "";
   return `${pBackground.type}-gradient(${degreeString}${stopsString})`;
+};
+
+const degreeToInt = (pDegree) => {
+  if (pDegree.includes("deg")) {
+    const matches = pDegree.match(/\d+/);
+    return matches ? parseInt(matches[0]) : 90;
+  }
+  return 90;
 };
 
 export default function ({ background, changeBackground }) {
   const [bg, setBg] = useState(bgStringToObject(background));
-  console.log(bg);
-  console.log(bgObjectToString(bg));
+  const [degree, setDegree] = useState(degreeToInt(bg.degree));
 
   const setPropety = (pProperty, pValue) => {
     setBg({ ...bg, [pProperty]: pValue });
   };
 
   const handleChangeColor = (e, index) => {
-    const colors_ = [...colors];
+    const colors_ = [...bg.colors];
     colors_[index].color = e.target.value;
     setPropety("colors", colors_);
   };
 
   const handleChangeStop = (e, index) => {
-    const colors_ = [...colors];
+    const colors_ = [...bg.colors];
     colors_[index].stop = e.target.value;
     setPropety("colors", colors_);
   };
 
   const handleRemove = (index) => {
-    let colors_ = [...colors];
+    let colors_ = [...bg.colors];
     colors_.splice(index, 1);
     if (colors_.length === 1) {
       colors_[0].stop = 100;
@@ -71,7 +82,7 @@ export default function ({ background, changeBackground }) {
 
   const handleAdd = () => {
     setPropety("colors", [
-      ...colors,
+      ...bg.colors,
       {
         color: "#000000",
         stop: "100",
@@ -80,11 +91,17 @@ export default function ({ background, changeBackground }) {
   };
 
   const handleChangeType = (e) => {
-    setPropety("type", e.target.value);
+    const bg_ = { ...bg };
+    bg_["type"] = e.target.value;
+    bg_["degree"] = e.target.value === "radial" ? "circle" : `${degree}deg`;
+    setBg(bg_);
   };
 
   const handleChangeDegree = (e) => {
-    setPropety("degree", e.target.value);
+    setDegree(e.target.value);
+    if (bg.type === "linear") {
+      setPropety("degree", `${e.target.value}deg`);
+    }
   };
 
   const handleCancel = (e) => {
@@ -95,15 +112,16 @@ export default function ({ background, changeBackground }) {
     console.log("confirm");
   };
 
+  const previewBg = useMemo(() => {
+    return bgObjectToString(bg);
+  }, [bg]);
+
   return (
     <div id="colorBg">
       <h5>Arrière-plan personnalisé</h5>
       <div className="preview">
         <p>Visualisation</p>
-        <div
-          className="preview-block"
-          style={{ background: bgObjectToString(bg) }}
-        ></div>
+        <div className="preview-block" style={{ background: previewBg }}></div>
       </div>
 
       <div className="choose-type">
@@ -125,6 +143,21 @@ export default function ({ background, changeBackground }) {
             checked={bg.type === "radial"}
             onChange={handleChangeType}
           />
+        </div>
+      </div>
+
+      <div className="choose-degree">
+        <p>Angle du gradient</p>
+        <div className="chosen-part">
+          <input
+            type="number"
+            className="degree"
+            min="0"
+            max="360"
+            value={degree}
+            onChange={handleChangeDegree}
+          />
+          {" degrés"}
         </div>
       </div>
 

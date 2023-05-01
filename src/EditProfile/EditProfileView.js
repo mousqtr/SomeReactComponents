@@ -167,6 +167,9 @@ export default function EditProfileView(props) {
                     Arrière-plan
                   </FormLabel>
                   <Col sm="9">
+                    {BACKGROUNDS.map((bg, index) => (
+                      <div key={index} className="backgrounds"></div>
+                    ))}
                     <ColorBg
                       background={props.formData.background}
                       changeBackground={props.changeBackground}
