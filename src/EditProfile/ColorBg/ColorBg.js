@@ -91,10 +91,11 @@ export default function ({ background, changeBackground }) {
   };
 
   const handleChangeType = (e) => {
-    const bg_ = { ...bg };
-    bg_["type"] = e.target.value;
-    bg_["degree"] = e.target.value === "radial" ? "circle" : `${degree}deg`;
-    setBg(bg_);
+    setBg({
+      ...bg,
+      type: e.target.value,
+      degree: e.target.value === "radial" ? "circle" : `${degree}deg`,
+    });
   };
 
   const handleChangeDegree = (e) => {
@@ -113,7 +114,11 @@ export default function ({ background, changeBackground }) {
   };
 
   const previewBg = useMemo(() => {
-    return bgObjectToString(bg);
+    if (bg.colors.length > 1) {
+      return bgObjectToString(bg);
+    } else {
+      return `${bg.colors[0].color}`;
+    }
   }, [bg]);
 
   return (
