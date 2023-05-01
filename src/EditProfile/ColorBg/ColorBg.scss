@@ -21,7 +21,9 @@
     margin: 0;
   }
 
-  .choose-type {
+  .choose-type,
+  .choose-degree,
+  .choose-colors {
     display: flex;
     flex-direction: row;
     margin-bottom: 5px;
@@ -35,10 +37,6 @@
   }
 
   .choose-colors {
-    display: flex;
-    flex-direction: row;
-    margin-left: 10px;
-
     .choose-color {
       height: 25px;
       margin-right: 5px;
