@@ -85,6 +85,26 @@
     }
   }
 
+  .bg-list {
+    flex-direction: column;
+
+    .bg-examples {
+      display: block;
+      width: 100%;
+      margin-right: 5px;
+
+      .bg-example {
+        width: 100px;
+        height: 30px;
+        float: left;
+        margin-left: 2.5px;
+        margin-right: 2.5px;
+        margin-bottom: 5px;
+        border-radius: 0.25rem;
+      }
+    }
+  }
+
   .btn-preview {
     width: 240px !important;
     background-color: orange;

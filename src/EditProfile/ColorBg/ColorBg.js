@@ -151,20 +151,24 @@ export default function ({ background, changeBackground }) {
         </div>
       </div>
 
-      <div className="choose-degree">
-        <p>Angle du gradient</p>
-        <div className="chosen-part">
-          <input
-            type="number"
-            className="degree"
-            min="0"
-            max="360"
-            value={degree}
-            onChange={handleChangeDegree}
-          />
-          {" degrés"}
+      {bg.type === "linear" ? (
+        <div className="choose-degree">
+          <p>Angle du gradient</p>
+          <div className="chosen-part">
+            <input
+              type="number"
+              className="degree"
+              min="0"
+              max="360"
+              value={degree}
+              onChange={handleChangeDegree}
+            />
+            {" degrés"}
+          </div>
         </div>
-      </div>
+      ) : (
+        <></>
+      )}
 
       <div className="choose-colors">
         <p>Choix des couleurs</p>
