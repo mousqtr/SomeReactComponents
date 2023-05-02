@@ -69,7 +69,7 @@ export default function EditProfile() {
         isFavorite: false,
       },
     ],
-    background: "linear-gradient(90deg, #5757A9 47%, #9A57A9 100%);",
+    background: "linear-gradient(90deg, #5757A9 47%, #9A57A9 100%)",
   });
   const [validated, setValidated] = useState(false);
 

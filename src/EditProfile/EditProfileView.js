@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Breadcrumb from "./../Breadcrumb/Breadcrumb";
 import {
   FormGroup,
@@ -18,6 +18,12 @@ import { BACKGROUNDS } from "./../data/backgrounds.js";
 import "./EditProfile.scss";
 
 export default function EditProfileView(props) {
+  const backgrounds = useMemo(() => {
+    return BACKGROUNDS.includes(props.formData.background)
+      ? BACKGROUNDS
+      : [props.formData.background, ...BACKGROUNDS];
+  }, [props.formData.background]);
+
   return (
     <div id="editProfile" className="section-screen">
       <div className="section-central">
@@ -168,11 +174,18 @@ export default function EditProfileView(props) {
                   </FormLabel>
                   <Col sm="9" className="bg-list">
                     <div className="bg-examples">
-                      {BACKGROUNDS.map((bg, index) => (
+                      {backgrounds.map((bg, index) => (
                         <div
                           key={index}
-                          style={{ background: bg }}
+                          style={{
+                            background: bg,
+                            border:
+                              bg === props.formData.background
+                                ? "2px solid black"
+                                : "2px white",
+                          }}
                           className="bg-example"
+                          onClick={() => props.changeBackground(bg)}
                         ></div>
                       ))}
                     </div>
