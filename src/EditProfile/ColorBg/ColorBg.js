@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { BiTrash } from "react-icons/bi";
 import { BsPlusCircleDotted, BsCheckLg } from "react-icons/bs";
@@ -13,7 +13,7 @@ const bgStringToObject = (pString) => {
     const gradientDegreeMatch = pString.match(/\d+deg/);
     gradientDegree = gradientDegreeMatch ? gradientDegreeMatch[0] : null;
   } else {
-    const shapeMatch = colorStop.match(/^(circle|ellipse|at\s+center)/);
+    const shapeMatch = pString.match(/(circle|ellipse|at\s+center)/);
     gradientDegree = shapeMatch ? shapeMatch[1] : null;
   }
 
@@ -54,6 +54,12 @@ const degreeToInt = (pDegree) => {
 export default function ({ background, changeBackground }) {
   const [bg, setBg] = useState(bgStringToObject(background));
   const [degree, setDegree] = useState(degreeToInt(bg.degree));
+
+  useEffect(() => {
+    const bg_ = bgStringToObject(background);
+    setBg(bg_);
+    setDegree(degreeToInt(bg_.degree));
+  }, [background]);
 
   const setPropety = (pProperty, pValue) => {
     setBg({ ...bg, [pProperty]: pValue });
