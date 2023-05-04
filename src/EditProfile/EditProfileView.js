@@ -1,6 +1,7 @@
 import React from "react";
 import Breadcrumb from "./../Breadcrumb/Breadcrumb";
 import ColorBg from "./ColorBg/ColorBg";
+import ModalUser from "./../ModalUser/ModalUser";
 import {
   FormGroup,
   Form,
@@ -235,6 +236,10 @@ export default function EditProfileView(props) {
                   </button>
                 </div>
               </Form>
+              <div className="preview-section">
+                <p>Aperçu</p>
+                <ModalUser />
+              </div>
             </div>
           </div>
         </div>
