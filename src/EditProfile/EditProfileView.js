@@ -1,5 +1,6 @@
 import React from "react";
 import Breadcrumb from "./../Breadcrumb/Breadcrumb";
+import ColorBg from "./ColorBg/ColorBg";
 import {
   FormGroup,
   Form,
@@ -12,7 +13,8 @@ import {
 import { BiImport, BiUserCircle } from "react-icons/bi";
 import { MdDeleteOutline, MdOutlineAddBox } from "react-icons/md";
 import { TbLayoutGridAdd } from "react-icons/tb";
-import ColorBg from "./ColorBg/ColorBg";
+import { FaStar } from "react-icons/fa";
+
 import { SUCCESS_ICONS } from "./../data/data.js";
 
 import "./EditProfile.scss";
@@ -146,15 +148,21 @@ export default function EditProfileView(props) {
                   <Col sm="9" className="success-list">
                     {props.formData.success.length > 0
                       ? props.formData.success.map((elt, indexElt) => (
-                          <div
-                            key={indexElt}
-                            className={[
-                              "icon center",
-                              elt.isFavorite ? "favorite" : "",
-                            ].join(" ")}
-                            onClick={() => props.changeSuccess(indexElt)}
-                          >
-                            {SUCCESS_ICONS[elt.name]}
+                          <div key={indexElt} className="success-elt">
+                            <div
+                              className={[
+                                "icon center",
+                                elt.isFavorite ? "favorite" : "",
+                              ].join(" ")}
+                              onClick={() => props.changeSuccess(indexElt)}
+                            >
+                              {SUCCESS_ICONS[elt.name]}
+                              {elt.isFavorite ? (
+                                <FaStar className="favorite-star" />
+                              ) : (
+                                <></>
+                              )}
+                            </div>
                           </div>
                         ))
                       : "Aucun success pour l'instant"}
@@ -175,12 +183,18 @@ export default function EditProfileView(props) {
                             background: bg,
                             border:
                               bg === props.formData.background
-                                ? "2px solid black"
+                                ? "2px solid orange"
                                 : "2px white",
                           }}
                           className="bg-example"
                           onClick={() => props.changeBackground(bg)}
-                        ></div>
+                        >
+                          {bg === props.formData.background ? (
+                            <FaStar className="favorite-star" />
+                          ) : (
+                            <></>
+                          )}
+                        </div>
                       ))}
                       <div
                         className="bg-example bg-custom center-row"
@@ -193,7 +207,8 @@ export default function EditProfileView(props) {
                     {props.isCreateBg ? (
                       <ColorBg
                         addBackground={props.addBackground}
-                        setCreateBg={props.setCreateBg}
+                        hide={() => props.setCreateBg(false)}
+                        isHide={!props.isCreateBg}
                       />
                     ) : (
                       <></>
