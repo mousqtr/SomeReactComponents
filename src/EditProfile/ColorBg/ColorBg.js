@@ -6,7 +6,7 @@ import { MdClose } from "react-icons/md";
 import { bgStringToObject, bgObjectToString, degreeToInt } from "./utils.js";
 import "./ColorBg.scss";
 
-export default function ({ addBackground, setCreateBg }) {
+export default function ({ addBackground, hide, isHide }) {
   const [bg, setBg] = useState(
     bgStringToObject("linear-gradient(120deg, #2747A9 37%, #abc149 100%)")
   );
@@ -62,8 +62,9 @@ export default function ({ addBackground, setCreateBg }) {
     }
   };
 
-  const handleCancel = () => {
-    setCreateBg(false);
+  const handleCancel = (e) => {
+    e.preventDefault();
+    hide();
   };
 
   const handleConfirm = (e) => {
