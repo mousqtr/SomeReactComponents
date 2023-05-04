@@ -2,64 +2,15 @@ import { useState, useMemo, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { BiTrash } from "react-icons/bi";
 import { BsPlusCircleDotted, BsCheckLg } from "react-icons/bs";
+import { MdClose } from "react-icons/md";
+import { bgStringToObject, bgObjectToString, degreeToInt } from "./utils.js";
 import "./ColorBg.scss";
 
-const bgStringToObject = (pString) => {
-  const gradientType = pString.match(/^(linear|radial)-gradient/)[1];
-
-  // extraire le degré (pour les dégradés linéaires seulement)
-  let gradientDegree;
-  if (gradientType === "linear") {
-    const gradientDegreeMatch = pString.match(/\d+deg/);
-    gradientDegree = gradientDegreeMatch ? gradientDegreeMatch[0] : null;
-  } else {
-    const shapeMatch = pString.match(/(circle|ellipse|at\s+center)/);
-    gradientDegree = shapeMatch ? shapeMatch[1] : null;
-  }
-
-  // extraire les couleurs et les pourcentages
-  const colorStops = pString
-    .match(/#[0-9a-fA-F]{6}\b\s+\d+%/g)
-    .map((colorStop) => {
-      const [color, stop] = colorStop.split(/\s+/);
-      return {
-        color,
-        stop: parseInt(stop),
-      };
-    });
-
-  return {
-    type: gradientType,
-    degree: gradientDegree,
-    colors: colorStops,
-  };
-};
-
-const bgObjectToString = (pBackground) => {
-  const stopsString = pBackground.colors
-    .map(({ color, stop }) => `${color} ${stop}%`)
-    .join(", ");
-  const degreeString = pBackground.degree ? `${pBackground.degree}, ` : "";
-  return `${pBackground.type}-gradient(${degreeString}${stopsString})`;
-};
-
-const degreeToInt = (pDegree) => {
-  if (pDegree.includes("deg")) {
-    const matches = pDegree.match(/\d+/);
-    return matches ? parseInt(matches[0]) : 90;
-  }
-  return 90;
-};
-
-export default function ({ background, changeBackground }) {
-  const [bg, setBg] = useState(bgStringToObject(background));
+export default function ({ addBackground, setCreateBg }) {
+  const [bg, setBg] = useState(
+    bgStringToObject("linear-gradient(120deg, #2747A9 37%, #abc149 100%)")
+  );
   const [degree, setDegree] = useState(degreeToInt(bg.degree));
-
-  useEffect(() => {
-    const bg_ = bgStringToObject(background);
-    setBg(bg_);
-    setDegree(degreeToInt(bg_.degree));
-  }, [background]);
 
   const setPropety = (pProperty, pValue) => {
     setBg({ ...bg, [pProperty]: pValue });
@@ -111,12 +62,13 @@ export default function ({ background, changeBackground }) {
     }
   };
 
-  const handleCancel = (e) => {
-    console.log("cancel");
+  const handleCancel = () => {
+    setCreateBg(false);
   };
 
   const handleConfirm = (e) => {
-    console.log("confirm");
+    e.preventDefault();
+    addBackground(bgObjectToString(bg));
   };
 
   const previewBg = useMemo(() => {
@@ -129,10 +81,20 @@ export default function ({ background, changeBackground }) {
 
   return (
     <div id="colorBg">
-      <h5>Arrière-plan personnalisé</h5>
+      <h5>
+        Créer son arrière-plan
+        <button onClick={handleCancel} className="btn btn-red">
+          <MdClose />
+        </button>
+      </h5>
       <div className="preview">
         <p>Visualisation</p>
-        <div className="preview-block" style={{ background: previewBg }}></div>
+        <div className="chosen-part">
+          <div
+            className="preview-block"
+            style={{ background: previewBg }}
+          ></div>
+        </div>
       </div>
 
       <div className="choose-type">
@@ -180,7 +142,7 @@ export default function ({ background, changeBackground }) {
         <p>Choix des couleurs</p>
         <div className="chosen-part">
           {bg.colors.map((elt, index) => (
-            <div key={index} className="choose-color bothColor center-row">
+            <div key={index} className="choose-color">
               <input
                 type="color"
                 className="color"
@@ -207,10 +169,7 @@ export default function ({ background, changeBackground }) {
           ))}
 
           {bg.colors.length === 1 ? (
-            <div
-              className="choose-color bothColor center-row add"
-              onClick={handleAdd}
-            >
+            <div className="choose-color add" onClick={handleAdd}>
               <BsPlusCircleDotted />
               <span>Ajouter couleur</span>
             </div>
@@ -222,10 +181,7 @@ export default function ({ background, changeBackground }) {
 
       <div className="bg-buttons">
         <button className="btn btn-green" onClick={handleConfirm}>
-          Confirmer
-        </button>
-        <button className="btn btn-red mr-1" onClick={handleCancel}>
-          Annuler
+          Ajouter
         </button>
       </div>
     </div>
