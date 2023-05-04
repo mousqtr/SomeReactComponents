@@ -14,22 +14,47 @@
     background-color: #ededed;
     height: 30px;
     line-height: 30px;
+    position: relative;
+
+    button {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      border-radius: 0.25rem;
+      padding: 0px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
   }
 
   p {
     width: 200px;
     margin: 0;
+    @media (max-width: 460px) {
+      width: 100px;
+    }
   }
 
+  .preview,
   .choose-type,
   .choose-degree,
   .choose-colors {
     display: flex;
     flex-direction: row;
-    margin-bottom: 5px;
-    margin-left: 10px;
+    margin: 0px 10px 5px 10px;
 
     .chosen-part {
+      width: calc(100% - 200px);
+      padding-left: 10px;
+      @media (max-width: 460px) {
+        width: calc(100% - 100px);
+      }
+
       .form-check {
         margin-right: 10px;
       }
@@ -38,6 +63,9 @@
 
   .choose-colors {
     .choose-color {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
       height: 25px;
       margin-right: 5px;
       margin-bottom: 5px;
@@ -91,14 +119,8 @@
   }
 
   .preview {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 5px;
-    margin-left: 10px;
-
     .preview-block {
-      width: 200px;
+      width: min(100%, 200px);
       height: 40px;
       border-radius: 0.25rem;
     }
@@ -111,7 +133,7 @@
     margin-bottom: 10px;
 
     button {
-      width: 60px;
+      width: 70px;
       height: 30px;
       margin-right: 10px;
     }

@@ -3,12 +3,14 @@
 
   .btn {
     border-radius: 0.25rem;
-    font-size: 12px;
+    font-size: 13px;
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: center;
+  }
 
+  .buttons-image {
     svg {
       width: 20px;
       height: 20px;
@@ -102,6 +104,24 @@
         margin-bottom: 5px;
         border-radius: 0.25rem;
         cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      .bg-custom {
+        background-color: #ededed;
+        color: black;
+        border: 1px solid #ced4da;
+        font-size: 14px;
+        line-height: 14px;
+
+        svg {
+          width: 24px;
+          height: 24px;
+          margin-right: 5px;
+        }
       }
     }
   }
@@ -109,6 +129,12 @@
   .btn-preview {
     width: 240px !important;
     background-color: orange;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 3px;
+    }
   }
 
   .buttons {

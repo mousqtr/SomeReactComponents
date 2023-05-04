@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import EditProfileView from "./EditProfileView";
+import { BACKGROUNDS } from "./../data/backgrounds.js";
 
 export default function EditProfile() {
   const history = useHistory();
@@ -72,6 +73,12 @@ export default function EditProfile() {
     background: "linear-gradient(90deg, #5757A9 47%, #9A57A9 100%)",
   });
   const [validated, setValidated] = useState(false);
+  const [isCreateBg, setCreateBg] = useState(false);
+  const [backgrounds, setBackgrounds] = useState(
+    BACKGROUNDS.includes(formData.background)
+      ? BACKGROUNDS
+      : [formData.background, ...BACKGROUNDS]
+  );
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
@@ -123,6 +130,11 @@ export default function EditProfile() {
     setFormData({ ...formData, background: pBackground });
   };
 
+  const handleAddBackground = (pBackground) => {
+    setBackgrounds([...backgrounds, pBackground]);
+    setCreateBg(false);
+  };
+
   return (
     <EditProfileView
       formData={formData}
@@ -134,6 +146,10 @@ export default function EditProfile() {
       deleteImage={handleDeleteImage}
       changeSuccess={handleChangeSuccess}
       changeBackground={handleChangeBackground}
+      addBackground={handleAddBackground}
+      backgrounds={backgrounds}
+      isCreateBg={isCreateBg}
+      setCreateBg={setCreateBg}
     />
   );
 }

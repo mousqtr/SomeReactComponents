@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import Breadcrumb from "./../Breadcrumb/Breadcrumb";
 import {
   FormGroup,
@@ -9,21 +9,15 @@ import {
   FormControl,
   InputGroup,
 } from "react-bootstrap";
-import { BiImport, BiUserCircle, BiPaint } from "react-icons/bi";
-import { MdDeleteOutline } from "react-icons/md";
+import { BiImport, BiUserCircle } from "react-icons/bi";
+import { MdDeleteOutline, MdOutlineAddBox } from "react-icons/md";
+import { TbLayoutGridAdd } from "react-icons/tb";
 import ColorBg from "./ColorBg/ColorBg";
 import { SUCCESS_ICONS } from "./../data/data.js";
-import { BACKGROUNDS } from "./../data/backgrounds.js";
 
 import "./EditProfile.scss";
 
 export default function EditProfileView(props) {
-  const backgrounds = useMemo(() => {
-    return BACKGROUNDS.includes(props.formData.background)
-      ? BACKGROUNDS
-      : [props.formData.background, ...BACKGROUNDS];
-  }, [props.formData.background]);
-
   return (
     <div id="editProfile" className="section-screen">
       <div className="section-central">
@@ -174,7 +168,7 @@ export default function EditProfileView(props) {
                   </FormLabel>
                   <Col sm="9" className="bg-list">
                     <div className="bg-examples">
-                      {backgrounds.map((bg, index) => (
+                      {props.backgrounds.map((bg, index) => (
                         <div
                           key={index}
                           style={{
@@ -188,11 +182,22 @@ export default function EditProfileView(props) {
                           onClick={() => props.changeBackground(bg)}
                         ></div>
                       ))}
+                      <div
+                        className="bg-example bg-custom center-row"
+                        onClick={() => props.setCreateBg(true)}
+                      >
+                        <TbLayoutGridAdd />
+                        Créer
+                      </div>
                     </div>
-                    <ColorBg
-                      background={props.formData.background}
-                      changeBackground={props.changeBackground}
-                    />
+                    {props.isCreateBg ? (
+                      <ColorBg
+                        addBackground={props.addBackground}
+                        setCreateBg={props.setCreateBg}
+                      />
+                    ) : (
+                      <></>
+                    )}
                   </Col>
                 </FormGroup>
 
