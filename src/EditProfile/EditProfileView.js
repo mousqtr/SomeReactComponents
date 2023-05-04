@@ -230,9 +230,6 @@ export default function EditProfileView(props) {
                 </FormGroup>
 
                 <div className="buttons">
-                  <button className="btn btn-red mr-1" onClick={props.cancel}>
-                    Quitter
-                  </button>
                   <button className="btn btn-green" onClick={props.submit}>
                     Sauvegarder
                   </button>
