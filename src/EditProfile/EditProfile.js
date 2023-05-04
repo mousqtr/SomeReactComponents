@@ -89,10 +89,6 @@ export default function EditProfile() {
     setValidated(true);
   };
 
-  const handleCancel = () => {
-    history.push({ pathname: "/" });
-  };
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -141,7 +137,6 @@ export default function EditProfile() {
       validated={validated}
       change={handleChange}
       submit={handleSubmit}
-      cancel={handleCancel}
       changeImage={handleChangeImage}
       deleteImage={handleDeleteImage}
       changeSuccess={handleChangeSuccess}
