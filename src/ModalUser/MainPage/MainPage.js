@@ -1,34 +1,40 @@
 import { useState } from "react";
 import Header from "./Header/Header";
 import Image from "./Image/Image";
-import Badges from "./Badges/Badges";
+// import Badges from "./Badges/Badges";
 import Success from "./Success/Success";
 import Content from "./Content/Content";
 import Edit from "./Edit/Edit";
+import { BsPencilFill } from "react-icons/bs";
 import "./MainPage.scss";
 
 export default function MainPage({
-  username,
   setPage,
+  username,
   urlImage,
-  headerBgColors,
+  background,
+  success,
 }) {
-  const [mode, setMode] = useState("show");
+  const handleEdit = () => {
+    console.log("edit");
+  };
 
   return (
     <div className="mainPage">
       <div className="block-header">
-        <Header mode={mode} bgColors={headerBgColors} />
+        <Header bg={background} />
       </div>
       <div className="block-body">
-        <Badges mode={mode} />
-        <Success mode={mode} />
+        {/* <Badges mode={mode} /> */}
+        <Success success={success} />
         <Content username={username} setPage={setPage} />
       </div>
       <div className="block-image">
-        <Image mode={mode} url={urlImage} />
+        <Image url={urlImage} />
       </div>
-      <Edit mode={mode} setMode={setMode} />
+      <div className="button-edit center" onClick={handleEdit}>
+        <BsPencilFill />
+      </div>
     </div>
   );
 }

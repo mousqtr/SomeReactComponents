@@ -122,13 +122,15 @@ export default function EditProfileView(props) {
                 {/* Description */}
                 <FormGroup as={Row} className="mb-2">
                   <FormLabel column sm="3">
-                    Description
+                    Description <br />
+                    <span>(93 caractères max)</span>
                   </FormLabel>
                   <Col sm="9">
                     <InputGroup hasValidation>
                       <FormControl
                         as="textarea"
                         name="description"
+                        maxLength="93"
                         aria-label="With textarea"
                         placeholder="Description"
                         value={props.formData.description}
@@ -144,7 +146,7 @@ export default function EditProfileView(props) {
 
                 <FormGroup as={Row} className="mb-2">
                   <Form.Label column sm="3">
-                    Succès favoris <br /> (3 max)
+                    Succès favoris <br /> <span>(3 max)</span>
                   </Form.Label>
                   <Col sm="9" className="success-list">
                     {props.formData.success.length > 0

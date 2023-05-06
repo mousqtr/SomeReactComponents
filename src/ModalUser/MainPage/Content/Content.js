@@ -12,10 +12,17 @@ export default function Content({ username, setPage }) {
   return (
     <div className="content">
       <div className="content-username">{username}</div>
-      <div className="content-actions">
+      <div className="content-section content-description">
+        La vie est un long fleuve agité La vie est un long fleuve agité, si tu
+        cours tu vas tt tt
+      </div>
+      <div className="content-section content-actions">
+        <strong>ACTIONS</strong>
         <Actions />
       </div>
-      <div className="content-volume center">
+
+      <div className="content-section content-volume">
+        <strong>VOLUME</strong>
         <VolumeSlider />
       </div>
       <div className="content-section content-date">
@@ -26,12 +33,6 @@ export default function Content({ username, setPage }) {
       </div>
       <div className="content-section content-badges">
         <strong>BADGES</strong>178
-      </div>
-      <div className="content-section content-description">
-        <strong>DESCRIPTION</strong>
-        <div className="next center-row" onClick={handleShowMore}>
-          (Ouvrir ici <FaArrowRight />)
-        </div>
       </div>
     </div>
   );

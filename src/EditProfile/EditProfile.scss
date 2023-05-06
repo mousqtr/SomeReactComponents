@@ -32,6 +32,11 @@
 
       .col-form-label {
         align-items: start;
+        flex-direction: column;
+
+        span {
+          font-style: italic;
+        }
       }
 
       .favorite-star {

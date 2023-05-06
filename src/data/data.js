@@ -30,5 +30,5 @@ export const SUCCESS_ICONS = {
   success11: <GiSkullShield />,
   success12: <GiGriffinShield />,
   success13: <GiBlackHandShield />,
-  success14: <GiBellShield />,
+  success14: <GiBellShield />, 
 };
