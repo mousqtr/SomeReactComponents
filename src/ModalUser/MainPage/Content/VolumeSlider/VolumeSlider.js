@@ -18,7 +18,7 @@ export default function VolumeSlider(props) {
   };
 
   return (
-    <div className="volumeSlider center-row">
+    <div className="volumeSlider">
       <BsFillVolumeMuteFill onClick={handleMinVolume} />
       <input
         type="range"

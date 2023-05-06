@@ -5,21 +5,13 @@ import "./ModalUser.scss";
 
 export default function ModalUser() {
   const [page, setPage] = useState("main");
+
   const username = "MousQTR";
-  const bio =
-    "It defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible";
+  const bio = "La vie est un long fleuve agité";
   const urlImage =
     "https://images.pexels.com/photos/533974/pexels-photo-533974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
-  const headerBgColors = [
-    {
-      color: "#5757a9",
-      stop: "47",
-    },
-    {
-      color: "#9a57a9",
-      stop: "100",
-    },
-  ];
+  const background = "linear-gradient(90deg, #5757A9 47%, #9A57A9 100%)";
+  const success = ["success0", "success1", "success2"];
 
   return (
     <div id="modalUser">
@@ -28,7 +20,8 @@ export default function ModalUser() {
           username={username}
           setPage={setPage}
           urlImage={urlImage}
-          headerBgColors={headerBgColors}
+          background={background}
+          success={success}
         />
       ) : (
         <></>

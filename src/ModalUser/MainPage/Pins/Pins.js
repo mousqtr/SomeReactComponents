@@ -1,22 +1,7 @@
-import { useMemo } from "react";
-import { AiFillMinusCircle } from "react-icons/ai";
-import { getIcon } from "../../icons";
+import { SUCCESS_ICONS } from "./../../../data/data";
 import "./Pins.scss";
 
-export default function Pins({ mode, elements, position, setElements }) {
-  const pins = useMemo(() => {
-    if (mode === "edit") {
-      return elements;
-    }
-    return elements.filter((name) => name !== "");
-  }, [mode, elements]);
-
-  const handleDeleteElement = (id) => {
-    const elements_ = [...elements];
-    elements_[id] = "none";
-    setElements(elements_);
-  };
-
+export default function Pins({ elements, position }) {
   return (
     <div
       className="pins center-row"
@@ -25,32 +10,10 @@ export default function Pins({ mode, elements, position, setElements }) {
         right: position === "right" ? "10px" : "inherit",
       }}
     >
-      {pins.map((name, index) => (
-        <>
-          {name !== "none" ? (
-            <div key={index} className="icon center">
-              <div className="center fill">{getIcon(name)}</div>
-              {mode === "edit" ? (
-                <AiFillMinusCircle
-                  className="minus"
-                  onClick={() => handleDeleteElement(index)}
-                />
-              ) : (
-                <></>
-              )}
-            </div>
-          ) : (
-            <>
-              {mode === "edit" ? (
-                <div key={index} className="icon center">
-                  <div className="center empty">{getIcon(name)}</div>
-                </div>
-              ) : (
-                <></>
-              )}
-            </>
-          )}
-        </>
+      {elements.map((name, index) => (
+        <div key={index} className="icon center">
+          <div className="center fill">{SUCCESS_ICONS[name]}</div>
+        </div>
       ))}
     </div>
   );
