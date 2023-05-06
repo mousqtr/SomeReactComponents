@@ -1,10 +1,9 @@
 import { useState } from "react";
 import Header from "./Header/Header";
 import Image from "./Image/Image";
-// import Badges from "./Badges/Badges";
+import Badges from "./Badges/Badges";
 import Success from "./Success/Success";
 import Content from "./Content/Content";
-import Edit from "./Edit/Edit";
 import { BsPencilFill } from "react-icons/bs";
 import "./MainPage.scss";
 
@@ -13,6 +12,7 @@ export default function MainPage({
   username,
   urlImage,
   background,
+  badges,
   success,
 }) {
   const handleEdit = () => {
@@ -25,7 +25,7 @@ export default function MainPage({
         <Header bg={background} />
       </div>
       <div className="block-body">
-        {/* <Badges mode={mode} /> */}
+        <Badges badges={badges} />
         <Success success={success} />
         <Content username={username} setPage={setPage} />
       </div>

@@ -1,12 +1,16 @@
 import VolumeSlider from "./VolumeSlider/VolumeSlider";
 import Actions from "./Actions/Actions";
-import { FaArrowRight } from "react-icons/fa";
+import { FaUserFriends, FaStar } from "react-icons/fa";
 
 import "./Content.scss";
 
 export default function Content({ username, setPage }) {
-  const handleShowMore = () => {
-    setPage("description");
+  const handleShowFriends = () => {
+    setPage("friends");
+  };
+
+  const handleShowSuccess = () => {
+    setPage("success");
   };
 
   return (
@@ -29,10 +33,16 @@ export default function Content({ username, setPage }) {
         <strong>DATE D'INSCRIPTION</strong>03-08-2023
       </div>
       <div className="content-section content-friends">
-        <strong>AMIS</strong>150
+        <strong>AMIS</strong>
+        <div className="center btn-purple" onClick={handleShowFriends}>
+          <FaUserFriends />
+        </div>
       </div>
       <div className="content-section content-badges">
-        <strong>BADGES</strong>178
+        <strong>SUCCES</strong>
+        <div className="center btn-purple" onClick={handleShowSuccess}>
+          <FaStar />
+        </div>
       </div>
     </div>
   );
