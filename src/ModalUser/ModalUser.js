@@ -1,6 +1,7 @@
-import MainPage from "./MainPage/MainPage";
 import { useState } from "react";
-import DescriptionPage from "./DescriptionPage/DescriptionPage";
+import MainPage from "./MainPage/MainPage";
+import FriendsPage from "./FriendsPage/FriendsPage";
+import SuccessPage from "./SuccessPage/SuccessPage";
 import "./ModalUser.scss";
 
 export default function ModalUser() {
@@ -12,6 +13,7 @@ export default function ModalUser() {
     "https://images.pexels.com/photos/533974/pexels-photo-533974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
   const background = "linear-gradient(90deg, #5757A9 47%, #9A57A9 100%)";
   const success = ["success0", "success1", "success2"];
+  const badges = ["admin0"];
 
   return (
     <div id="modalUser">
@@ -21,16 +23,14 @@ export default function ModalUser() {
           setPage={setPage}
           urlImage={urlImage}
           background={background}
+          badges={badges}
           success={success}
         />
       ) : (
         <></>
       )}
-      {page === "description" ? (
-        <DescriptionPage bio={bio} setPage={setPage} />
-      ) : (
-        <></>
-      )}
+      {page === "friends" ? <FriendsPage setPage={setPage} /> : <></>}
+      {page === "success" ? <SuccessPage setPage={setPage} /> : <></>}
     </div>
   );
 }

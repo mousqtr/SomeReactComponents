@@ -1,7 +1,8 @@
 import { SUCCESS_ICONS } from "./../../../data/data";
+import { BADGES_ICONS } from "./../../../data/data";
 import "./Pins.scss";
 
-export default function Pins({ elements, position }) {
+export default function Pins({ elements, position, type }) {
   return (
     <div
       className="pins center-row"
@@ -12,7 +13,9 @@ export default function Pins({ elements, position }) {
     >
       {elements.map((name, index) => (
         <div key={index} className="icon center">
-          <div className="center fill">{SUCCESS_ICONS[name]}</div>
+          <div className="center fill">
+            {type === "success" ? SUCCESS_ICONS[name] : BADGES_ICONS[name]}
+          </div>
         </div>
       ))}
     </div>
