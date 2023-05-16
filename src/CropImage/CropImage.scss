@@ -1,0 +1,11 @@
+#cropImage {
+  width: 300px;
+  height: 200px;
+  background-color: blue;
+
+  .croppedPart {
+    height: 100%;
+    aspect-ratio: 1;
+    background-color: red;
+  }
+}
