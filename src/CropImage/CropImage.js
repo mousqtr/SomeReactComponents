@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import "./CropImage.scss";
 
-// export default function CropImage() {
-//   return (
-//     <div id="cropImage">
-//       <div className="croppedPart"></div>
-//     </div>
-//   );
-// }
-
 const CropImage = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [size, setSize] = useState({ width: 50, height: 50 });
@@ -20,7 +12,14 @@ const CropImage = () => {
     const handleDragMove = (event) => {
       const newX = event.clientX - offsetX;
       const newY = event.clientY - offsetY;
-      setPosition({ x: newX, y: newY });
+
+      const maxX = 400 - size.width;
+      const maxY = 300 - size.height;
+
+      const boundedX = Math.max(0, Math.min(newX, maxX));
+      const boundedY = Math.max(0, Math.min(newY, maxY));
+
+      setPosition({ x: boundedX, y: boundedY });
     };
 
     const handleDragEnd = () => {
