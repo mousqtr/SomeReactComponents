@@ -47,33 +47,6 @@ const CropImage = () => {
           width: Math.min(prevSize.width + offsetX, maxWidth),
           height: Math.min(prevSize.height + offsetY, maxHeight),
         }));
-      } else if (direction === "bottom-left") {
-        setSize((prevSize) => ({
-          width: Math.min(prevSize.width - offsetX, maxWidth),
-          height: Math.min(prevSize.height + offsetY, maxHeight),
-        }));
-        setPosition((prevPosition) => ({
-          x: prevPosition.x + offsetX,
-          y: prevPosition.y,
-        }));
-      } else if (direction === "top-right") {
-        setSize((prevSize) => ({
-          width: Math.min(prevSize.width + offsetX, maxWidth),
-          height: Math.min(prevSize.height - offsetY, maxHeight),
-        }));
-        setPosition((prevPosition) => ({
-          x: prevPosition.x,
-          y: prevPosition.y + offsetY,
-        }));
-      } else if (direction === "top-left") {
-        setSize((prevSize) => ({
-          width: Math.min(prevSize.width - offsetX, maxWidth),
-          height: Math.min(prevSize.height - offsetY, maxHeight),
-        }));
-        setPosition((prevPosition) => ({
-          x: prevPosition.x + offsetX,
-          y: prevPosition.y + offsetY,
-        }));
       }
 
       startX = event.clientX;
@@ -114,48 +87,12 @@ const CropImage = () => {
             position: "absolute",
             width: "10px",
             height: "10px",
-            background: "white",
+            background: "black",
             cursor: "nwse-resize",
-            left: "-5px",
-            top: "-5px",
-          }}
-          onMouseDown={(event) => handleResizeStart(event, "top-left")}
-        />
-        <div
-          style={{
-            position: "absolute",
-            width: "10px",
-            height: "10px",
-            background: "white",
-            cursor: "nesw-resize",
-            right: "-5px",
-            top: "-5px",
-          }}
-          onMouseDown={(event) => handleResizeStart(event, "top-right")}
-        />
-        <div
-          style={{
-            position: "absolute",
-            width: "10px",
-            height: "10px",
-            background: "white",
-            cursor: "nwse-resize",
-            right: "-5px",
-            bottom: "-5px",
+            right: "0px",
+            bottom: "0px",
           }}
           onMouseDown={(event) => handleResizeStart(event, "bottom-right")}
-        />
-        <div
-          style={{
-            position: "absolute",
-            width: "10px",
-            height: "10px",
-            background: "white",
-            cursor: "nesw-resize",
-            left: "-5px",
-            bottom: "-5px",
-          }}
-          onMouseDown={(event) => handleResizeStart(event, "bottom-left")}
         />
       </div>
     </div>
