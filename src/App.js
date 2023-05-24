@@ -9,6 +9,7 @@ import AdminMime from "./AdminMime/AdminMime";
 import ModalUser from "./ModalUser/ModalUser";
 import EditProfile from "./EditProfile/EditProfile";
 import CropImage from "./CropImage/CropImage";
+// import MediaSettings from "./MediaSettings/MediaSettings";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
       {/* <EditProfile /> */}
       {/* <EditProfile /> */}
       <CropImage />
+      {/* <MediaSettings /> */}
     </div>
   );
 }

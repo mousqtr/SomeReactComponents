@@ -32,9 +32,11 @@ const CropImage = () => {
   };
 
   const handleResizeStart = (event, direction) => {
+    event.stopPropagation();
     let startX = event.clientX;
     let startY = event.clientY;
-    event.stopPropagation();
+    const maxWidth = 400 - event.clientX + size.width;
+    const maxHeight = 300 - event.clientY + size.height;
 
     const handleResizeMove = (event) => {
       const offsetX = event.clientX - startX;
@@ -42,13 +44,13 @@ const CropImage = () => {
 
       if (direction === "bottom-right") {
         setSize((prevSize) => ({
-          width: prevSize.width + offsetX,
-          height: prevSize.height + offsetY,
+          width: Math.min(prevSize.width + offsetX, maxWidth),
+          height: Math.min(prevSize.height + offsetY, maxHeight),
         }));
       } else if (direction === "bottom-left") {
         setSize((prevSize) => ({
-          width: prevSize.width - offsetX,
-          height: prevSize.height + offsetY,
+          width: Math.min(prevSize.width - offsetX, maxWidth),
+          height: Math.min(prevSize.height + offsetY, maxHeight),
         }));
         setPosition((prevPosition) => ({
           x: prevPosition.x + offsetX,
@@ -56,8 +58,8 @@ const CropImage = () => {
         }));
       } else if (direction === "top-right") {
         setSize((prevSize) => ({
-          width: prevSize.width + offsetX,
-          height: prevSize.height - offsetY,
+          width: Math.min(prevSize.width + offsetX, maxWidth),
+          height: Math.min(prevSize.height - offsetY, maxHeight),
         }));
         setPosition((prevPosition) => ({
           x: prevPosition.x,
@@ -65,8 +67,8 @@ const CropImage = () => {
         }));
       } else if (direction === "top-left") {
         setSize((prevSize) => ({
-          width: prevSize.width - offsetX,
-          height: prevSize.height - offsetY,
+          width: Math.min(prevSize.width - offsetX, maxWidth),
+          height: Math.min(prevSize.height - offsetY, maxHeight),
         }));
         setPosition((prevPosition) => ({
           x: prevPosition.x + offsetX,
@@ -101,7 +103,7 @@ const CropImage = () => {
           position: "absolute",
           width: size.width + "px",
           height: size.height + "px",
-          background: "red",
+          background: "lightgrey",
           left: position.x + "px",
           top: position.y + "px",
         }}
@@ -137,7 +139,7 @@ const CropImage = () => {
             width: "10px",
             height: "10px",
             background: "white",
-            cursor: "nesw-resize",
+            cursor: "nwse-resize",
             right: "-5px",
             bottom: "-5px",
           }}
@@ -149,7 +151,7 @@ const CropImage = () => {
             width: "10px",
             height: "10px",
             background: "white",
-            cursor: "nwse-resize",
+            cursor: "nesw-resize",
             left: "-5px",
             bottom: "-5px",
           }}
